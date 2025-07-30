@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4fc79;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#96e6a1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="100" fill="url(#backgroundGradient)" />
+  
+  <!-- Family silhouette -->
+  <g transform="translate(100, 100)">
+    <!-- Adult 1 (left) -->
+    <g transform="translate(-30, -10)">
+      <!-- Head -->
+      <circle cx="0" cy="-30" r="20" fill="#4a5568" />
+      
+      <!-- Body -->
+      <path d="M-15,20 L-10,-15 L10,-15 L15,20 Z" fill="#3182ce" />
+      
+      <!-- Face features (simplified) -->
+      <ellipse cx="-7" cy="-33" rx="2" ry="1.5" fill="#2d3748" />
+      <ellipse cx="7" cy="-33" rx="2" ry="1.5" fill="#2d3748" />
+      <path d="M-3,-25 C-1.5,-23 1.5,-23 3,-25" stroke="#2d3748" stroke-width="1" fill="none" />
+    </g>
+    
+    <!-- Adult 2 (right) -->
+    <g transform="translate(30, -10)">
+      <!-- Head -->
+      <circle cx="0" cy="-30" r="20" fill="#805ad5" />
+      
+      <!-- Hair -->
+      <path d="M-20,-30 C-20,-45 20,-45 20,-30 C20,-30 15,-50 0,-45 C-15,-50 -20,-30 -20,-30 Z" fill="#4a5568" />
+      
+      <!-- Body -->
+      <path d="M-15,20 L-10,-15 L10,-15 L15,20 Z" fill="#38a169" />
+      
+      <!-- Face features (simplified) -->
+      <ellipse cx="-7" cy="-33" rx="2" ry="1.5" fill="#2d3748" />
+      <ellipse cx="7" cy="-33" rx="2" ry="1.5" fill="#2d3748" />
+      <path d="M-3,-25 C-1.5,-23 1.5,-23 3,-25" stroke="#2d3748" stroke-width="1" fill="none" />
+    </g>
+    
+    <!-- Child (middle) -->
+    <g transform="translate(0, 10)">
+      <!-- Head -->
+      <circle cx="0" cy="-25" r="15" fill="#4a5568" />
+      
+      <!-- Body -->
+      <path d="M-12,15 L-8,-12 L8,-12 L12,15 Z" fill="#ed8936" />
+      
+      <!-- Face features (simplified) -->
+      <ellipse cx="-5" cy="-28" rx="1.5" ry="1" fill="#2d3748" />
+      <ellipse cx="5" cy="-28" rx="1.5" ry="1" fill="#2d3748" />
+      <path d="M-2,-22 C-1,-20 1,-20 2,-22" stroke="#2d3748" stroke-width="0.75" fill="none" />
+      
+      <!-- Arms up -->
+      <path d="M-8,-5 L-15,-20 M8,-5 L15,-20" stroke="#ed8936" stroke-width="4" stroke-linecap="round" />
+    </g>
+    
+    <!-- Connecting hands -->
+    <path d="M-45,-30 C-40,-35 -35,-35 -30,-30" stroke="#3182ce" stroke-width="4" stroke-linecap="round" fill="none" />
+    <path d="M30,-30 C35,-35 40,-35 45,-30" stroke="#38a169" stroke-width="4" stroke-linecap="round" fill="none" />
+    
+    <!-- Ground/shadow -->
+    <ellipse cx="0" cy="25" rx="60" ry="10" fill="#2d3748" opacity="0.1" />
+  </g>
+</svg>

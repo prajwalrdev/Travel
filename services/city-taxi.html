@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Taxi Service - TravelEase</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <style>
+        /* Service Page Specific Styles */
+        .service-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hero-bg.jpg.svg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+        }
+        
+        .service-details {
+            padding: 80px 0;
+        }
+        
+        .service-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .service-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .service-content p {
+            margin-bottom: 20px;
+            color: var(--gray-color);
+            line-height: 1.8;
+        }
+        
+        .service-features {
+            margin: 30px 0;
+        }
+        
+        .service-features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .service-sidebar {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .service-sidebar h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .booking-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .booking-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .booking-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .booking-form button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 20px auto;
+            border-radius: 50%;
+        }
+        
+        .service-card-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .service-card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .service-card-content p {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+        }
+        
+        .pricing-table {
+            margin: 30px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table th,
+        .pricing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .pricing-table th {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .pricing-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .other-services {
+            margin-top: 50px;
+        }
+        
+        .other-services h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .other-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .other-service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .other-service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .other-service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .other-service-content {
+            padding: 20px;
+        }
+        
+        .other-service-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .other-service-content p {
+            color: var(--gray-color);
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .service-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-sidebar {
+                position: static;
+                margin-top: 30px;
+            }
+            
+            .pricing-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="../index.html">Travel<span>Ease</span></a></h1>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#services" class="active">Services</a></li>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#destinations">Destinations</a></li>
+                        <li><a href="../index.html#testimonials">Testimonials</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>City Taxi Service</h1>
+                <p>Convenient and reliable local transportation for all your city travel needs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details Section -->
+    <section class="service-details">
+        <div class="container">
+            <div class="service-details-grid">
+                <div class="service-content">
+                    <h2>City Taxi Service</h2>
+                    <p>TravelEase offers convenient and reliable city taxi services for all your local transportation needs. Whether you need to get to work, attend a meeting, go shopping, or explore the city, our city taxi service provides a comfortable and efficient way to reach your destination.</p>
+                    
+                    <p>Our city taxi service is available 24/7, ensuring that you can get a ride whenever you need one. With our easy booking options, you can book a taxi in advance or request an immediate pickup, depending on your requirements.</p>
+                    
+                    <div class="service-cards">
+                        <div class="service-card">
+                            <div class="service-card-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>24/7 Availability</h3>
+                                <p>Our city taxi service is available round the clock, ensuring that you can get a ride whenever you need one, day or night.</p>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-card-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>City-Wide Coverage</h3>
+                                <p>We provide taxi services throughout the city, covering all major areas, landmarks, and neighborhoods.</p>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-card-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="service-card-content">
+                                <h3>Easy Booking</h3>
+                                <p>Book a taxi through our website, mobile app, or by calling our customer service. Quick and hassle-free booking process.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-features">
+                        <h3>Why Choose Our City Taxi Service?</h3>
+                        <ul class="feature-list">
+                            <li>Professional and courteous drivers</li>
+                            <li>Clean and well-maintained vehicles</li>
+                            <li>Competitive and transparent pricing</li>
+                            <li>Multiple payment options</li>
+                            <li>GPS-tracked vehicles for safety</li>
+                            <li>Air-conditioned comfort</li>
+                            <li>Prompt and reliable service</li>
+                            <li>Special packages for regular commuters</li>
+                        </ul>
+                    </div>
+                    
+                    <p>We offer a range of vehicles to suit your needs, from compact cars for individual travelers to spacious sedans for small groups. All our vehicles are regularly serviced and maintained to ensure a comfortable and safe journey.</p>
+                    
+                    <div class="pricing-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Vehicle Type</th>
+                                    <th>Base Fare</th>
+                                    <th>Per Kilometer</th>
+                                    <th>Waiting Charge (per min)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mini</td>
+                                    <td>₹50</td>
+                                    <td>₹12</td>
+                                    <td>₹2</td>
+                                </tr>
+                                <tr>
+                                    <td>Sedan</td>
+                                    <td>₹80</td>
+                                    <td>₹15</td>
+                                    <td>₹2.5</td>
+                                </tr>
+                                <tr>
+                                    <td>SUV</td>
+                                    <td>₹100</td>
+                                    <td>₹18</td>
+                                    <td>₹3</td>
+                                </tr>
+                                <tr>
+                                    <td>Luxury Sedan</td>
+                                    <td>₹150</td>
+                                    <td>₹25</td>
+                                    <td>₹4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <p>We also offer special packages for regular commuters, corporate clients, and event transportation. Contact our customer service for more information on these packages and to get a customized quote based on your specific requirements.</p>
+                </div>
+                
+                <div class="service-sidebar">
+                    <h3>Book City Taxi</h3>
+                    <form class="booking-form" id="cityTaxiBookingForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup">Pickup Location</label>
+                            <input type="text" id="pickup" name="pickup" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="destination">Destination</label>
+                            <input type="text" id="destination" name="destination" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle">Vehicle Type</label>
+                            <select id="vehicle" name="vehicle" required>
+                                <option value="">Select Vehicle Type</option>
+                                <option value="mini">Mini</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                                <option value="luxury">Luxury Sedan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="passengers">Number of Passengers</label>
+                            <input type="number" id="passengers" name="passengers" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Additional Information</label>
+                            <textarea id="message" name="message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="other-services">
+                <h3>Explore Our Other Services</h3>
+                <div class="other-services-grid">
+                    <div class="other-service-card">
+                        <img src="../images/destination-1.jpg.svg" alt="Outstation Taxi">
+                        <div class="other-service-content">
+                            <h4>Outstation Taxi</h4>
+                            <p>Premium outstation travel with comfort and reliability</p>
+                            <a href="outstation-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="other-service-card">
+                        <img src="../images/destination-2.jpg.svg" alt="Airport Transfer">
+                        <div class="other-service-content">
+                            <h4>Airport Transfer</h4>
+                            <p>Reliable airport pickup and drop-off services</p>
+                            <a href="airport-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="other-service-card">
+                        <img src="../images/destination-3.jpg.svg" alt="Railway Station Taxi">
+                        <div class="other-service-content">
+                            <h4>Railway Station Taxi</h4>
+                            <p>Convenient railway station pickup and drop services</p>
+                            <a href="railway-station-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Travel<span>Ease</span></h2>
+                    <p>Your trusted travel partner for all your journey needs. We provide quality service with comfort and safety.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#services">Services</a></li>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#destinations">Destinations</a></li>
+                        <li><a href="../index.html#testimonials">Testimonials</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="city-taxi.html">City Taxi</a></li>
+                        <li><a href="outstation-taxi.html">Outstation Taxi</a></li>
+                        <li><a href="luxury-cabs.html">Luxury Cabs</a></li>
+                        <li><a href="wedding-cars.html">Wedding Cars</a></li>
+                        <li><a href="corporate-travel.html">Corporate Travel</a></li>
+                        <li><a href="airport-taxi.html">Airport Transfer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates and special offers.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TravelEase. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- JavaScript Files -->
+    <script src="../js/script.js"></script>
+    <script>
+        // Service Page Specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form Validation for City Taxi Booking Form
+            const cityTaxiBookingForm = document.getElementById('cityTaxiBookingForm');
+            
+            if (cityTaxiBookingForm) {
+                cityTaxiBookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic form validation
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const pickup = document.getElementById('pickup').value.trim();
+                    const destination = document.getElementById('destination').value.trim();
+                    const date = document.getElementById('date').value;
+                    const time = document.getElementById('time').value;
+                    const vehicle = document.getElementById('vehicle').value;
+                    
+                    // Validate email format
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address.');
+                        return;
+                    }
+                    
+                    // Validate phone number (basic validation)
+                    const phoneRegex = /^\d{10}$/;
+                    if (!phoneRegex.test(phone)) {
+                        alert('Please enter a valid 10-digit phone number.');
+                        return;
+                    }
+                    
+                    // If all validations pass, show success message
+                    alert('Thank you for your booking request! We will contact you shortly to confirm your reservation.');
+                    cityTaxiBookingForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

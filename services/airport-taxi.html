@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Taxi Service - TravelEase</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <style>
+        /* Service Page Specific Styles */
+        .service-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hero-bg.jpg.svg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+        }
+        
+        .service-details {
+            padding: 80px 0;
+        }
+        
+        .service-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .service-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .service-content p {
+            margin-bottom: 20px;
+            color: var(--gray-color);
+            line-height: 1.8;
+        }
+        
+        .service-features {
+            margin: 30px 0;
+        }
+        
+        .service-features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        
+        .service-sidebar {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .service-sidebar h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+        
+        .booking-form .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .booking-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .booking-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .booking-form button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .pricing-table {
+            margin: 30px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .pricing-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .pricing-table th,
+        .pricing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .pricing-table th {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .pricing-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .other-services {
+            margin-top: 50px;
+        }
+        
+        .other-services h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .other-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .other-service-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .other-service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .other-service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .other-service-content {
+            padding: 20px;
+        }
+        
+        .other-service-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .other-service-content p {
+            color: var(--gray-color);
+            margin-bottom: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .service-details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-sidebar {
+                position: static;
+                margin-top: 30px;
+            }
+            
+            .pricing-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><a href="../index.html">Travel<span>Ease</span></a></h1>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#services" class="active">Services</a></li>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#destinations">Destinations</a></li>
+                        <li><a href="../index.html#testimonials">Testimonials</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Airport Taxi Service</h1>
+                <p>Reliable and punctual airport transfers for a stress-free journey</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details Section -->
+    <section class="service-details">
+        <div class="container">
+            <div class="service-details-grid">
+                <div class="service-content">
+                    <h2>Airport Taxi Service</h2>
+                    <p>TravelEase offers reliable and punctual airport taxi services to ensure you reach your flight on time or get to your destination comfortably after landing. Our airport transfer service is designed to provide a hassle-free experience, eliminating the stress of navigating public transportation or finding parking at the airport.</p>
+                    
+                    <p>We understand the importance of timeliness when it comes to airport transfers. That's why our drivers are always punctual, arriving at your pickup location with ample time to spare. We also monitor flight schedules to adjust pickup times in case of delays, ensuring you're never left waiting.</p>
+                    
+                    <div class="service-features">
+                        <h3>Why Choose Our Airport Taxi Service?</h3>
+                        <ul class="feature-list">
+                            <li>24/7 service, 365 days a year</li>
+                            <li>Flight monitoring for delays and early arrivals</li>
+                            <li>Meet and greet service at the airport</li>
+                            <li>Professional and courteous drivers</li>
+                            <li>Clean and comfortable vehicles</li>
+                            <li>Fixed prices with no hidden charges</li>
+                            <li>Child seats available upon request</li>
+                            <li>Assistance with luggage</li>
+                        </ul>
+                    </div>
+                    
+                    <p>Our airport taxi service is available for both domestic and international airports. We offer a range of vehicles to suit your needs, from standard sedans for individual travelers to spacious SUVs and vans for families or groups with lots of luggage.</p>
+                    
+                    <div class="pricing-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Vehicle Type</th>
+                                    <th>Capacity</th>
+                                    <th>Luggage</th>
+                                    <th>Starting Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sedan</td>
+                                    <td>3 passengers</td>
+                                    <td>2 large suitcases</td>
+                                    <td>₹800</td>
+                                </tr>
+                                <tr>
+                                    <td>SUV</td>
+                                    <td>5 passengers</td>
+                                    <td>3 large suitcases</td>
+                                    <td>₹1200</td>
+                                </tr>
+                                <tr>
+                                    <td>MUV</td>
+                                    <td>6 passengers</td>
+                                    <td>4 large suitcases</td>
+                                    <td>₹1500</td>
+                                </tr>
+                                <tr>
+                                    <td>Luxury Sedan</td>
+                                    <td>3 passengers</td>
+                                    <td>2 large suitcases</td>
+                                    <td>₹2000</td>
+                                </tr>
+                                <tr>
+                                    <td>Luxury SUV</td>
+                                    <td>5 passengers</td>
+                                    <td>3 large suitcases</td>
+                                    <td>₹2500</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <p>Booking an airport taxi with TravelEase is simple and convenient. You can book online through our website, call our customer service, or visit our office. We recommend booking in advance to ensure availability, especially during peak travel seasons.</p>
+                </div>
+                
+                <div class="service-sidebar">
+                    <h3>Book Airport Taxi</h3>
+                    <form class="booking-form" id="airportBookingForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-type">Service Type</label>
+                            <select id="service-type" name="service-type" required>
+                                <option value="">Select Service Type</option>
+                                <option value="airport-pickup">Airport Pickup</option>
+                                <option value="airport-dropoff">Airport Dropoff</option>
+                                <option value="round-trip">Round Trip</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="airport">Airport</label>
+                            <input type="text" id="airport" name="airport" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="flight-number">Flight Number</label>
+                            <input type="text" id="flight-number" name="flight-number">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-address">Pickup Address</label>
+                            <input type="text" id="pickup-address" name="pickup-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropoff-address">Dropoff Address</label>
+                            <input type="text" id="dropoff-address" name="dropoff-address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vehicle">Vehicle Type</label>
+                            <select id="vehicle" name="vehicle" required>
+                                <option value="">Select Vehicle Type</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                                <option value="muv">MUV</option>
+                                <option value="luxury-sedan">Luxury Sedan</option>
+                                <option value="luxury-suv">Luxury SUV</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="passengers">Number of Passengers</label>
+                            <input type="number" id="passengers" name="passengers" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="luggage">Number of Luggage</label>
+                            <input type="number" id="luggage" name="luggage" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Additional Information</label>
+                            <textarea id="message" name="message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="other-services">
+                <h3>Explore Our Other Services</h3>
+                <div class="other-services-grid">
+                    <div class="other-service-card">
+                        <img src="../images/destination-1.jpg.svg" alt="City Taxi">
+                        <div class="other-service-content">
+                            <h4>City Taxi</h4>
+                            <p>Convenient local taxi service for city travel</p>
+                            <a href="city-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="other-service-card">
+                        <img src="../images/destination-2.jpg.svg" alt="Outstation Taxi">
+                        <div class="other-service-content">
+                            <h4>Outstation Taxi</h4>
+                            <p>Premium outstation travel with comfort and reliability</p>
+                            <a href="outstation-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="other-service-card">
+                        <img src="../images/destination-3.jpg.svg" alt="Railway Station Taxi">
+                        <div class="other-service-content">
+                            <h4>Railway Station Taxi</h4>
+                            <p>Convenient railway station pickup and drop services</p>
+                            <a href="railway-station-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Travel<span>Ease</span></h2>
+                    <p>Your trusted travel partner for all your journey needs. We provide quality service with comfort and safety.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#services">Services</a></li>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#destinations">Destinations</a></li>
+                        <li><a href="../index.html#testimonials">Testimonials</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="city-taxi.html">City Taxi</a></li>
+                        <li><a href="outstation-taxi.html">Outstation Taxi</a></li>
+                        <li><a href="luxury-cabs.html">Luxury Cabs</a></li>
+                        <li><a href="wedding-cars.html">Wedding Cars</a></li>
+                        <li><a href="corporate-travel.html">Corporate Travel</a></li>
+                        <li><a href="airport-taxi.html">Airport Transfer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates and special offers.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TravelEase. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- JavaScript Files -->
+    <script src="../js/script.js"></script>
+    <script>
+        // Service Page Specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form Validation for Airport Booking Form
+            const airportBookingForm = document.getElementById('airportBookingForm');
+            
+            if (airportBookingForm) {
+                airportBookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic form validation
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const serviceType = document.getElementById('service-type').value;
+                    const airport = document.getElementById('airport').value.trim();
+                    const date = document.getElementById('date').value;
+                    const time = document.getElementById('time').value;
+                    const pickupAddress = document.getElementById('pickup-address').value.trim();
+                    const dropoffAddress = document.getElementById('dropoff-address').value.trim();
+                    const vehicle = document.getElementById('vehicle').value;
+                    
+                    // Validate email format
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address.');
+                        return;
+                    }
+                    
+                    // Validate phone number (basic validation)
+                    const phoneRegex = /^\d{10}$/;
+                    if (!phoneRegex.test(phone)) {
+                        alert('Please enter a valid 10-digit phone number.');
+                        return;
+                    }
+                    
+                    // If all validations pass, show success message
+                    alert('Thank you for your booking request! We will contact you shortly to confirm your reservation.');
+                    airportBookingForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

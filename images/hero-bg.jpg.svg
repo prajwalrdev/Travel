@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2c3e50;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grad1)" />
+  
+  <!-- Mountains in background -->
+  <path d="M0,500 L200,350 L400,450 L600,300 L800,400 L1000,250 L1200,350 L1200,800 L0,800 Z" fill="#34495e" opacity="0.7" />
+  
+  <!-- Closer mountains -->
+  <path d="M0,600 L250,450 L500,550 L750,400 L1000,500 L1200,450 L1200,800 L0,800 Z" fill="#2c3e50" opacity="0.8" />
+  
+  <!-- Beach/shore -->
+  <path d="M0,700 L1200,700 L1200,800 L0,800 Z" fill="#f39c12" opacity="0.6" />
+  
+  <!-- Sun/moon -->
+  <circle cx="900" cy="200" r="80" fill="#f1c40f" opacity="0.8" />
+  
+  <!-- Clouds -->
+  <ellipse cx="300" cy="150" rx="60" ry="40" fill="white" opacity="0.5" />
+  <ellipse cx="350" cy="140" rx="70" ry="45" fill="white" opacity="0.5" />
+  <ellipse cx="400" cy="160" rx="55" ry="35" fill="white" opacity="0.5" />
+  
+  <ellipse cx="700" cy="100" rx="50" ry="30" fill="white" opacity="0.5" />
+  <ellipse cx="750" cy="90" rx="60" ry="35" fill="white" opacity="0.5" />
+  
+  <!-- Palm trees silhouettes -->
+  <g transform="translate(150, 650)" opacity="0.8">
+    <rect x="-5" y="0" width="10" height="50" fill="#4a4a4a" />
+    <path d="M0,0 C10,-20 20,-10 30,-30 L0,-5 Z" fill="#4a4a4a" />
+    <path d="M0,0 C-10,-20 -20,-10 -30,-30 L0,-5 Z" fill="#4a4a4a" />
+    <path d="M0,0 C10,-10 20,-20 30,-10 L0,-5 Z" fill="#4a4a4a" />
+    <path d="M0,0 C-10,-10 -20,-20 -30,-10 L0,-5 Z" fill="#4a4a4a" />
+  </g>
+  
+  <g transform="translate(1050, 650)" opacity="0.8">
+    <rect x="-5" y="0" width="10" height="50" fill="#4a4a4a" />
+    <path d="M0,0 C10,-20 20,-10 30,-30 L0,-5 Z" fill="#4a4a4a" />
+    <path d="M0,0 C-10,-20 -20,-10 -30,-30 L0,-5 Z" fill="#4a4a4a" />
+    <path d="M0,0 C10,-10 20,-20 30,-10 L0,-5 Z" fill="#4a4a4a" />
+    <path d="M0,0 C-10,-10 -20,-20 -30,-10 L0,-5 Z" fill="#4a4a4a" />
+  </g>
+</svg>

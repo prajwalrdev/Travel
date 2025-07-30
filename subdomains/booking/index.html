@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Booking - TravelEase</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../images/favicon.svg" type="image/svg+xml">
+    <style>
+        /* Subdomain-specific styles */
+        .booking-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../../images/hero-bg.jpg.svg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 50px;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .booking-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 50px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .booking-form {
+            flex: 1;
+            min-width: 300px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .booking-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .booking-steps {
+            margin-bottom: 40px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #ff6b6b;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .booking-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .booking-option {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .booking-option:hover, .booking-option.active {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.05);
+        }
+        
+        .booking-option i {
+            font-size: 24px;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .payment-method {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .payment-method img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        
+        .payment-method.active {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Travel<span>Ease</span></h1>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../../index.html">Main Site</a></li>
+                        <li><a href="../corporate/index.html">Corporate</a></li>
+                        <li><a href="../blog/index.html">Blog</a></li>
+                        <li><a href="../support/index.html">Support</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Booking Hero Section -->
+    <section class="booking-hero">
+        <div class="container">
+            <h1>Online Booking Portal</h1>
+            <p>Book your travel services quickly and securely</p>
+        </div>
+    </section>
+
+    <!-- Booking Content -->
+    <div class="container">
+        <div class="booking-container">
+            <div class="booking-info">
+                <div class="booking-steps">
+                    <h2>How to Book</h2>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Select Service</h3>
+                            <p>Choose from our range of travel services including city taxi, outstation trips, airport transfers, and more.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Enter Details</h3>
+                            <p>Provide your travel details including pickup location, destination, date, time, and any special requirements.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Choose Vehicle</h3>
+                            <p>Select from our fleet of vehicles based on your needs and group size.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Confirm & Pay</h3>
+                            <p>Review your booking details, select payment method, and confirm your reservation.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="benefits">
+                    <h2>Benefits of Online Booking</h2>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Instant confirmation</li>
+                        <li><i class="fas fa-check-circle"></i> Secure payment options</li>
+                        <li><i class="fas fa-check-circle"></i> Special online discounts</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 booking availability</li>
+                        <li><i class="fas fa-check-circle"></i> Easy cancellation and modification</li>
+                        <li><i class="fas fa-check-circle"></i> Access to booking history</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="booking-form">
+                <h2>Book Your Ride</h2>
+                
+                <div class="booking-options">
+                    <div class="booking-option active">
+                        <i class="fas fa-taxi"></i>
+                        <h4>City Taxi</h4>
+                    </div>
+                    <div class="booking-option">
+                        <i class="fas fa-route"></i>
+                        <h4>Outstation</h4>
+                    </div>
+                    <div class="booking-option">
+                        <i class="fas fa-plane-departure"></i>
+                        <h4>Airport</h4>
+                    </div>
+                </div>
+                
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="pickup">Pickup Location</label>
+                        <input type="text" id="pickup" name="pickup" placeholder="Enter pickup address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="destination">Destination</label>
+                        <input type="text" id="destination" name="destination" placeholder="Enter destination address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vehicle">Vehicle Type</label>
+                        <select id="vehicle" name="vehicle" required>
+                            <option value="">Select a vehicle</option>
+                            <option value="hatchback">Hatchback</option>
+                            <option value="sedan">Sedan</option>
+                            <option value="suv">SUV</option>
+                            <option value="luxury">Luxury Car</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Special Instructions (Optional)</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    
+                    <h3>Payment Method</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method active">
+                            <input type="radio" id="cash" name="payment" value="cash" checked>
+                            <label for="cash">Cash on Ride</label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" id="card" name="payment" value="card">
+                            <label for="card">Credit/Debit Card</label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" id="wallet" name="payment" value="wallet">
+                            <label for="wallet">Digital Wallet</label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Book Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Travel<span>Ease</span></h2>
+                    <p>Your trusted travel partner for all your journey needs. We provide quality service with comfort and safety.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../../index.html">Home</a></li>
+                        <li><a href="../../index.html#services">Services</a></li>
+                        <li><a href="../../index.html#about">About Us</a></li>
+                        <li><a href="../../index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="../../services/city-taxi.html">City Taxi</a></li>
+                        <li><a href="../../services/outstation-taxi.html">Outstation Taxi</a></li>
+                        <li><a href="../../services/luxury-cabs.html">Luxury Cabs</a></li>
+                        <li><a href="../../services/airport-taxi.html">Airport Transfer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates and special offers.</p>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 TravelEase. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Booking option selection
+            const bookingOptions = document.querySelectorAll('.booking-option');
+            bookingOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    bookingOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update form based on selected option
+                    const optionType = this.querySelector('h4').textContent.toLowerCase();
+                    updateFormForOption(optionType);
+                });
+            });
+            
+            // Payment method selection
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+                    this.querySelector('input').checked = true;
+                });
+            });
+            
+            // Form submission
+            const bookingForm = document.getElementById('bookingForm');
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Booking submitted successfully! A confirmation will be sent to your email.');
+                bookingForm.reset();
+            });
+            
+            // Function to update form based on selected booking option
+            function updateFormForOption(optionType) {
+                const destinationField = document.getElementById('destination');
+                const vehicleSelect = document.getElementById('vehicle');
+                
+                if (optionType === 'airport') {
+                    destinationField.placeholder = 'Enter airport name';
+                    // Update vehicle options for airport transfers
+                    updateVehicleOptions(['sedan', 'suv', 'luxury']);
+                } else if (optionType === 'outstation') {
+                    destinationField.placeholder = 'Enter destination city';
+                    // Update vehicle options for outstation trips
+                    updateVehicleOptions(['sedan', 'suv', 'luxury', 'tempo-traveller']);
+                } else {
+                    destinationField.placeholder = 'Enter destination address';
+                    // Update vehicle options for city taxi
+                    updateVehicleOptions(['hatchback', 'sedan', 'suv', 'luxury']);
+                }
+            }
+            
+            // Function to update vehicle options
+            function updateVehicleOptions(options) {
+                const vehicleSelect = document.getElementById('vehicle');
+                vehicleSelect.innerHTML = '<option value="">Select a vehicle</option>';
+                
+                const optionMap = {
+                    'hatchback': 'Hatchback',
+                    'sedan': 'Sedan',
+                    'suv': 'SUV',
+                    'luxury': 'Luxury Car',
+                    'tempo-traveller': 'Tempo Traveller'
+                };
+                
+                options.forEach(option => {
+                    const opt = document.createElement('option');
+                    opt.value = option;
+                    opt.textContent = optionMap[option];
+                    vehicleSelect.appendChild(opt);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
