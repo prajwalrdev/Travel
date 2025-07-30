@@ -34,7 +34,7 @@ Travel_Agent/
 ├── js/
 │   └── script.js       # JavaScript functionality
 ├── images/             # SVG images for the website
-│   ├── hero-bg.jpg.svg
+│   ├── hero-bg.jpg
 │   ├── stats-bg.jpg.svg
 │   ├── about-image.jpg.svg
 │   ├── destination-1.jpg.svg
