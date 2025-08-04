@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Booking - TravelEase</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="../../images/favicon.svg" type="image/svg+xml">
@@ -111,31 +112,6 @@
         
         .form-row .form-group {
             flex: 1;
-        }
-        
-        .payment-methods {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        .payment-method {
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .payment-method img {
-            height: 30px;
-            margin-right: 10px;
-        }
-        
-        .payment-method.active {
-            border-color: #ff6b6b;
-            background: rgba(255, 107, 107, 0.05);
         }
     </style>
 </head>
@@ -307,7 +283,19 @@
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Book Now</button>
+                    <!-- Card Payment Form (hidden by default) -->
+                    <div id="cardPaymentForm" style="display: none; margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="card-element">Credit or Debit Card</label>
+                            <div id="card-element" class="form-control">
+                                <!-- Stripe Card Element will be inserted here -->
+                            </div>
+                            <div id="card-errors" class="text-danger" role="alert"></div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="submitBooking" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Book Now</button>
+                    <div id="bookingFormStatus" class="form-status"></div>
                 </form>
             </div>
         </div>
@@ -359,9 +347,21 @@
         </div>
     </footer>
 
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // API URL - Change this to your actual server URL in production
+            const API_URL = 'http://localhost:3000/api';
+            
+            // Initialize Stripe - Replace with your actual publishable key
+            const stripe = Stripe('pk_test_your_stripe_publishable_key');
+            let elements;
+            let cardElement;
+            let clientSecret;
+            
             // Booking option selection
             const bookingOptions = document.querySelectorAll('.booking-option');
             bookingOptions.forEach(option => {
@@ -372,25 +372,245 @@
                     // Update form based on selected option
                     const optionType = this.querySelector('h4').textContent.toLowerCase();
                     updateFormForOption(optionType);
+                    
+                    // Update price based on selected option
+                    updatePrice(optionType);
                 });
             });
             
             // Payment method selection
             const paymentMethods = document.querySelectorAll('.payment-method');
+            const cardPaymentForm = document.getElementById('cardPaymentForm');
+            
             paymentMethods.forEach(method => {
                 method.addEventListener('click', function() {
                     paymentMethods.forEach(m => m.classList.remove('active'));
                     this.classList.add('active');
                     this.querySelector('input').checked = true;
+                    
+                    // Show/hide card payment form based on selection
+                    const paymentMethod = this.querySelector('input').value;
+                    if (paymentMethod === 'card' || paymentMethod === 'wallet') {
+                        cardPaymentForm.style.display = 'block';
+                        initializeStripe();
+                    } else {
+                        cardPaymentForm.style.display = 'none';
+                    }
                 });
+            });
+            
+            // Initialize Stripe Elements
+            function initializeStripe() {
+                if (!cardElement) {
+                    elements = stripe.elements();
+                    cardElement = elements.create('card');
+                    cardElement.mount('#card-element');
+                    
+                    // Handle real-time validation errors
+                    cardElement.on('change', function(event) {
+                        const displayError = document.getElementById('card-errors');
+                        if (event.error) {
+                            displayError.textContent = event.error.message;
+                        } else {
+                            displayError.textContent = '';
+                        }
+                    });
+                }
+            }
+            
+            // Create payment intent based on booking details
+            async function createPaymentIntent(amount) {
+                try {
+                    const response = await fetch(`${API_URL}/create-payment-intent`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            amount: amount,
+                            currency: 'usd'
+                        }),
+                    });
+                    
+                    const data = await response.json();
+                    return data.clientSecret;
+                } catch (error) {
+                    console.error('Error creating payment intent:', error);
+                    showFormStatus('An error occurred while processing your payment. Please try again.', 'error');
+                    return null;
+                }
+            }
+            
+            // Calculate price based on service type and vehicle
+            function calculatePrice(serviceType, vehicleType) {
+                // Base prices
+                const basePrices = {
+                    'city': {
+                        'hatchback': 20,
+                        'sedan': 30,
+                        'suv': 40,
+                        'luxury': 80
+                    },
+                    'outstation': {
+                        'sedan': 100,
+                        'suv': 150,
+                        'luxury': 250,
+                        'tempo-traveller': 300
+                    },
+                    'airport': {
+                        'sedan': 50,
+                        'suv': 70,
+                        'luxury': 120
+                    }
+                };
+                
+                // Map booking option to service type
+                let service;
+                if (serviceType.includes('city')) {
+                    service = 'city';
+                } else if (serviceType.includes('outstation')) {
+                    service = 'outstation';
+                } else if (serviceType.includes('airport')) {
+                    service = 'airport';
+                } else {
+                    service = 'city'; // Default
+                }
+                
+                // Return price or default if not found
+                return basePrices[service][vehicleType] || 50;
+            }
+            
+            // Update price display
+            function updatePrice(serviceType) {
+                const vehicleSelect = document.getElementById('vehicle');
+                const vehicleType = vehicleSelect.value || 'sedan'; // Default to sedan if nothing selected
+                
+                const price = calculatePrice(serviceType, vehicleType);
+                
+                // Create or update price display
+                let priceDisplay = document.getElementById('price-display');
+                if (!priceDisplay) {
+                    priceDisplay = document.createElement('div');
+                    priceDisplay.id = 'price-display';
+                    priceDisplay.className = 'price-display';
+                    document.getElementById('bookingForm').insertBefore(priceDisplay, document.getElementById('submitBooking'));
+                }
+                
+                priceDisplay.innerHTML = `<h3>Estimated Price: $${price}</h3>`;
+                priceDisplay.dataset.price = price;
+            }
+            
+            // Vehicle selection change handler
+            document.getElementById('vehicle').addEventListener('change', function() {
+                const activeOption = document.querySelector('.booking-option.active');
+                if (activeOption) {
+                    const serviceType = activeOption.querySelector('h4').textContent.toLowerCase();
+                    updatePrice(serviceType);
+                }
             });
             
             // Form submission
             const bookingForm = document.getElementById('bookingForm');
-            bookingForm.addEventListener('submit', function(e) {
+            bookingForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                alert('Booking submitted successfully! A confirmation will be sent to your email.');
-                bookingForm.reset();
+                
+                const submitButton = document.getElementById('submitBooking');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Processing...';
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    pickup: document.getElementById('pickup').value,
+                    destination: document.getElementById('destination').value,
+                    date: document.getElementById('date').value,
+                    time: document.getElementById('time').value,
+                    vehicle: document.getElementById('vehicle').value,
+                    notes: document.getElementById('notes').value,
+                    paymentMethod: document.querySelector('input[name="payment"]:checked').value
+                };
+                
+                // Validate form
+                if (!formData.name || !formData.email || !formData.phone || !formData.pickup || 
+                    !formData.destination || !formData.date || !formData.time || !formData.vehicle) {
+                    showFormStatus('Please fill in all required fields', 'error');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Book Now';
+                    return;
+                }
+                
+                try {
+                    // Handle payment if card or wallet is selected
+                    if (formData.paymentMethod === 'card' || formData.paymentMethod === 'wallet') {
+                        // Get price from data attribute
+                        const priceDisplay = document.getElementById('price-display');
+                        const amount = parseFloat(priceDisplay.dataset.price);
+                        
+                        // Create payment intent
+                        clientSecret = await createPaymentIntent(amount);
+                        if (!clientSecret) {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Book Now';
+                            return;
+                        }
+                        
+                        // Confirm card payment
+                        const result = await stripe.confirmCardPayment(clientSecret, {
+                            payment_method: {
+                                card: cardElement,
+                                billing_details: {
+                                    name: formData.name,
+                                    email: formData.email
+                                }
+                            }
+                        });
+                        
+                        if (result.error) {
+                            // Show error to customer
+                            showFormStatus(result.error.message, 'error');
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Book Now';
+                            return;
+                        } else if (result.paymentIntent.status === 'succeeded') {
+                            // Payment succeeded, add payment ID to form data
+                            formData.paymentIntentId = result.paymentIntent.id;
+                        }
+                    }
+                    
+                    // Submit booking to server
+                    const response = await fetch(`${API_URL}/booking`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        showFormStatus('Booking confirmed successfully! A confirmation has been sent to your email.', 'success');
+                        bookingForm.reset();
+                        
+                        // Reset card element if it exists
+                        if (cardElement) {
+                            cardElement.clear();
+                        }
+                        
+                        // Hide card payment form
+                        cardPaymentForm.style.display = 'none';
+                    } else {
+                        showFormStatus(data.message || 'An error occurred. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error processing booking:', error);
+                    showFormStatus('An error occurred while processing your booking. Please try again.', 'error');
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Book Now';
+                }
             });
             
             // Function to update form based on selected booking option
@@ -432,6 +652,39 @@
                     opt.textContent = optionMap[option];
                     vehicleSelect.appendChild(opt);
                 });
+                
+                // Update price after changing vehicle options
+                const activeOption = document.querySelector('.booking-option.active');
+                if (activeOption) {
+                    const serviceType = activeOption.querySelector('h4').textContent.toLowerCase();
+                    updatePrice(serviceType);
+                }
+            }
+            
+            // Function to show form status messages
+            function showFormStatus(message, type) {
+                const statusElement = document.getElementById('bookingFormStatus');
+                statusElement.textContent = message;
+                statusElement.className = `form-status ${type}`;
+                statusElement.style.display = 'block';
+                
+                // Scroll to status message
+                statusElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Hide message after 5 seconds for success messages
+                if (type === 'success') {
+                    setTimeout(() => {
+                        statusElement.style.display = 'none';
+                    }, 5000);
+                }
+            }
+            
+            // Initialize with default option
+            const defaultOption = document.querySelector('.booking-option.active');
+            if (defaultOption) {
+                const serviceType = defaultOption.querySelector('h4').textContent.toLowerCase();
+                updateFormForOption(serviceType);
+                updatePrice(serviceType);
             }
         });
     </script>

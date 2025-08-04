@@ -221,11 +221,11 @@ function initScrollToTop() {
 
 // Form validation
 function initFormValidation() {
-    const bookingForm = document.getElementById('bookingForm');
+    const contactForm = document.getElementById('contactForm');
     const newsletterForm = document.getElementById('newsletterForm');
     
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Basic validation
@@ -235,42 +235,110 @@ function initFormValidation() {
             const service = document.getElementById('service').value;
             const date = document.getElementById('date').value;
             const time = document.getElementById('time').value;
+            const message = document.getElementById('message').value;
             
             if (!name || !email || !phone || !service || !date || !time) {
-                showAlert('Please fill in all required fields', 'error');
+                showAlert('Please fill in all required fields', 'error', 'contactFormStatus');
                 return;
             }
             
             if (!validateEmail(email)) {
-                showAlert('Please enter a valid email address', 'error');
+                showAlert('Please enter a valid email address', 'error', 'contactFormStatus');
                 return;
             }
             
             if (!validatePhone(phone)) {
-                showAlert('Please enter a valid phone number', 'error');
+                showAlert('Please enter a valid phone number', 'error', 'contactFormStatus');
                 return;
             }
             
-            // If all validations pass, show success message
-            showAlert('Booking submitted successfully! We will contact you shortly.', 'success');
-            bookingForm.reset();
+            // Disable submit button during submission
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            try {
+                // Send form data to server
+                const response = await fetch('http://localhost:3000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        phone,
+                        service,
+                        date,
+                        time,
+                        message
+                    }),
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('Your inquiry has been submitted successfully! We will contact you soon.', 'success', 'contactFormStatus');
+                    contactForm.reset();
+                } else {
+                    showAlert(data.message || 'An error occurred. Please try again.', 'error', 'contactFormStatus');
+                }
+            } catch (error) {
+                console.error('Error submitting contact form:', error);
+                showAlert('An error occurred while submitting your inquiry. Please try again.', 'error', 'contactFormStatus');
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
     }
     
     if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
+        newsletterForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const emailInput = newsletterForm.querySelector('input[type="email"]');
             const email = emailInput.value.trim();
             
             if (!email || !validateEmail(email)) {
-                showAlert('Please enter a valid email address', 'error');
+                showAlert('Please enter a valid email address', 'error', 'newsletterFormStatus');
                 return;
             }
             
-            showAlert('Thank you for subscribing to our newsletter!', 'success');
-            newsletterForm.reset();
+            // Disable submit button during submission
+            const submitButton = newsletterForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Subscribing...';
+            
+            try {
+                // Send form data to server
+                const response = await fetch('http://localhost:3000/api/newsletter', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showAlert('Thank you for subscribing to our newsletter!', 'success', 'newsletterFormStatus');
+                    newsletterForm.reset();
+                } else {
+                    showAlert(data.message || 'An error occurred. Please try again.', 'error', 'newsletterFormStatus');
+                }
+            } catch (error) {
+                console.error('Error submitting newsletter form:', error);
+                showAlert('An error occurred while subscribing. Please try again.', 'error', 'newsletterFormStatus');
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
     }
 }
@@ -286,8 +354,29 @@ function validatePhone(phone) {
     return re.test(phone);
 }
 
-function showAlert(message, type) {
-    // Create alert element
+function showAlert(message, type, targetId = null) {
+    if (targetId) {
+        // Show alert in specific target element
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            targetElement.textContent = message;
+            targetElement.className = `form-status ${type}`;
+            targetElement.style.display = 'block';
+            
+            // Scroll to the alert
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            
+            // Hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    targetElement.style.display = 'none';
+                }, 5000);
+            }
+            return;
+        }
+    }
+    
+    // Fallback to floating alert if target not found
     const alertEl = document.createElement('div');
     alertEl.className = `alert alert-${type}`;
     alertEl.textContent = message;

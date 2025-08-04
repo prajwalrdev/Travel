@@ -355,7 +355,7 @@
             </div>
             <div class="contact-content">
                 <div class="contact-form">
-                    <form id="bookingForm">
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
@@ -395,7 +395,8 @@
                             <label for="message">Additional Information</label>
                             <textarea id="message" name="message" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Book Now</button>
+                        <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                        <div id="contactFormStatus" class="form-status"></div>
                     </form>
                 </div>
                 <div class="contact-info">
@@ -484,8 +485,9 @@
                     <h3>Newsletter</h3>
                     <p>Subscribe to our newsletter for updates and special offers.</p>
                     <form id="newsletterForm">
-                        <input type="email" placeholder="Your Email Address" required>
+                        <input type="email" name="email" placeholder="Your Email Address" required>
                         <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        <div id="newsletterFormStatus" class="form-status"></div>
                     </form>
                     <div class="footer-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
