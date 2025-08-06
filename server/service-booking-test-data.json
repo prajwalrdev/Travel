@@ -1,0 +1,13 @@
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "phone": "1234567890",
+  "serviceType": "airport",
+  "pickupAddress": "123 Main St",
+  "dropoffAddress": "456 Airport Rd",
+  "airport": "International Airport",
+  "date": "2023-08-10",
+  "time": "14:30",
+  "vehicle": "Sedan",
+  "notes": "This is a test message"
+}

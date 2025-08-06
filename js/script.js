@@ -279,14 +279,44 @@ function initFormValidation() {
                 const data = await response.json();
                 
                 if (data.success) {
-                    showAlert('Your inquiry has been submitted successfully! We will contact you soon.', 'success', 'contactFormStatus');
+                    // Reset the form
                     contactForm.reset();
+                    
+                    // Show popup message
+                    showPopupMessage(
+                        'Inquiry Received!',
+                        'Thank you for your inquiry. A confirmation has been sent to your email.<br>Our team will contact you shortly to assist you with your request.'
+                    );
+                    
                 } else {
-                    showAlert(data.message || 'An error occurred. Please try again.', 'error', 'contactFormStatus');
+                    // Show error message
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'alert alert-danger';
+                    errorDiv.textContent = data.message || 'An error occurred. Please try again.';
+                    
+                    // Insert error message before the form
+                    contactForm.prepend(errorDiv);
+                    
+                    // Remove error message after 5 seconds
+                    setTimeout(() => {
+                        errorDiv.remove();
+                    }, 5000);
                 }
             } catch (error) {
                 console.error('Error submitting contact form:', error);
-                showAlert('An error occurred while submitting your inquiry. Please try again.', 'error', 'contactFormStatus');
+                
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger';
+                errorDiv.textContent = 'An error occurred while submitting your inquiry. Please try again.';
+                
+                // Insert error message before the form
+                contactForm.prepend(errorDiv);
+                
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 5000);
             } finally {
                 // Re-enable submit button
                 submitButton.disabled = false;
@@ -326,14 +356,44 @@ function initFormValidation() {
                 const data = await response.json();
                 
                 if (data.success) {
-                    showAlert('Thank you for subscribing to our newsletter!', 'success', 'newsletterFormStatus');
+                    // Reset the form
                     newsletterForm.reset();
+                    
+                    // Show popup message
+                    showPopupMessage(
+                        'Subscription Successful!',
+                        'Thank you for subscribing to our newsletter!<br>You\'ll now receive our latest updates and special offers.'
+                    );
+                    
                 } else {
-                    showAlert(data.message || 'An error occurred. Please try again.', 'error', 'newsletterFormStatus');
+                    // Show error message
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'alert alert-danger';
+                    errorDiv.textContent = data.message || 'An error occurred. Please try again.';
+                    
+                    // Insert error message before the form
+                    newsletterForm.prepend(errorDiv);
+                    
+                    // Remove error message after 5 seconds
+                    setTimeout(() => {
+                        errorDiv.remove();
+                    }, 5000);
                 }
             } catch (error) {
                 console.error('Error submitting newsletter form:', error);
-                showAlert('An error occurred while subscribing. Please try again.', 'error', 'newsletterFormStatus');
+                
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'alert alert-danger';
+                errorDiv.textContent = 'An error occurred while subscribing. Please try again.';
+                
+                // Insert error message before the form
+                newsletterForm.prepend(errorDiv);
+                
+                // Remove error message after 5 seconds
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 5000);
             } finally {
                 // Re-enable submit button
                 submitButton.disabled = false;
@@ -411,6 +471,161 @@ function showAlert(message, type, targetId = null) {
             document.body.removeChild(alertEl);
         }, 500);
     }, 3000);
+}
+
+// Function to show a popup message after form submission
+function showPopupMessage(title, message, type = 'success') {
+    // Create modal container
+    const modalContainer = document.createElement('div');
+    modalContainer.className = 'popup-modal';
+    
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.className = 'popup-modal-content';
+    
+    // Create close button
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'popup-close';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.onclick = function() {
+        document.body.removeChild(modalContainer);
+    };
+    
+    // Create icon
+    const icon = document.createElement('div');
+    icon.className = 'popup-icon';
+    if (type === 'success') {
+        icon.innerHTML = '<i class="fas fa-check-circle"></i>';
+    } else if (type === 'error') {
+        icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+    } else if (type === 'info') {
+        icon.innerHTML = '<i class="fas fa-info-circle"></i>';
+    }
+    
+    // Create title
+    const titleEl = document.createElement('h3');
+    titleEl.textContent = title;
+    
+    // Create message
+    const messageEl = document.createElement('p');
+    messageEl.innerHTML = message;
+    
+    // Create OK button
+    const okButton = document.createElement('button');
+    okButton.className = 'popup-btn';
+    okButton.textContent = 'OK';
+    okButton.onclick = function() {
+        document.body.removeChild(modalContainer);
+    };
+    
+    // Append elements to modal content
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(icon);
+    modalContent.appendChild(titleEl);
+    modalContent.appendChild(messageEl);
+    modalContent.appendChild(okButton);
+    
+    // Append modal content to modal container
+    modalContainer.appendChild(modalContent);
+    
+    // Add modal container to body
+    document.body.appendChild(modalContainer);
+    
+    // Add styles for the popup
+    const style = document.createElement('style');
+    style.textContent = `
+        .popup-modal {
+            display: flex;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        
+        .popup-modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: scaleIn 0.3s ease-out forwards;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+        
+        .popup-close:hover {
+            color: #555;
+        }
+        
+        .popup-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
+        }
+        
+        .popup-modal h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .popup-modal p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .popup-btn {
+            background-color: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .popup-btn:hover {
+            background-color: ${type === 'success' ? '#218838' : type === 'error' ? '#c82333' : '#138496'};
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Auto-close after 5 seconds for success messages
+    if (type === 'success') {
+        setTimeout(function() {
+            if (document.body.contains(modalContainer)) {
+                document.body.removeChild(modalContainer);
+            }
+        }, 5000);
+    }
 }
 
 // Smooth scrolling for anchor links

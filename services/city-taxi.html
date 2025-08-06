@@ -565,20 +565,104 @@
                     // Validate email format
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     if (!emailRegex.test(email)) {
-                        alert('Please enter a valid email address.');
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'alert alert-danger';
+                        errorDiv.textContent = 'Please enter a valid email address.';
+                        cityBookingForm.prepend(errorDiv);
+                        setTimeout(() => errorDiv.remove(), 5000);
                         return;
                     }
                     
                     // Validate phone number (basic validation)
                     const phoneRegex = /^\d{10}$/;
                     if (!phoneRegex.test(phone)) {
-                        alert('Please enter a valid 10-digit phone number.');
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'alert alert-danger';
+                        errorDiv.textContent = 'Please enter a valid 10-digit phone number.';
+                        cityBookingForm.prepend(errorDiv);
+                        setTimeout(() => errorDiv.remove(), 5000);
                         return;
                     }
                     
-                    // If all validations pass, show success message
-                    alert('Thank you for your booking request! We will contact you shortly to confirm your reservation.');
-                    cityTaxiBookingForm.reset();
+                    // If all validations pass, submit to server
+                    const formData = {
+                        name,
+                        email,
+                        phone,
+                        serviceType: 'city',
+                        pickupAddress: pickup,
+                        dropoffAddress: destination,
+                        date,
+                        time,
+                        vehicle,
+                        passengers: document.getElementById('passengers').value,
+                        message: document.getElementById('message').value
+                    };
+                    
+                    // Disable submit button during submission
+                    const submitButton = cityTaxiBookingForm.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.textContent = 'Processing...';
+                    }
+                    
+                    // Send data to server
+                    fetch('https://travel-a1.onrender.com', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Reset the form
+                            cityTaxiBookingForm.reset();
+                            
+                            // Show popup message
+                            showPopupMessage(
+                                'Booking Request Received!',
+                                'Thank you for your booking request. A confirmation has been sent to your email.<br>Our team will contact you shortly to confirm the details.'
+                            );
+                        } else {
+                            // Show error message
+                            const errorDiv = document.createElement('div');
+                            errorDiv.className = 'alert alert-danger';
+                            errorDiv.textContent = data.message || 'An error occurred. Please try again.';
+                            
+                            // Insert error message before the form
+                            cityTaxiBookingForm.prepend(errorDiv);
+                            
+                            // Remove error message after 5 seconds
+                            setTimeout(() => {
+                                errorDiv.remove();
+                            }, 5000);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error submitting form:', error);
+                        
+                        // Show error message
+                        const errorDiv = document.createElement('div');
+                        errorDiv.className = 'alert alert-danger';
+                        errorDiv.textContent = 'An error occurred while submitting your booking. Please try again.';
+                        
+                        // Insert error message before the form
+                        cityTaxiBookingForm.prepend(errorDiv);
+                        
+                        // Remove error message after 5 seconds
+                        setTimeout(() => {
+                            errorDiv.remove();
+                        }, 5000);
+                    })
+                    .finally(() => {
+                        // Re-enable submit button
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.textContent = 'Book Now';
+                        }
+                    });
                 });
             }
         });

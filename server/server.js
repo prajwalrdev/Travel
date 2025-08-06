@@ -3,7 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +18,15 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
+  }
+});
+
+// Verify transporter connection
+transporter.verify(function(error, success) {
+  if (error) {
+    console.error('SMTP server connection error:', error);
+  } else {
+    console.log('SMTP server connection established, ready to send emails');
   }
 });
 
@@ -102,47 +110,15 @@ app.post('/api/newsletter', async (req, res) => {
   }
 });
 
-// Create payment intent for Stripe
-app.post('/api/create-payment-intent', async (req, res) => {
-  const { amount, currency = 'usd' } = req.body;
-  
-  try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(amount * 100), // Stripe requires amount in cents
-      currency,
-      automatic_payment_methods: {
-        enabled: true,
-      },
-    });
-    
-    res.status(200).json({
-      clientSecret: paymentIntent.client_secret,
-    });
-  } catch (error) {
-    console.error('Error creating payment intent:', error);
-    res.status(500).json({ error: error.message });
-  }
-});
-
-// Process booking with payment
+// Process booking without payment
 app.post('/api/booking', async (req, res) => {
   const { 
     name, email, phone, 
     pickup, destination, date, time, 
-    vehicle, notes, paymentMethod, 
-    paymentIntentId 
+    vehicle, notes 
   } = req.body;
   
   try {
-    // Verify payment if not cash
-    if (paymentMethod !== 'cash' && paymentIntentId) {
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-      
-      if (paymentIntent.status !== 'succeeded') {
-        return res.status(400).json({ success: false, message: 'Payment not completed' });
-      }
-    }
-    
     // Send confirmation email
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -159,7 +135,6 @@ app.post('/api/booking', async (req, res) => {
           <li><strong>Date:</strong> ${date}</li>
           <li><strong>Time:</strong> ${time}</li>
           <li><strong>Vehicle:</strong> ${vehicle}</li>
-          <li><strong>Payment Method:</strong> ${paymentMethod}</li>
         </ul>
         <p>If you need to modify or cancel your booking, please contact us at ${process.env.ADMIN_EMAIL} or call us at +1 (123) 456-7890.</p>
         <p>Best regards,<br>TravelEase Team</p>
@@ -172,6 +147,123 @@ app.post('/api/booking', async (req, res) => {
   } catch (error) {
     console.error('Error processing booking:', error);
     res.status(500).json({ success: false, message: 'Failed to process booking. Please try again later.' });
+  }
+});
+
+// Process service-specific bookings (airport, railway, etc.)
+app.post('/api/service-booking', async (req, res) => {
+  console.log('Received service booking request:', req.body);
+  
+  const { 
+    name, email, phone, 
+    serviceType, // e.g., 'airport', 'railway', etc.
+    pickupAddress, dropoffAddress,
+    airport, station, // Optional fields depending on service type
+    date, time, vehicle,
+    passengers, tripType, // Optional fields
+    trainNumber, // Optional for railway bookings
+    notes
+  } = req.body;
+  
+  // Validate required fields
+  if (!name || !email || !phone) {
+    console.error('Missing required fields in service booking request');
+    return res.status(400).json({ success: false, message: 'Name, email, and phone are required fields.' });
+  }
+  
+  try {
+    console.log('Processing service booking for:', email);
+    
+    // Prepare service-specific details for email
+    let serviceDetails = '';
+    
+    if (serviceType && serviceType.includes('airport')) {
+      serviceDetails = `
+        <li><strong>Service:</strong> Airport Transfer</li>
+        <li><strong>Airport:</strong> ${airport || 'Not specified'}</li>
+      `;
+    } else if (serviceType && (serviceType.includes('station') || serviceType.includes('railway'))) {
+      serviceDetails = `
+        <li><strong>Service:</strong> Railway Station Transfer</li>
+        <li><strong>Station:</strong> ${station || 'Not specified'}</li>
+        <li><strong>Train Number/Name:</strong> ${trainNumber || 'Not specified'}</li>
+      `;
+    } else if (serviceType && serviceType.includes('outstation')) {
+      serviceDetails = `
+        <li><strong>Service:</strong> Outstation Trip</li>
+        <li><strong>Trip Type:</strong> ${tripType || 'One Way'}</li>
+        <li><strong>Passengers:</strong> ${passengers || 'Not specified'}</li>
+      `;
+    } else {
+      serviceDetails = `<li><strong>Service:</strong> ${serviceType || 'Taxi Service'}</li>`;
+    }
+    
+    // Email to admin
+    const adminMailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.ADMIN_EMAIL,
+      subject: `New Service Booking - ${serviceType || 'Taxi Service'}`,
+      html: `
+        <h2>New Service Booking</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Service Type:</strong> ${serviceType || 'Not specified'}</p>
+        <p><strong>Pickup Address:</strong> ${pickupAddress || 'Not specified'}</p>
+        <p><strong>Dropoff Address:</strong> ${dropoffAddress || 'Not specified'}</p>
+        <p><strong>Date:</strong> ${date || 'Not specified'}</p>
+        <p><strong>Time:</strong> ${time || 'Not specified'}</p>
+        <p><strong>Vehicle:</strong> ${vehicle || 'Not specified'}</p>
+        <p><strong>Notes:</strong> ${notes || 'No notes provided'}</p>
+      `
+    };
+    
+    // Email to customer
+    const customerMailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Your TravelEase Service Booking Confirmation',
+      html: `
+        <h2>Booking Confirmation</h2>
+        <p>Dear ${name},</p>
+        <p>Thank you for booking with TravelEase. Your service request has been received!</p>
+        <h3>Booking Details:</h3>
+        <ul>
+          ${serviceDetails}
+          <li><strong>Pickup Address:</strong> ${pickupAddress || 'Not specified'}</li>
+          <li><strong>Dropoff Address:</strong> ${dropoffAddress || 'Not specified'}</li>
+          <li><strong>Date:</strong> ${date || 'Not specified'}</li>
+          <li><strong>Time:</strong> ${time || 'Not specified'}</li>
+          <li><strong>Vehicle:</strong> ${vehicle || 'Not specified'}</li>
+        </ul>
+        <p>Our team will review your booking and contact you shortly to confirm the details.</p>
+        <p>If you need to modify or cancel your booking, please contact us at ${process.env.ADMIN_EMAIL} or call us at +1 (123) 456-7890.</p>
+        <p>Best regards,<br>TravelEase Team</p>
+      `
+    };
+    
+    // Send emails
+    console.log('Sending admin email to:', process.env.ADMIN_EMAIL);
+    const adminInfo = await transporter.sendMail(adminMailOptions);
+    console.log('Admin email sent:', adminInfo.response);
+    
+    console.log('Sending customer email to:', email);
+    const customerInfo = await transporter.sendMail(customerMailOptions);
+    console.log('Customer email sent:', customerInfo.response);
+    
+    console.log('Service booking processed successfully');
+    res.status(200).json({ success: true, message: 'Your booking request has been received successfully!' });
+  } catch (error) {
+    console.error('Error processing service booking:', error);
+    // More detailed error message for debugging
+    const errorMessage = error.message || 'Unknown error';
+    console.error('Error details:', errorMessage);
+    
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to process booking. Please try again later.',
+      error: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+    });
   }
 });
 

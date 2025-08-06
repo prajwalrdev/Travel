@@ -1053,7 +1053,25 @@ footer {
 }
 
 /* Responsive Styles */
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+}
+
 @media screen and (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+    }
+    
     .about-content,
     .contact-content {
         grid-template-columns: 1fr;
@@ -1072,9 +1090,22 @@ footer {
     .testimonial-card {
         flex: 0 0 calc(50% - 15px);
     }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
 }
 
 @media screen and (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
     .nav-links {
         position: fixed;
         top: 0;
@@ -1099,6 +1130,8 @@ footer {
 
     .nav-links a {
         color: var(--dark-color);
+        padding: 12px 0;
+        font-size: 1.1rem;
     }
 
     .mobile-menu-btn {
@@ -1140,45 +1173,127 @@ footer {
         justify-content: space-between;
     }
 
+    .hero {
+        height: auto;
+        min-height: 80vh;
+        padding: 100px 0 60px;
+    }
+    
     .hero-content h1 {
         font-size: 2.5rem;
     }
-
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
+    
+    .hero-content p {
+        font-size: 1rem;
     }
-
+    
+    .features-grid {
+        gap: 20px;
+    }
+    
+    .feature-card {
+        padding: 20px;
+    }
+    
+    .services-grid {
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 30px 20px;
+    }
+    
     .destination-card,
     .testimonial-card {
         flex: 0 0 100%;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .info-card {
+        padding: 15px;
     }
 }
 
 @media screen and (max-width: 576px) {
     .section-header h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .section-header p {
+        font-size: 1rem;
     }
 
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
     }
 
     .hero-buttons {
         flex-direction: column;
         gap: 15px;
     }
+    
+    .btn {
+        width: 100%;
+        padding: 10px 20px;
+    }
+    
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .feature-icon i {
+        font-size: 1.5rem;
+    }
 
     .features-grid,
     .services-grid {
         grid-template-columns: 1fr;
     }
+    
+    .about-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .about-stats .stat h3 {
+        font-size: 1.8rem;
+    }
 
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .stat-card h3 {
+        font-size: 2.5rem;
+    }
+    
+    .stat-card p {
+        font-size: 1rem;
+    }
+    
+    .testimonial-card {
+        padding: 20px 15px;
+    }
+    
+    .testimonial-author img {
+        width: 50px;
+        height: 50px;
     }
 
     .footer-content {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .footer-bottom {
@@ -1186,8 +1301,30 @@ footer {
         gap: 15px;
         text-align: center;
     }
+    
+    .footer-bottom-links {
+        flex-direction: column;
+        gap: 10px;
+    }
 
     .form-row {
         grid-template-columns: 1fr;
+    }
+    
+    .form-group label {
+        margin-bottom: 5px;
+    }
+    
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        padding: 10px;
+    }
+    
+    .back-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
     }
 }
