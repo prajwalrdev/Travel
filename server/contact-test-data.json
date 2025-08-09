@@ -1,0 +1,9 @@
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "phone": "1234567890",
+  "service": "city-taxi",
+  "date": "2023-08-10",
+  "time": "14:30",
+  "message": "This is a test message"
+}

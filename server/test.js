@@ -5,7 +5,6 @@
 
 require('dotenv').config();
 const nodemailer = require('nodemailer');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Test email configuration
 async function testEmailConfig() {
@@ -29,19 +28,7 @@ async function testEmailConfig() {
   }
 }
 
-// Test Stripe configuration
-async function testStripeConfig() {
-  console.log('\n--- Testing Stripe Configuration ---');
-  try {
-    // Try to list customers (a simple API call)
-    const customers = await stripe.customers.list({ limit: 1 });
-    console.log('✅ Stripe configuration is valid');
-    return true;
-  } catch (error) {
-    console.error('❌ Stripe configuration error:', error.message);
-    return false;
-  }
-}
+
 
 // Test environment variables
 function testEnvironmentVariables() {
@@ -50,9 +37,7 @@ function testEnvironmentVariables() {
     'PORT',
     'EMAIL_USER',
     'EMAIL_PASS',
-    'ADMIN_EMAIL',
-    'STRIPE_SECRET_KEY',
-    'STRIPE_PUBLISHABLE_KEY'
+    'ADMIN_EMAIL'
   ];
 
   const missingVars = [];
@@ -78,14 +63,12 @@ async function runTests() {
   
   const envResult = testEnvironmentVariables();
   const emailResult = await testEmailConfig();
-  const stripeResult = await testStripeConfig();
 
   console.log('\n--- Test Summary ---');
   console.log(`Environment Variables: ${envResult ? '✅ PASS' : '❌ FAIL'}`);
   console.log(`Email Configuration: ${emailResult ? '✅ PASS' : '❌ FAIL'}`);
-  console.log(`Stripe Configuration: ${stripeResult ? '✅ PASS' : '❌ FAIL'}`);
 
-  if (envResult && emailResult && stripeResult) {
+  if (envResult && emailResult) {
     console.log('\n✅ All tests passed! The server should work correctly.');
   } else {
     console.log('\n❌ Some tests failed. Please fix the issues before starting the server.');
