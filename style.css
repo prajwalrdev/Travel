@@ -1,0 +1,10 @@
+/*
+Theme Name: TravelEase
+Description: A modern travel and taxi services WordPress theme
+Version: 1.0
+Author: Your Name
+Text Domain: travelease
+*/
+
+/* Import existing CSS */
+@import url('css/style.css');

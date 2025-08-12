@@ -59,492 +59,449 @@ function initMobileMenu() {
     const navLinksItems = document.querySelectorAll('.nav-links a:not(.dropdown > a)');
     const dropdownToggle = document.querySelectorAll('.dropdown > a');
 
-    menuBtn.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        menuBtn.classList.toggle('active');
-        
-        // Toggle menu icon
-        const icon = menuBtn.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    // Handle dropdown toggles on mobile
-    dropdownToggle.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            // Only for mobile view
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const parent = this.parentElement;
-                parent.classList.toggle('active');
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+            
+            // Toggle menu icon
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         });
-    });
 
-    // Close menu when clicking on a link (except dropdown toggles)
-    navLinksItems.forEach(item => {
-        item.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-            menuBtn.classList.remove('active');
-            
-            const icon = menuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+        // Handle dropdown toggles on mobile
+        dropdownToggle.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                // Only for mobile view
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = this.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
         });
-    });
+
+        // Close menu when clicking on a link (except dropdown toggles)
+        navLinksItems.forEach(item => {
+            item.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                menuBtn.classList.remove('active');
+                
+                const icon = menuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    }
 }
 
-// Sliders functionality
+// Slider functionality
 function initSliders() {
     // Destinations slider
-    initSlider('.destinations-slider', '.destination-card');
-    
-    // Testimonials slider
-    initSlider('.testimonials-slider', '.testimonial-card');
-}
+    const destinationsSlider = document.querySelector('.destinations-slider');
+    if (destinationsSlider) {
+        const cards = destinationsSlider.querySelectorAll('.destination-card');
+        const prevBtn = destinationsSlider.parentElement.querySelector('.prev-btn');
+        const nextBtn = destinationsSlider.parentElement.querySelector('.next-btn');
+        let currentIndex = 0;
 
-function initSlider(sliderSelector, slideSelector) {
-    const slider = document.querySelector(sliderSelector);
-    const slides = document.querySelectorAll(slideSelector);
-    const prevBtn = slider.parentElement.querySelector('.prev-btn');
-    const nextBtn = slider.parentElement.querySelector('.next-btn');
-    
-    if (!slider || slides.length === 0) return;
-    
-    let currentIndex = 0;
-    let slideWidth = slides[0].offsetWidth;
-    let slidesToShow = calculateSlidesToShow();
-    
-    // Recalculate on window resize
-    window.addEventListener('resize', function() {
-        slideWidth = slides[0].offsetWidth;
-        slidesToShow = calculateSlidesToShow();
-        updateSliderPosition();
-    });
-    
-    function calculateSlidesToShow() {
-        if (window.innerWidth < 576) return 1;
-        if (window.innerWidth < 768) return 1;
-        return 3;
-    }
-    
-    function updateSliderPosition() {
-        const offset = -currentIndex * slideWidth;
-        slider.style.transform = `translateX(${offset}px)`;
-    }
-    
-    // Next button click
-    nextBtn.addEventListener('click', function() {
-        if (currentIndex < slides.length - slidesToShow) {
-            currentIndex++;
-            updateSliderPosition();
+        function showCard(index) {
+            cards.forEach((card, i) => {
+                card.style.transform = `translateX(${(i - index) * 100}%)`;
+            });
         }
-    });
-    
-    // Previous button click
-    prevBtn.addEventListener('click', function() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateSliderPosition();
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                showCard(currentIndex);
+            });
         }
-    });
-    
-    // Initialize position
-    updateSliderPosition();
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % cards.length;
+                showCard(currentIndex);
+            });
+        }
+
+        // Auto-slide
+        setInterval(function() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            showCard(currentIndex);
+        }, 5000);
+    }
+
+    // Testimonials slider
+    const testimonialsSlider = document.querySelector('.testimonials-slider');
+    if (testimonialsSlider) {
+        const cards = testimonialsSlider.querySelectorAll('.testimonial-card');
+        const prevBtn = testimonialsSlider.parentElement.querySelector('.prev-btn');
+        const nextBtn = testimonialsSlider.parentElement.querySelector('.next-btn');
+        let currentIndex = 0;
+
+        function showCard(index) {
+            cards.forEach((card, i) => {
+                card.style.transform = `translateX(${(i - index) * 100}%)`;
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                showCard(currentIndex);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % cards.length;
+                showCard(currentIndex);
+            });
+        }
+
+        // Auto-slide
+        setInterval(function() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            showCard(currentIndex);
+        }, 6000);
+    }
 }
 
 // Counter animation
 function initCounters() {
     const counters = document.querySelectorAll('.counter');
-    const speed = 200; // The lower the faster
     
-    const observerOptions = {
-        threshold: 0.5
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            counter.textContent = Math.floor(current).toLocaleString();
+        }, 16);
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                let count = 0;
-                
-                const updateCount = () => {
-                    const increment = target / speed;
-                    
-                    if (count < target) {
-                        count += increment;
-                        counter.innerText = Math.ceil(count);
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                
-                updateCount();
-                observer.unobserve(counter);
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
-    
+
     counters.forEach(counter => {
         observer.observe(counter);
     });
 }
 
-// Scroll to top button
+// Back to top functionality
 function initScrollToTop() {
-    const scrollToTopBtn = document.querySelector('.back-to-top');
-    const scrollThreshold = 300;
+    const backToTopBtn = document.querySelector('.back-to-top');
     
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > scrollThreshold) {
-            scrollToTopBtn.classList.add('active');
-        } else {
-            scrollToTopBtn.classList.remove('active');
-        }
-    });
-    
-    scrollToTopBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
         });
-    });
+
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 }
 
-// Form validation
+// Form validation and submission
 function initFormValidation() {
+    // Contact form
     const contactForm = document.getElementById('contactForm');
-    const newsletterForm = document.getElementById('newsletterForm');
-    
     if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
+        contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Basic validation
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const service = document.getElementById('service').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !phone || !service || !date || !time) {
-                showAlert('Please fill in all required fields', 'error', 'contactFormStatus');
-                return;
-            }
-            
-            if (!validateEmail(email)) {
-                showAlert('Please enter a valid email address', 'error', 'contactFormStatus');
-                return;
-            }
-            
-            if (!validatePhone(phone)) {
-                showAlert('Please enter a valid phone number', 'error', 'contactFormStatus');
-                return;
-            }
-            
-            // Disable submit button during submission
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-            
-            try {
-                // Send form data to server
-                const response = await fetch('http://localhost:3000/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name,
-                        email,
-                        phone,
-                        service,
-                        date,
-                        time,
-                        message
-                    }),
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    // Reset the form
-                    contactForm.reset();
-                    
-                    // Show popup message
-                    showPopupMessage(
-                        'Inquiry Received!',
-                        'Thank you for your inquiry. A confirmation has been sent to your email.<br>Our team will contact you shortly to assist you with your request.'
-                    );
-                    
-                } else {
-                    // Show error message
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'alert alert-danger';
-                    errorDiv.textContent = data.message || 'An error occurred. Please try again.';
-                    
-                    // Insert error message before the form
-                    contactForm.prepend(errorDiv);
-                    
-                    // Remove error message after 5 seconds
-                    setTimeout(() => {
-                        errorDiv.remove();
-                    }, 5000);
-                }
-            } catch (error) {
-                console.error('Error submitting contact form:', error);
-                
-                // Show error message
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'alert alert-danger';
-                errorDiv.textContent = 'An error occurred while submitting your inquiry. Please try again.';
-                
-                // Insert error message before the form
-                contactForm.prepend(errorDiv);
-                
-                // Remove error message after 5 seconds
-                setTimeout(() => {
-                    errorDiv.remove();
-                }, 5000);
-            } finally {
-                // Re-enable submit button
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
+            if (validateContactForm()) {
+                submitContactForm();
             }
         });
     }
-    
+
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async function(e) {
+        newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const emailInput = newsletterForm.querySelector('input[type="email"]');
-            const email = emailInput.value.trim();
-            
-            if (!email || !validateEmail(email)) {
-                showAlert('Please enter a valid email address', 'error', 'newsletterFormStatus');
-                return;
-            }
-            
-            // Disable submit button during submission
-            const submitButton = newsletterForm.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = 'Subscribing...';
-            
-            try {
-                // Send form data to server
-                const response = await fetch('http://localhost:3000/api/newsletter', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email }),
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    // Reset the form
-                    newsletterForm.reset();
-                    
-                    // Show popup message
-                    showPopupMessage(
-                        'Subscription Successful!',
-                        'Thank you for subscribing to our newsletter!<br>You\'ll now receive our latest updates and special offers.'
-                    );
-                    
-                } else {
-                    // Show error message
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'alert alert-danger';
-                    errorDiv.textContent = data.message || 'An error occurred. Please try again.';
-                    
-                    // Insert error message before the form
-                    newsletterForm.prepend(errorDiv);
-                    
-                    // Remove error message after 5 seconds
-                    setTimeout(() => {
-                        errorDiv.remove();
-                    }, 5000);
-                }
-            } catch (error) {
-                console.error('Error submitting newsletter form:', error);
-                
-                // Show error message
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'alert alert-danger';
-                errorDiv.textContent = 'An error occurred while subscribing. Please try again.';
-                
-                // Insert error message before the form
-                newsletterForm.prepend(errorDiv);
-                
-                // Remove error message after 5 seconds
-                setTimeout(() => {
-                    errorDiv.remove();
-                }, 5000);
-            } finally {
-                // Re-enable submit button
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
+            if (validateNewsletterForm()) {
+                submitNewsletterForm();
             }
         });
     }
 }
 
-// Helper functions
-function validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+// Contact form validation
+function validateContactForm() {
+    const form = document.getElementById('contactForm');
+    const name = form.querySelector('#name').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const phone = form.querySelector('#phone').value.trim();
+    const service = form.querySelector('#service').value;
+    const date = form.querySelector('#date').value;
+    const time = form.querySelector('#time').value;
+    
+    let isValid = true;
+    
+    // Reset previous error states
+    clearFormErrors(form);
+    
+    // Name validation
+    if (name.length < 2) {
+        showFieldError(form.querySelector('#name'), 'Name must be at least 2 characters long');
+        isValid = false;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showFieldError(form.querySelector('#email'), 'Please enter a valid email address');
+        isValid = false;
+    }
+    
+    // Phone validation
+    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+    if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+        showFieldError(form.querySelector('#phone'), 'Please enter a valid phone number');
+        isValid = false;
+    }
+    
+    // Service validation
+    if (!service) {
+        showFieldError(form.querySelector('#service'), 'Please select a service');
+        isValid = false;
+    }
+    
+    // Date validation
+    if (!date) {
+        showFieldError(form.querySelector('#date'), 'Please select a date');
+        isValid = false;
+    }
+    
+    // Time validation
+    if (!time) {
+        showFieldError(form.querySelector('#time'), 'Please select a time');
+        isValid = false;
+    }
+    
+    return isValid;
 }
 
-function validatePhone(phone) {
-    const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-    return re.test(phone);
+// Newsletter form validation
+function validateNewsletterForm() {
+    const form = document.getElementById('newsletterForm');
+    const email = form.querySelector('input[name="email"]').value.trim();
+    
+    let isValid = true;
+    
+    // Reset previous error states
+    clearFormErrors(form);
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showFieldError(form.querySelector('input[name="email"]'), 'Please enter a valid email address');
+        isValid = false;
+    }
+    
+    return isValid;
 }
 
-function showAlert(message, type, targetId = null) {
-    if (targetId) {
-        // Show alert in specific target element
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.textContent = message;
-            targetElement.className = `form-status ${type}`;
-            targetElement.style.display = 'block';
-            
-            // Scroll to the alert
-            targetElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Hide success messages after 5 seconds
-            if (type === 'success') {
-                setTimeout(() => {
-                    targetElement.style.display = 'none';
-                }, 5000);
-            }
-            return;
+// Show field error
+function showFieldError(field, message) {
+    field.classList.add('error');
+    
+    // Create error message element
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'field-error';
+    errorDiv.textContent = message;
+    errorDiv.style.color = '#dc3545';
+    errorDiv.style.fontSize = '12px';
+    errorDiv.style.marginTop = '5px';
+    
+    field.parentNode.appendChild(errorDiv);
+}
+
+// Clear form errors
+function clearFormErrors(form) {
+    const errorFields = form.querySelectorAll('.error');
+    const errorMessages = form.querySelectorAll('.field-error');
+    
+    errorFields.forEach(field => field.classList.remove('error'));
+    errorMessages.forEach(message => message.remove());
+}
+
+// Submit contact form via AJAX
+function submitContactForm() {
+    const form = document.getElementById('contactForm');
+    const statusDiv = document.getElementById('contactFormStatus');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    statusDiv.innerHTML = '<div class="loading">Sending your message...</div>';
+    
+    // Prepare form data
+    const formData = new FormData(form);
+    formData.append('action', 'travelease_contact_form');
+    formData.append('nonce', travelease_ajax.nonce);
+    
+    // Send AJAX request
+    fetch(travelease_ajax.ajax_url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            statusDiv.innerHTML = '<div class="success">' + data.data + '</div>';
+            form.reset();
+            showPopup('success', 'Success!', data.data);
+        } else {
+            statusDiv.innerHTML = '<div class="error">' + data.data + '</div>';
+            showPopup('error', 'Error', data.data);
         }
-    }
-    
-    // Fallback to floating alert if target not found
-    const alertEl = document.createElement('div');
-    alertEl.className = `alert alert-${type}`;
-    alertEl.textContent = message;
-    
-    // Add to DOM
-    document.body.appendChild(alertEl);
-    
-    // Style the alert
-    alertEl.style.position = 'fixed';
-    alertEl.style.top = '20px';
-    alertEl.style.left = '50%';
-    alertEl.style.transform = 'translateX(-50%)';
-    alertEl.style.padding = '15px 20px';
-    alertEl.style.borderRadius = '5px';
-    alertEl.style.zIndex = '9999';
-    alertEl.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-    
-    if (type === 'success') {
-        alertEl.style.backgroundColor = '#28a745';
-        alertEl.style.color = '#fff';
-    } else if (type === 'error') {
-        alertEl.style.backgroundColor = '#dc3545';
-        alertEl.style.color = '#fff';
-    }
-    
-    // Remove after 3 seconds
-    setTimeout(function() {
-        alertEl.style.opacity = '0';
-        alertEl.style.transition = 'opacity 0.5s ease';
-        
-        setTimeout(function() {
-            document.body.removeChild(alertEl);
-        }, 500);
-    }, 3000);
+    })
+    .catch(error => {
+        statusDiv.innerHTML = '<div class="error">An error occurred. Please try again.</div>';
+        showPopup('error', 'Error', 'An error occurred. Please try again.');
+    })
+    .finally(() => {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Inquiry';
+    });
 }
 
-// Function to show a popup message after form submission
-function showPopupMessage(title, message, type = 'success') {
-    // Create modal container
+// Submit newsletter form via AJAX
+function submitNewsletterForm() {
+    const form = document.getElementById('newsletterForm');
+    const statusDiv = document.getElementById('newsletterFormStatus');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    statusDiv.innerHTML = '<div class="loading">Subscribing...</div>';
+    
+    // Prepare form data
+    const formData = new FormData(form);
+    formData.append('action', 'travelease_newsletter_form');
+    formData.append('nonce', travelease_ajax.nonce);
+    
+    // Send AJAX request
+    fetch(travelease_ajax.ajax_url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            statusDiv.innerHTML = '<div class="success">' + data.data + '</div>';
+            form.reset();
+            showPopup('success', 'Success!', data.data);
+        } else {
+            statusDiv.innerHTML = '<div class="error">' + data.data + '</div>';
+            showPopup('error', 'Error', data.data);
+        }
+    })
+    .catch(error => {
+        statusDiv.innerHTML = '<div class="error">An error occurred. Please try again.</div>';
+        showPopup('error', 'Error', 'An error occurred. Please try again.');
+    })
+    .finally(() => {
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+    });
+}
+
+// Show popup modal
+function showPopup(type, title, message) {
     const modalContainer = document.createElement('div');
     modalContainer.className = 'popup-modal';
+    modalContainer.innerHTML = `
+        <div class="popup-modal-content">
+            <span class="popup-close">&times;</span>
+            <div class="popup-icon">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+            </div>
+            <h3>${title}</h3>
+            <p>${message}</p>
+            <button class="popup-btn">OK</button>
+        </div>
+    `;
     
-    // Create modal content
-    const modalContent = document.createElement('div');
-    modalContent.className = 'popup-modal-content';
-    
-    // Create close button
-    const closeBtn = document.createElement('span');
-    closeBtn.className = 'popup-close';
-    closeBtn.innerHTML = '&times;';
-    closeBtn.onclick = function() {
-        document.body.removeChild(modalContainer);
-    };
-    
-    // Create icon
-    const icon = document.createElement('div');
-    icon.className = 'popup-icon';
-    if (type === 'success') {
-        icon.innerHTML = '<i class="fas fa-check-circle"></i>';
-    } else if (type === 'error') {
-        icon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
-    } else if (type === 'info') {
-        icon.innerHTML = '<i class="fas fa-info-circle"></i>';
-    }
-    
-    // Create title
-    const titleEl = document.createElement('h3');
-    titleEl.textContent = title;
-    
-    // Create message
-    const messageEl = document.createElement('p');
-    messageEl.innerHTML = message;
-    
-    // Create OK button
-    const okButton = document.createElement('button');
-    okButton.className = 'popup-btn';
-    okButton.textContent = 'OK';
-    okButton.onclick = function() {
-        document.body.removeChild(modalContainer);
-    };
-    
-    // Append elements to modal content
-    modalContent.appendChild(closeBtn);
-    modalContent.appendChild(icon);
-    modalContent.appendChild(titleEl);
-    modalContent.appendChild(messageEl);
-    modalContent.appendChild(okButton);
-    
-    // Append modal content to modal container
-    modalContainer.appendChild(modalContent);
-    
-    // Add modal container to body
     document.body.appendChild(modalContainer);
     
-    // Add styles for the popup
+    // Close functionality
+    const closeBtn = modalContainer.querySelector('.popup-close');
+    const okBtn = modalContainer.querySelector('.popup-btn');
+    
+    const closeModal = () => {
+        modalContainer.style.animation = 'fadeOut 0.3s ease-out forwards';
+        setTimeout(() => {
+            if (document.body.contains(modalContainer)) {
+                document.body.removeChild(modalContainer);
+            }
+        }, 300);
+    };
+    
+    closeBtn.addEventListener('click', closeModal);
+    okBtn.addEventListener('click', closeModal);
+    modalContainer.addEventListener('click', function(e) {
+        if (e.target === modalContainer) {
+            closeModal();
+        }
+    });
+    
+    // Add styles
     const style = document.createElement('style');
     style.textContent = `
         .popup-modal {
-            display: flex;
             position: fixed;
-            z-index: 9999;
-            left: 0;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            align-items: center;
+            display: flex;
             justify-content: center;
+            align-items: center;
+            z-index: 10000;
             animation: fadeIn 0.3s ease-out forwards;
         }
         
@@ -611,6 +568,11 @@ function showPopupMessage(title, message, type = 'success') {
             to { opacity: 1; }
         }
         
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
         @keyframes scaleIn {
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
@@ -622,7 +584,7 @@ function showPopupMessage(title, message, type = 'success') {
     if (type === 'success') {
         setTimeout(function() {
             if (document.body.contains(modalContainer)) {
-                document.body.removeChild(modalContainer);
+                closeModal();
             }
         }, 5000);
     }
