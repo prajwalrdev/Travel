@@ -1,4 +1,4 @@
-# TravelEase WordPress Theme
+# TravelEase - Travel Agency Website
 
 A modern, responsive WordPress theme designed for travel and transportation businesses. This theme integrates all subdomain content into a comprehensive WordPress solution with booking, corporate, blog, and support pages.
 
@@ -189,133 +189,90 @@ A modern, responsive WordPress theme designed for travel and taxi services websi
 
 ## Features
 
-- **Responsive Design**: Mobile-first approach with modern CSS
-- **Customizable**: Extensive WordPress Customizer options
-- **SEO Friendly**: Proper WordPress template tags and semantic HTML
-- **Contact Forms**: AJAX-powered contact and newsletter forms
-- **Blog Support**: Full blog functionality with archives and single posts
-- **Social Media Integration**: Configurable social media links
-- **Font Awesome Icons**: Beautiful iconography throughout
-- **Google Maps Integration**: Embedded map in contact section
+- Fully responsive design that works on all devices (mobile, tablet, desktop)
+- Modern UI/UX with smooth animations and transitions
+- Interactive elements including sliders, counters, and form validation
+- Sections for services, destinations, testimonials, and contact information
+- Booking form with client-side validation
+- Newsletter subscription functionality
+- Social media integration
+- Back-to-top button for easy navigation
 
-## Installation
+## Technologies Used
 
-1. Upload the theme folder to `/wp-content/themes/`
-2. Activate the theme through the 'Appearance' menu in WordPress
-3. Configure the theme using the WordPress Customizer
+- HTML5 for structure
+- CSS3 for styling (with CSS variables for easy theming)
+- Vanilla JavaScript for interactivity
+- Font Awesome for icons
+- Google Fonts for typography
+- SVG images for lightweight, scalable graphics
 
-## Required Files
+## Project Structure
 
-The theme includes all necessary WordPress template files:
+```
+Travel_Agent/
+├── index.html          # Main HTML file
+├── css/
+│   └── style.css       # Main stylesheet
+├── js/
+│   └── script.js       # JavaScript functionality
+├── images/             # SVG images for the website
+│   ├── hero-bg.jpg
+│   ├── stats-bg.jpg.svg
+│   ├── about-image.jpg.svg
+│   ├── destination-1.jpg.svg
+│   ├── destination-2.jpg.svg
+│   ├── destination-3.jpg.svg
+│   ├── testimonial-1.jpg.svg
+│   ├── testimonial-2.jpg.svg
+│   └── testimonial-3.jpg.svg
+└── README.md           # Project documentation
+```
 
-- `style.css` - Theme header and main stylesheet
-- `index.php` - Main template file
-- `header.php` - Header template
-- `footer.php` - Footer template
-- `functions.php` - Theme functions and features
-- `page.php` - Page template
-- `single.php` - Single post template
-- `archive.php` - Archive and category pages
-- `search.php` - Search results
-- `searchform.php` - Search form
-- `404.php` - Error page template
+## How to Run
+
+1. Clone or download this repository
+2. Open the `index.html` file in any modern web browser
+
+No build process or special server is required as this is a static website.
+
+## Browser Compatibility
+
+The website is compatible with all modern browsers including:
+- Google Chrome
+- Mozilla Firefox
+- Safari
+- Microsoft Edge
+- Opera
 
 ## Customization
 
-### WordPress Customizer Options
+### Colors
 
-The theme includes extensive customization options in the WordPress Customizer:
+The website uses CSS variables for easy color customization. You can modify the colors by editing the `:root` section in the `style.css` file:
 
-#### Hero Section
-- Hero title and subtitle
-- Button text customization
-
-#### About Section
-- About title and subtitle
-- Content editable through WordPress pages
-
-#### Services Section
-- Services title and subtitle
-
-#### Contact Information
-- Contact title and subtitle
-- Address, phone numbers, and email addresses
-- Working hours
-
-#### Social Media
-- Facebook, Twitter, Instagram, and LinkedIn URLs
-
-### Menu Locations
-
-The theme supports two menu locations:
-- **Primary Menu**: Main navigation menu
-- **Footer Menu**: Footer quick links
-
-### Widget Areas
-
-Currently, the theme uses static content, but you can easily add widget areas by modifying the template files.
-
-## File Structure
-
-```
-travelease/
-├── style.css              # Theme header and main stylesheet
-├── index.php              # Main template
-├── header.php             # Header template
-├── footer.php             # Footer template
-├── functions.php          # Theme functions
-├── page.php               # Page template
-├── single.php             # Single post template
-├── archive.php            # Archive template
-├── search.php             # Search results
-├── searchform.php         # Search form
-├── 404.php                # Error page
-├── css/                   # Original CSS files
-├── js/                    # Original JavaScript files
-├── images/                # Theme images
-├── services/              # Service pages
-└── README.md              # This file
+```css
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --dark-color: #1a1a2e;
+    --light-color: #f7f7f7;
+    --gray-color: #6c757d;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease-in-out;
+}
 ```
 
-## Browser Support
+### Images
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Internet Explorer 11+
+All images are SVG files that can be easily edited with any vector graphics editor. You can replace them with your own images by modifying the image paths in the HTML file.
 
-## Dependencies
+### Content
 
-- WordPress 5.0+
-- PHP 7.4+
-- Font Awesome 6.4.0 (CDN)
-- Google Fonts (Poppins)
-
-## Customization Tips
-
-### Adding New Sections
-
-To add new sections to the homepage:
-
-1. Edit `index.php` to add your new section
-2. Add customizer options in `functions.php`
-3. Use `get_theme_mod()` to make content editable
-
-### Modifying Colors
-
-The theme uses CSS custom properties for colors. You can modify them in the main CSS file or add customizer color options.
-
-### Adding Widget Areas
-
-To add widget areas:
-
-1. Register them in `functions.php` using `register_sidebar()`
-2. Add them to your template files using `dynamic_sidebar()`
-
-## Support
-
-For support and customization requests, please refer to the original HTML/CSS/JS files in their respective directories.
+The website content can be customized by editing the text in the HTML file. The structure is organized into sections, making it easy to locate and modify specific content.
 
 ## License
 
