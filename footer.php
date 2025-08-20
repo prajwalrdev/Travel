@@ -1,10 +1,12 @@
-    <!-- Footer Section -->
+<!-- Footer Section -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <h2><?php bloginfo('name'); ?></h2>
                     <p><?php bloginfo('description'); ?></p>
+                    <p>Ground Floor, GHS Opposite Tara clinic, Hampankatta Mangalore 575001</p>
+                    <p><a href="tel:+918861505754">+91 8861505754</a></p>
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
@@ -18,15 +20,20 @@
                     ?>
                 </div>
                 <div class="footer-services">
-                    <h3>Our Services</h3>
+                    <h3>Cab Services</h3>
                     <ul>
-                        <li><a href="<?php echo get_template_directory_uri(); ?>/services/city-taxi.html">City Taxi</a></li>
-                        <li><a href="<?php echo get_template_directory_uri(); ?>/services/outstation-taxi.html">Outstation Taxi</a></li>
-                        <li><a href="<?php echo get_template_directory_uri(); ?>/services/luxury-cabs.html">Luxury Cabs</a></li>
-                        <li><a href="<?php echo get_template_directory_uri(); ?>/services/wedding-cars.html">Wedding Cars</a></li>
-                        <li><a href="<?php echo get_template_directory_uri(); ?>/services/corporate-travel.html">Corporate Travel</a></li>
-                        <li><a href="<?php echo get_template_directory_uri(); ?>/services/airport-taxi.html">Airport Transfer</a></li>
-                        <li><a href="<?php echo get_template_directory_uri(); ?>/services/railway-station-taxi.html">Railway Station Taxi</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/city-taxi/')); ?>">City Taxi</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/outstation-taxi/')); ?>">Outstation Taxi</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/wedding-cars/')); ?>">Wedding Cars</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/airport-taxi/')); ?>">Airport Taxi</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/mini-bus/')); ?>">Mini Bus</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/tempo-traveler/')); ?>">Tempo Traveler</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/innova-cabs/')); ?>">Innova Cabs</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/ertiga-cabs/')); ?>">Ertiga Cabs</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/sedan-cabs/')); ?>">Sedan Cabs</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/bekal-taxi/')); ?>">Bekal Taxi</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/temple-tour/')); ?>">Temple Tour Packages</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/coorg-taxi/')); ?>">Coorg Taxi</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
@@ -58,7 +65,7 @@
     
     <div class="floating-buttons">
         <!-- WhatsApp Icon -->
-        <a href="https://wa.me/7353607477" class="whatsapp-icon" target="_blank" aria-label="Chat with us on WhatsApp">
+        <a href="https://wa.me/918861505754" class="whatsapp-icon" target="_blank" aria-label="Chat with us on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
 

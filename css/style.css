@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-    --primary-color: #ff6b6b;
+    --primary-color: #007bff; /* unified with theme primary */
     --secondary-color: #4ecdc4;
     --dark-color: #1a1a2e;
     --light-color: #f7f7f7;
@@ -155,25 +155,24 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: transparent;
+    background: transparent;
     transition: var(--transition);
     padding: 20px 0;
 }
 
 header.scrolled {
-    background-color: #fff;
-    box-shadow: var(--box-shadow);
-    padding: 15px 0;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 header.scrolled .logo h1,
 header.scrolled .nav-links a {
-    color: var(--dark-color);
+    color: #1a1a2e;
 }
 
 header.scrolled .nav-links a.active,
 header.scrolled .nav-links a:hover {
-    color: var(--primary-color);
+    color: #ff5252;
 }
 
 .header-content {
@@ -182,14 +181,36 @@ header.scrolled .nav-links a:hover {
     align-items: center;
 }
 
-.logo h1 {
-    font-size: clamp(1.5rem, 3vw, 1.8rem);
+.logo h1, .logo a {
+    font-size: 2.2rem;
     font-weight: 700;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+}
+.logo span:first-child {
     color: #fff;
 }
+.logo span:last-child {
+    color: #ff5252;
+}
 
-.logo span {
-    color: var(--primary-color);
+.logo-travel {
+    color: #fff;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+.logo-ease {
+    color: #ff5252;
+    font-weight: 700;
+    transition: color 0.3s;
+}
+header.scrolled .logo-travel {
+    color: #1a1a2e;
+}
+header.scrolled .logo-ease {
+    color: #ff5252;
 }
 
 .nav-links {
@@ -200,8 +221,10 @@ header.scrolled .nav-links a:hover {
 .nav-links a {
     color: #fff;
     font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0 0.5em;
     position: relative;
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    transition: color 0.3s;
 }
 
 .nav-links a::after {
@@ -222,7 +245,7 @@ header.scrolled .nav-links a:hover {
 
 .nav-links a.active,
 .nav-links a:hover {
-    color: var(--primary-color);
+    color: #ff5252;
 }
 
 /* Dropdown Menu Styles */
@@ -299,38 +322,32 @@ header.scrolled .nav-links a:hover {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('../images/hero-bg.jpg') no-repeat center center/cover;
+    min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     color: #fff;
-    padding-top: 80px;
+    padding-top: 0;
 }
 
 .hero-content h1 {
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 20px;
-    animation: fadeInDown 1s ease;
-    line-height: 1.2;
+    margin-bottom: 1rem;
+    line-height: 1.1;
 }
 
 .hero-content p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    margin-bottom: 30px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeInUp 1s ease;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 20px;
+    gap: 1.5rem;
     justify-content: center;
-    animation: fadeIn 1.5s ease;
-    flex-wrap: wrap;
 }
 
 /* Features Section */
@@ -528,6 +545,77 @@ header.scrolled .nav-links a:hover {
     color: var(--gray-color);
     margin-bottom: 20px;
     font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Vehicle Types Section */
+.vehicle-types {
+    background-color: #fff;
+    padding: 80px 0;
+}
+
+.vehicle-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.vehicle-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    transition: var(--transition);
+}
+
+.vehicle-card:hover {
+    transform: translateY(-6px);
+}
+
+.vehicle-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(255, 107, 107, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.vehicle-card h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    margin-bottom: 10px;
+}
+
+.vehicle-card p {
+    color: var(--gray-color);
+    margin-bottom: 15px;
+}
+
+.vehicle-features {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.vehicle-features span {
+    background: var(--light-color);
+    border: 1px solid #eee;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--dark-color);
+}
+
+@media screen and (max-width: 768px) {
+    .vehicle-types {
+        padding: 60px 0;
+    }
+    .vehicle-card {
+        padding: 25px;
+    }
 }
 
 /* Destinations Section */
@@ -1250,11 +1338,12 @@ footer {
         box-shadow: var(--box-shadow);
         overflow-y: auto;
     }
-
     .nav-links.active {
         left: 0;
     }
-
+    .nav-links.active ~ .nav-overlay {
+        display: block;
+    }
     .nav-links a {
         color: var(--dark-color);
         padding: 15px 0;
@@ -1262,21 +1351,17 @@ footer {
         width: 100%;
         border-bottom: 1px solid #f0f0f0;
     }
-    
     .nav-links a:last-child {
         border-bottom: none;
     }
-
     .mobile-menu-btn {
         display: block;
         z-index: 1002;
         position: relative;
     }
-
     .mobile-menu-btn.active i {
         color: var(--dark-color);
     }
-    
     /* Mobile Dropdown Styles */
     .dropdown-menu {
         position: static;
@@ -1293,27 +1378,22 @@ footer {
         width: 100%;
         border-radius: 5px;
     }
-    
     .dropdown.active .dropdown-menu {
         max-height: 500px;
     }
-    
     .dropdown-menu a {
         padding: 10px 20px;
         font-size: 0.9rem;
         border-bottom: none;
     }
-    
     .dropdown > a {
         width: 100%;
         justify-content: space-between;
         border-bottom: none;
     }
-    
     .dropdown > a i {
         transition: transform 0.3s ease;
     }
-    
     .dropdown.active > a i {
         transform: rotate(180deg);
     }

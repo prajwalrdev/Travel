@@ -191,9 +191,9 @@ get_header(); ?>
             <div class="service-sidebar">
                 <h3>Book Your Airport Transfer</h3>
                 <form class="booking-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
-                    <input type="hidden" name="action" value="book_airport_taxi">
-                    <?php wp_nonce_field('book_airport_taxi_nonce', 'airport_taxi_nonce'); ?>
-                    
+                    <input type="hidden" name="action" value="service_booking">
+                    <?php wp_nonce_field('travelease_service_booking', 'travelease_booking_nonce'); ?>
+                    <input type="hidden" name="service_name" value="Airport Taxi">
                     <div class="form-group">
                         <label for="pickup_type">Service Type</label>
                         <select name="pickup_type" id="pickup_type" required>

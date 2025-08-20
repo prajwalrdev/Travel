@@ -30,6 +30,9 @@ function travelease_theme_setup() {
     register_nav_menus(array(
         'primary-menu' => __('Primary Menu', 'travelease'),
         'footer-menu' => __('Footer Menu', 'travelease'),
+        // Back-compat keys used elsewhere
+        'primary' => __('Primary Menu (Alt Key)', 'travelease'),
+        'footer' => __('Footer Menu (Alt Key)', 'travelease'),
     ));
 }
 add_action('after_setup_theme', 'travelease_theme_setup');
@@ -58,15 +61,20 @@ add_action('wp_enqueue_scripts', 'travelease_scripts');
 function travelease_fallback_menu() {
     echo '<ul class="nav-links">';
     echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
-    echo '<li><a href="#about">About Us</a></li>';
-    echo '<li><a href="#services">Services</a></li>';
-    echo '<li><a href="#destinations">Destinations</a></li>';
-    echo '<li><a href="#testimonials">Testimonials</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/blog/')) . '">Blog</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/corporate/')) . '">Corporate</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/booking/')) . '">Book Now</a></li>';
-    echo '<li><a href="' . esc_url(home_url('/support/')) . '">Support</a></li>';
-    echo '<li><a href="#contact">Contact</a></li>';
+    echo '<li><a href="' . esc_url(travelease_section_url('about')) . '">About Us</a></li>';
+    echo '<li><a href="' . esc_url(travelease_section_url('services')) . '">Services</a></li>';
+    echo '<li class="dropdown">';
+    echo '<a href="#">Subdomains <i class="fas fa-chevron-down"></i></a>';
+    echo '<ul class="dropdown-menu">';
+    echo '<li><a href="' . esc_url(home_url('/blog/')) . '" target="_blank" rel="noopener">Blog</a></li>';
+    echo '<li><a href="' . esc_url(home_url('/corporate/')) . '" target="_blank" rel="noopener">Corporate</a></li>';
+    echo '<li><a href="' . esc_url(home_url('/booking/')) . '" target="_blank" rel="noopener">Book Now</a></li>';
+    echo '<li><a href="' . esc_url(home_url('/support/')) . '" target="_blank" rel="noopener">Support</a></li>';
+    echo '</ul>';
+    echo '</li>';
+    echo '<li><a href="' . esc_url(travelease_section_url('destinations')) . '">Destinations</a></li>';
+    echo '<li><a href="' . esc_url(travelease_section_url('testimonials')) . '">Testimonials</a></li>';
+    echo '<li><a href="' . esc_url(travelease_section_url('contact')) . '">Contact</a></li>';
     echo '</ul>';
 }
 
@@ -198,10 +206,38 @@ function travelease_customize_register($wp_customize) {
         'type' => 'text',
     ));
     
+    // Vehicle Types Section
+    $wp_customize->add_section('travelease_vehicle_types', array(
+        'title' => __('Vehicle Types Section', 'travelease'),
+        'priority' => 33,
+    ));
+    
+    $wp_customize->add_setting('vehicle_types_title', array(
+        'default' => 'Our Fleet',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('vehicle_types_title', array(
+        'label' => __('Vehicle Types Title', 'travelease'),
+        'section' => 'travelease_vehicle_types',
+        'type' => 'text',
+    ));
+    
+    $wp_customize->add_setting('vehicle_types_subtitle', array(
+        'default' => 'Choose from our diverse range of vehicles',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('vehicle_types_subtitle', array(
+        'label' => __('Vehicle Types Subtitle', 'travelease'),
+        'section' => 'travelease_vehicle_types',
+        'type' => 'text',
+    ));
+    
     // Contact Section
     $wp_customize->add_section('travelease_contact', array(
         'title' => __('Contact Information', 'travelease'),
-        'priority' => 33,
+        'priority' => 34,
     ));
     
     $wp_customize->add_setting('contact_title', array(
@@ -227,7 +263,7 @@ function travelease_customize_register($wp_customize) {
     ));
     
     $wp_customize->add_setting('contact_address', array(
-        'default' => '1st Floor, EyeQ Dot Net Pvt Ltd, Smart Tower, Jyoti Circle, Bendoor, Mangaluru, Karnataka 575001',
+        'default' => 'Ground Floor, GHS Opposite Tara clinic, Hampankatta Mangalore 575001',
         'sanitize_callback' => 'sanitize_textarea_field',
     ));
     
@@ -238,7 +274,7 @@ function travelease_customize_register($wp_customize) {
     ));
     
     $wp_customize->add_setting('contact_phone1', array(
-        'default' => '+1 (123) 456-7890',
+        'default' => '+91 8861505754',
         'sanitize_callback' => 'sanitize_text_field',
     ));
     
@@ -408,4 +444,301 @@ function travelease_newsletter_form_handler() {
 }
 add_action('wp_ajax_travelease_newsletter_form', 'travelease_newsletter_form_handler');
 add_action('wp_ajax_nopriv_travelease_newsletter_form', 'travelease_newsletter_form_handler');
+
+// Unified Service Booking Handler (admin-post)
+function travelease_service_booking_handler() {
+    // Check nonce
+    if (!isset($_POST['travelease_booking_nonce']) || !wp_verify_nonce($_POST['travelease_booking_nonce'], 'travelease_service_booking')) {
+        wp_safe_redirect(add_query_arg('booking', 'error_nonce', wp_get_referer() ?: home_url('/')));
+        exit;
+    }
+
+    // Collect fields generically (allow different forms)
+    $exclude_keys = [
+        'action',
+        'travelease_booking_nonce',
+        '_wp_http_referer',
+    ];
+
+    $service_name = '';
+    if (!empty($_POST['service_name'])) {
+        $service_name = sanitize_text_field($_POST['service_name']);
+    } elseif (!empty($_POST['service_type'])) {
+        $service_name = sanitize_text_field($_POST['service_type']);
+    } else {
+        $service_name = 'Service Booking';
+    }
+
+    // Build email
+    $to       = get_option('admin_email');
+    $subject  = sprintf('[%s] %s', get_bloginfo('name'), $service_name);
+    $body     = "You have received a new booking request.\n\n";
+    $body    .= "Service: {$service_name}\n";
+    $body    .= "Submitted on: " . current_time('mysql') . "\n\n";
+    $body    .= "Details:\n";
+
+    foreach ($_POST as $key => $value) {
+        if (in_array($key, $exclude_keys, true)) continue;
+        // Sanitize and format
+        if (is_array($value)) {
+            $clean = implode(', ', array_map('sanitize_text_field', $value));
+        } else {
+            $clean = sanitize_text_field($value);
+        }
+        $label = ucwords(str_replace('_', ' ', $key));
+        $body .= "{$label}: {$clean}\n";
+    }
+
+    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+
+    $sent = wp_mail($to, $subject, $body, $headers);
+
+    // Redirect back with status
+    $redirect_url = add_query_arg('booking', $sent ? 'success' : 'error', wp_get_referer() ?: home_url('/'));
+    wp_safe_redirect($redirect_url);
+    exit;
+}
+add_action('admin_post_service_booking', 'travelease_service_booking_handler');
+add_action('admin_post_nopriv_service_booking', 'travelease_service_booking_handler');
 ?>
+<?php
+// Auto-setup core pages, menus, and front/blog assignment after theme activation
+if (!function_exists('travelease_after_switch_theme')) {
+    function travelease_after_switch_theme() {
+        // 1) Create core pages if they don't exist
+        $pages_to_create = [
+            [ 'title' => 'Home',      'slug' => 'home',      'template' => '' ],
+            [ 'title' => 'Booking',   'slug' => 'booking',   'template' => 'page-booking.php' ],
+            [ 'title' => 'Corporate', 'slug' => 'corporate', 'template' => 'page-corporate.php' ],
+            [ 'title' => 'Blog',      'slug' => 'blog',      'template' => 'page-blog.php' ],
+            [ 'title' => 'Support',   'slug' => 'support',   'template' => '' ],
+
+            // Service pages to auto-create
+            [ 'title' => 'City Taxi',               'slug' => 'city-taxi',               'template' => 'services/city-taxi.php' ],
+            [ 'title' => 'Outstation Taxi',         'slug' => 'outstation-taxi',         'template' => 'services/outstation-taxi.php' ],
+            [ 'title' => 'Wedding Cars',            'slug' => 'wedding-cars',            'template' => 'services/wedding-cars.php' ],
+            [ 'title' => 'Mini Bus',                'slug' => 'mini-bus',                'template' => 'services/mini-bus.php' ],
+            [ 'title' => 'Tempo Traveler',          'slug' => 'tempo-traveler',          'template' => 'services/tempo-traveler.php' ],
+            [ 'title' => 'Innova Cabs',             'slug' => 'innova-cabs',             'template' => 'services/innova-cabs.php' ],
+            [ 'title' => 'Ertiga Cabs',             'slug' => 'ertiga-cabs',             'template' => 'services/ertiga-cabs.php' ],
+            [ 'title' => 'Sedan Cabs',              'slug' => 'sedan-cabs',              'template' => 'services/sedan-cabs.php' ],
+            [ 'title' => 'Bekal Taxi',              'slug' => 'bekal-taxi',              'template' => 'services/bekal-taxi.php' ],
+            [ 'title' => 'Temple Tour Packages',    'slug' => 'temple-tour',             'template' => 'services/temple-tour.php' ],
+            [ 'title' => 'Coorg Taxi',              'slug' => 'coorg-taxi',              'template' => 'services/coorg-taxi.php' ],
+            // City Tour removed; use City Taxi only
+        ];
+
+        $created_page_ids = [];
+        foreach ($pages_to_create as $page) {
+            $existing = get_page_by_path($page['slug']);
+            if ($existing) {
+                $created_page_ids[$page['title']] = $existing->ID;
+                if (!empty($page['template'])) {
+                    update_post_meta($existing->ID, '_wp_page_template', $page['template']);
+                }
+                continue;
+            }
+            $page_id = wp_insert_post([
+                'post_title'   => $page['title'],
+                'post_name'    => $page['slug'],
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+                'post_content' => '',
+            ]);
+            if ($page_id && !is_wp_error($page_id)) {
+                $created_page_ids[$page['title']] = $page_id;
+                if (!empty($page['template'])) {
+                    update_post_meta($page_id, '_wp_page_template', $page['template']);
+                }
+            }
+        }
+
+        // 2) Assign Home as front page and Blog as posts page
+        if (!empty($created_page_ids['Home'])) {
+            update_option('show_on_front', 'page');
+            update_option('page_on_front', (int) $created_page_ids['Home']);
+        }
+        if (!empty($created_page_ids['Blog'])) {
+            update_option('page_for_posts', (int) $created_page_ids['Blog']);
+        }
+
+        // 3) Create/assign Main Menu to Primary and Footer Menu to Footer
+        // Primary menu
+        $primary_menu_name = 'Main Menu';
+        $primary_menu = wp_get_nav_menu_object($primary_menu_name);
+        if (!$primary_menu) {
+            $primary_menu_id = wp_create_nav_menu($primary_menu_name);
+        } else {
+            $primary_menu_id = $primary_menu->term_id;
+        }
+
+        // Footer menu
+        $footer_menu_name = 'Footer Menu';
+        $footer_menu = wp_get_nav_menu_object($footer_menu_name);
+        if (!$footer_menu) {
+            $footer_menu_id = wp_create_nav_menu($footer_menu_name);
+        } else {
+            $footer_menu_id = $footer_menu->term_id;
+        }
+
+        // Assign menus to locations (expects 'primary' and 'footer' to be registered)
+        $locations = get_theme_mod('nav_menu_locations');
+        if (!is_array($locations)) {
+            $locations = [];
+        }
+        $locations['primary'] = $primary_menu_id;
+        $locations['footer']  = $footer_menu_id;
+        set_theme_mod('nav_menu_locations', $locations);
+
+        // Helper to add a menu item if it doesn't exist
+        $ensure_menu_item = function($menu_id, $page_id) {
+            if (!$menu_id || !$page_id) return;
+            $items = wp_get_nav_menu_items($menu_id);
+            $exists = false;
+            if ($items && !is_wp_error($items)) {
+                foreach ($items as $item) {
+                    if ((int) $item->object_id === (int) $page_id) {
+                        $exists = true;
+                        break;
+                    }
+                }
+            }
+            if (!$exists) {
+                wp_update_nav_menu_item($menu_id, 0, [
+                    'menu-item-title'  => get_the_title($page_id),
+                    'menu-item-object' => 'page',
+                    'menu-item-object-id' => $page_id,
+                    'menu-item-type'   => 'post_type',
+                    'menu-item-status' => 'publish',
+                ]);
+            }
+        };
+
+        // Add pages to Main Menu (order as you like)
+        foreach (['Home', 'Booking', 'Corporate', 'Blog', 'Support'] as $title) {
+            if (!empty($created_page_ids[$title])) {
+                $ensure_menu_item($primary_menu_id, $created_page_ids[$title]);
+            }
+        }
+
+        // Add some to Footer Menu (customize as needed)
+        foreach (['Home', 'Support'] as $title) {
+            if (!empty($created_page_ids[$title])) {
+                $ensure_menu_item($footer_menu_id, $created_page_ids[$title]);
+            }
+        }
+
+        // 4) Suggest Permalinks: cannot auto-set in code; do it in Settings > Permalinks
+        // 5) Flush rewrite rules to ensure pretty permalinks work after page creation
+        flush_rewrite_rules();
+    }
+}
+add_action('after_switch_theme', 'travelease_after_switch_theme');
+
+/**
+ * Safety net: create missing core/service pages if theme was activated before
+ * and users are hitting 404s. Runs once and then disables itself.
+ */
+function travelease_seed_pages_if_missing_once() {
+    if (get_option('travelease_seeded_pages_v2')) {
+        return;
+    }
+
+    $pages_to_create = [
+        [ 'title' => 'Home',      'slug' => 'home',      'template' => '' ],
+        [ 'title' => 'Booking',   'slug' => 'booking',   'template' => 'page-booking.php' ],
+        [ 'title' => 'Corporate', 'slug' => 'corporate', 'template' => 'page-corporate.php' ],
+        [ 'title' => 'Blog',      'slug' => 'blog',      'template' => 'page-blog.php' ],
+        [ 'title' => 'Support',   'slug' => 'support',   'template' => '' ],
+
+        [ 'title' => 'City Taxi',               'slug' => 'city-taxi',               'template' => 'services/city-taxi.php' ],
+        [ 'title' => 'Outstation Taxi',         'slug' => 'outstation-taxi',         'template' => 'services/outstation-taxi.php' ],
+        [ 'title' => 'Wedding Cars',            'slug' => 'wedding-cars',            'template' => 'services/wedding-cars.php' ],
+        [ 'title' => 'Mini Bus',                'slug' => 'mini-bus',                'template' => 'services/mini-bus.php' ],
+        [ 'title' => 'Tempo Traveler',          'slug' => 'tempo-traveler',          'template' => 'services/tempo-traveler.php' ],
+        [ 'title' => 'Innova Cabs',             'slug' => 'innova-cabs',             'template' => 'services/innova-cabs.php' ],
+        [ 'title' => 'Ertiga Cabs',             'slug' => 'ertiga-cabs',             'template' => 'services/ertiga-cabs.php' ],
+        [ 'title' => 'Sedan Cabs',              'slug' => 'sedan-cabs',              'template' => 'services/sedan-cabs.php' ],
+        [ 'title' => 'Bekal Taxi',              'slug' => 'bekal-taxi',              'template' => 'services/bekal-taxi.php' ],
+        [ 'title' => 'Temple Tour Packages',    'slug' => 'temple-tour',             'template' => 'services/temple-tour.php' ],
+        [ 'title' => 'Coorg Taxi',              'slug' => 'coorg-taxi',              'template' => 'services/coorg-taxi.php' ],
+    ];
+
+    $created_any = false;
+    foreach ($pages_to_create as $page) {
+        $existing = get_page_by_path($page['slug']);
+        if ($existing) {
+            if (!empty($page['template'])) {
+                update_post_meta($existing->ID, '_wp_page_template', $page['template']);
+            }
+            continue;
+        }
+        $page_id = wp_insert_post([
+            'post_title'   => $page['title'],
+            'post_name'    => $page['slug'],
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => '',
+        ]);
+        if ($page_id && !is_wp_error($page_id)) {
+            if (!empty($page['template'])) {
+                update_post_meta($page_id, '_wp_page_template', $page['template']);
+            }
+            $created_any = true;
+        }
+    }
+
+    if ($created_any) {
+        flush_rewrite_rules(false);
+    }
+
+    update_option('travelease_seeded_pages_v2', time());
+}
+add_action('init', 'travelease_seed_pages_if_missing_once', 20);
+
+/**
+ * Helper: Ensure a page exists and return its permalink
+ */
+function travelease_get_or_create_page_url(string $title, string $slug, string $template = ''): string {
+    $page = get_page_by_path($slug);
+    if (!$page) {
+        $page_id = wp_insert_post([
+            'post_title'   => $title,
+            'post_name'    => $slug,
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => '',
+        ]);
+        if (!is_wp_error($page_id) && $page_id) {
+            if (!empty($template)) {
+                update_post_meta($page_id, '_wp_page_template', $template);
+            }
+            $page = get_post($page_id);
+            flush_rewrite_rules(false);
+        }
+    } else {
+        if (!empty($template)) {
+            update_post_meta($page->ID, '_wp_page_template', $template);
+        }
+    }
+    return $page ? get_permalink($page) : esc_url(home_url('/' . trim($slug, '/') . '/'));
+}
+
+/**
+ * Convenience helper for service URLs
+ */
+function travelease_service_url(string $title, string $slug, string $template): string {
+    return travelease_get_or_create_page_url($title, $slug, $template);
+}
+
+/**
+ * Build a URL to a homepage section that works from any page
+ */
+function travelease_section_url(string $section_id): string {
+    $section_id = trim($section_id, "# ");
+    $home_url   = home_url('/');
+    if (is_front_page()) {
+        return '#' . $section_id;
+    }
+    return trailingslashit($home_url) . '#' . $section_id;
+}

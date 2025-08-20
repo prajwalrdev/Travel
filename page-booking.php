@@ -248,8 +248,7 @@ get_header(); ?>
                 <select id="service-type" name="service_type" required>
                     <option value="">Select Service</option>
                     <option value="airport-transfer">Airport Transfer</option>
-                    <option value="city-tour">City Tour</option>
-                    <option value="corporate-travel">Corporate Travel</option>
+                    <option value="city-taxi">City Taxi</option>
                     <option value="event-transport">Event Transportation</option>
                     <option value="executive-travel">Executive Travel</option>
                     <option value="group-transport">Group Transportation</option>
@@ -343,8 +342,8 @@ get_header(); ?>
             <div class="booking-option-icon">
                 <i class="fas fa-map-marked-alt"></i>
             </div>
-            <h3>City Tour</h3>
-            <p>Explore the city with our professional tour guides and comfortable vehicles.</p>
+            <h3>City Taxi</h3>
+            <p>Quick and reliable city rides for errands, meetings, and sightseeing.</p>
             <div class="price">From $100</div>
             <a href="#" class="btn">Book Now</a>
         </div>
@@ -420,8 +419,8 @@ get_header(); ?>
     <div class="contact-info">
         <h2>Need Help with Booking?</h2>
         <p>Our customer service team is here to help you with any questions or special requests.</p>
-        <div class="phone">+1 (555) 123-4567</div>
-        <div class="email">booking@travelease.com</div>
+        <div class="phone"><?php echo get_theme_mod('contact_phone1', '+91 8861505754'); ?></div>
+        <div class="email"><?php echo get_theme_mod('contact_email1', 'info@travelease.com'); ?></div>
         <p>Available 24/7 for your convenience</p>
     </div>
 </section>

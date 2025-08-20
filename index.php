@@ -4,11 +4,11 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1><?php echo get_theme_mod('hero_title', 'Travel with your trusted travel partner'); ?></h1>
-                <p><?php echo get_theme_mod('hero_subtitle', 'Experience the journey of a lifetime with our premium travel services'); ?></p>
+                <h1>Travel with your trusted travel partner</h1>
+                <p>Experience the journey of a lifetime with our premium travel services</p>
                 <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary"><?php echo get_theme_mod('hero_button1', 'Our Services'); ?></a>
-                    <a href="#contact" class="btn btn-secondary"><?php echo get_theme_mod('hero_button2', 'Book Now'); ?></a>
+                    <a href="#services" class="btn btn-primary">Our Services</a>
+                    <a href="#contact" class="btn btn-outline">Book Now</a>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
                     </div>
                     <h3>City Taxi</h3>
                     <p>Local Taxi Service for convenient city travel</p>
-                    <a href="<?php echo get_template_directory_uri(); ?>/services/city-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo esc_url(travelease_service_url('City Taxi', 'city-taxi', 'services/city-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -120,7 +120,7 @@
                     </div>
                     <h3>Outstation Taxi</h3>
                     <p>MUV Cabs for comfortable long trips</p>
-                    <a href="<?php echo get_template_directory_uri(); ?>/services/outstation-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo esc_url(travelease_service_url('Outstation Taxi', 'outstation-taxi', 'services/outstation-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -128,7 +128,7 @@
                     </div>
                     <h3>Luxury Cabs</h3>
                     <p>Travel in royal style with premium vehicles</p>
-                    <a href="<?php echo get_template_directory_uri(); ?>/services/luxury-cabs.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo esc_url(travelease_service_url('Luxury Cabs', 'luxury-cabs', 'services/luxury-cabs.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -136,7 +136,7 @@
                     </div>
                     <h3>Wedding Cars</h3>
                     <p>Let the journey begin with our special wedding fleet</p>
-                    <a href="<?php echo get_template_directory_uri(); ?>/services/wedding-cars.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo esc_url(travelease_service_url('Wedding Cars', 'wedding-cars', 'services/wedding-cars.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -144,7 +144,7 @@
                     </div>
                     <h3>Corporate Travel</h3>
                     <p>Reliable transportation for business professionals</p>
-                    <a href="<?php echo get_template_directory_uri(); ?>/services/corporate-travel.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo esc_url(travelease_service_url('Corporate Travel', 'corporate-travel', 'services/corporate-travel.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -152,7 +152,7 @@
                     </div>
                     <h3>Airport Transfer</h3>
                     <p>Punctual pickup and drop-off services</p>
-                    <a href="<?php echo get_template_directory_uri(); ?>/services/airport-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo esc_url(travelease_service_url('Airport Taxi', 'airport-taxi', 'services/airport-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -160,7 +160,149 @@
                     </div>
                     <h3>Railway Station Taxi</h3>
                     <p>Convenient pickup and drop-off at railway stations</p>
-                    <a href="<?php echo get_template_directory_uri(); ?>/services/railway-station-taxi.html" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <a href="<?php echo esc_url(travelease_service_url('Railway Station Taxi', 'railway-station-taxi', 'services/railway-station-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>Mini Bus</h3>
+                    <p>Group transportation for medium-sized groups</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Mini Bus', 'mini-bus', 'services/mini-bus.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shuttle-van"></i>
+                    </div>
+                    <h3>Tempo Traveler</h3>
+                    <p>Perfect for group tours and outstation trips</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Tempo Traveler', 'tempo-traveler', 'services/tempo-traveler.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Innova Cabs | Innova Crysta</h3>
+                    <p>Premium SUVs for comfortable family travel</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Innova Cabs', 'innova-cabs', 'services/innova-cabs.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car-alt"></i>
+                    </div>
+                    <h3>Ertiga Cabs</h3>
+                    <p>Spacious and economical for group travel</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Ertiga Cabs', 'ertiga-cabs', 'services/ertiga-cabs.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>Sedan Cabs</h3>
+                    <p>Comfortable sedans for city and outstation travel</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Sedan Cabs', 'sedan-cabs', 'services/sedan-cabs.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Bekal Taxi</h3>
+                    <p>Specialized taxi service to Bekal beach destination</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Bekal Taxi', 'bekal-taxi', 'services/bekal-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-place-of-worship"></i>
+                    </div>
+                    <h3>Temple Tour Packages</h3>
+                    <p>Spiritual journeys to famous temples and pilgrimage sites</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Temple Tour Packages', 'temple-tour', 'services/temple-tour.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Coorg Taxi</h3>
+                    <p>Scenic trips to the beautiful hill station of Coorg</p>
+                    <a href="<?php echo esc_url(travelease_service_url('Coorg Taxi', 'coorg-taxi', 'services/coorg-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vehicle Types Section -->
+    <section id="vehicle-types" class="vehicle-types">
+        <div class="container">
+            <div class="section-header">
+                <h2><?php echo get_theme_mod('vehicle_types_title', 'Our Fleet'); ?></h2>
+                <p><?php echo get_theme_mod('vehicle_types_subtitle', 'Choose from our diverse range of vehicles'); ?></p>
+            </div>
+            <div class="vehicle-types-grid">
+                <div class="vehicle-card">
+                    <div class="vehicle-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>4 Seater Sedan</h3>
+                    <p>Comfortable sedan cars for small groups</p>
+                    <div class="vehicle-features">
+                        <span><i class="fas fa-users"></i> 4 Passengers</span>
+                        <span><i class="fas fa-suitcase"></i> 2 Luggage</span>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>6 Seater Ertiga | Innova</h3>
+                    <p>Spacious vehicles for medium groups</p>
+                    <div class="vehicle-features">
+                        <span><i class="fas fa-users"></i> 6 Passengers</span>
+                        <span><i class="fas fa-suitcase"></i> 4 Luggage</span>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>7 Seater Innova Crysta</h3>
+                    <p>Premium SUV for comfortable travel</p>
+                    <div class="vehicle-features">
+                        <span><i class="fas fa-users"></i> 7 Passengers</span>
+                        <span><i class="fas fa-suitcase"></i> 5 Luggage</span>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>12 Seater Tempo Traveler</h3>
+                    <p>Perfect for group travel and tours</p>
+                    <div class="vehicle-features">
+                        <span><i class="fas fa-users"></i> 12 Passengers</span>
+                        <span><i class="fas fa-suitcase"></i> 8 Luggage</span>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-icon">
+                        <i class="fas fa-bus-alt"></i>
+                    </div>
+                    <h3>22 Seater Mini Bus</h3>
+                    <p>Ideal for medium group transportation</p>
+                    <div class="vehicle-features">
+                        <span><i class="fas fa-users"></i> 22 Passengers</span>
+                        <span><i class="fas fa-suitcase"></i> 12 Luggage</span>
+                    </div>
+                </div>
+                <div class="vehicle-card">
+                    <div class="vehicle-icon">
+                        <i class="fas fa-shuttle-van"></i>
+                    </div>
+                    <h3>25/33/49 Seater Bus</h3>
+                    <p>Large buses for big groups and events</p>
+                    <div class="vehicle-features">
+                        <span><i class="fas fa-users"></i> Up to 49 Passengers</span>
+                        <span><i class="fas fa-suitcase"></i> 20+ Luggage</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -364,12 +506,12 @@
                         <div class="location-section">
                             <div class="info-content">
                                 <h3>Our Location</h3>
-                                <p><?php echo get_theme_mod('contact_address', '1st Floor, EyeQ Dot Net Pvt Ltd, Smart Tower, Jyoti Circle, Bendoor, Mangaluru, Karnataka 575001'); ?></p>
+                                <p><?php echo get_theme_mod('contact_address', 'Ground Floor, GHS Opposite Tara clinic, Hampankatta Mangalore 575001'); ?></p>
                             </div>
                         </div>
                         <div class="map-container">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7811752941414!2d74.84810111418274!3d12.872426990902173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b1c7a274171%3A0x7796f6d3218f2874!2sEyeQ%20Dot%20Net%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1653039874887!5m2!1sen!2sin"
+                                src="https://www.google.com/maps?q=<?php echo rawurlencode(get_theme_mod('contact_address', 'Ground Floor, GHS Opposite Tara clinic, Hampankatta Mangalore 575001')); ?>&output=embed"
                                 width="100%"
                                 height="100%"
                                 style="border:0;"
@@ -385,8 +527,8 @@
                         </div>
                         <div class="info-content">
                             <h3>Call Us</h3>
-                            <p><?php echo get_theme_mod('contact_phone1', '+1 (123) 456-7890'); ?></p>
-                            <p><?php echo get_theme_mod('contact_phone2', '+1 (987) 654-3210'); ?></p>
+                            <p><?php echo get_theme_mod('contact_phone1', '+91 8861505754'); ?></p>
+                            <p><?php echo get_theme_mod('contact_phone2', ''); ?></p>
                         </div>
                     </div>
                     <div class="info-card">

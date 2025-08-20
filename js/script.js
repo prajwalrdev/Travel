@@ -6,18 +6,45 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile Menu Toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle, .mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
+    const headerEl = document.querySelector('header');
+    // Add overlay for mobile nav
+    let navOverlay = document.querySelector('.nav-overlay');
+    if (!navOverlay) {
+        navOverlay = document.createElement('div');
+        navOverlay.className = 'nav-overlay';
+        document.body.appendChild(navOverlay);
+    }
     
     if (mobileMenuToggle && navLinks) {
-        mobileMenuToggle.addEventListener('click', function() {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+            navOverlay.style.display = navLinks.classList.contains('active') ? 'block' : 'none';
         });
-        
-        // Close mobile menu when clicking outside
+        navOverlay.addEventListener('click', function() {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            navOverlay.style.display = 'none';
+        });
+        // Dropdown toggle for mobile
+        document.querySelectorAll('.dropdown > a').forEach(function(dropLink) {
+            dropLink.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = this.parentElement;
+                    parent.classList.toggle('active');
+                }
+            });
+        });
+        // Close mobile menu when clicking outside the header/nav area
         document.addEventListener('click', function(event) {
-            if (!event.target.closest('.navbar')) {
+            if (!event.target.closest('header') && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                navOverlay.style.display = 'none';
             }
         });
     }
@@ -53,18 +80,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Header Background on Scroll
-    const header = document.querySelector('header');
-    
-    if (header) {
-        window.addEventListener('scroll', function() {
+    if (headerEl) {
+        const toggleHeaderScrolled = () => {
             if (window.scrollY > 100) {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
+                headerEl.classList.add('scrolled');
             } else {
-                header.style.backgroundColor = '#ffffff';
-                header.style.backdropFilter = 'none';
+                headerEl.classList.remove('scrolled');
             }
-        });
+        };
+        toggleHeaderScrolled();
+        window.addEventListener('scroll', toggleHeaderScrolled);
     }
     
     // Animate Elements on Scroll
@@ -279,28 +304,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Back to Top Button
-    const backToTopButton = document.createElement('button');
-    backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTopButton.className = 'back-to-top';
-    backToTopButton.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        background: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        font-size: 1.2rem;
-    `;
-    
-    document.body.appendChild(backToTopButton);
+    let backToTopButton = document.querySelector('.back-to-top');
+    if (!backToTopButton) {
+        backToTopButton = document.createElement('button');
+        backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTopButton.className = 'back-to-top';
+        backToTopButton.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 1.2rem;
+        `;
+        document.body.appendChild(backToTopButton);
+    }
     
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
@@ -332,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const vehicleOptions = {
                 'airport-transfer': ['sedan', 'suv', 'luxury'],
-                'city-tour': ['sedan', 'suv', 'minivan'],
+                'city-taxi': ['sedan', 'hatchback', 'suv'],
                 'corporate-travel': ['sedan', 'suv', 'luxury'],
                 'event-transport': ['sedan', 'suv', 'minivan', 'bus'],
                 'executive-travel': ['luxury'],
