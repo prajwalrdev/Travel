@@ -142,7 +142,7 @@ All forms are ready for integration with:
 Edit CSS variables in `style.css`:
 ```css
 :root {
-    --primary-color: #007bff;
+    --primary-color: #FF5252;
     --primary-dark: #0056b3;
     --secondary-color: #6c757d;
     /* Add more colors as needed */
