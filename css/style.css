@@ -320,6 +320,18 @@ header.scrolled .logo-ease {
     padding: 5px;
 }
 
+/* Mobile nav overlay */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('../images/hero-bg.jpg') no-repeat center center/cover;

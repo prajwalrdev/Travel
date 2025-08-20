@@ -30,8 +30,8 @@
                         </a></h1>
                     <?php endif; ?>
                 </div>
-                <nav>
-                    <ul class="nav-links">
+                <nav aria-label="Primary">
+                    <ul id="primary-menu" class="nav-links">
                         <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
                         <li><a href="<?php echo esc_url(travelease_section_url('about')); ?>">About</a></li>
                         <li><a href="<?php echo esc_url(travelease_section_url('services')); ?>">Services</a></li>
@@ -49,9 +49,10 @@
                         <li><a href="<?php echo esc_url(travelease_section_url('contact')); ?>">Contact</a></li>
                     </ul>
                 </nav>
-                <div class="mobile-menu-toggle mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </div>
+                <button type="button" class="mobile-menu-toggle mobile-menu-btn" aria-controls="primary-menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                    <span class="screen-reader-text">Menu</span>
+                </button>
             </div>
         </div>
     </header>
