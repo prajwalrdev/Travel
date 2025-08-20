@@ -81,7 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Header Background on Scroll
     if (headerEl) {
+        const isHome = document.body.classList.contains('home') || document.body.classList.contains('front-page');
         const toggleHeaderScrolled = () => {
+            if (isHome) {
+                headerEl.classList.remove('scrolled');
+                return;
+            }
             if (window.scrollY > 100) {
                 headerEl.classList.add('scrolled');
             } else {

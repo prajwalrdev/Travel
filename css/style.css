@@ -1770,3 +1770,25 @@ footer {
         color: #000 !important;
     }
 }
+
+/* Custom Logo sizing */
+.custom-logo-link,
+.custom-logo {
+    display: inline-block;
+    height: 48px;
+}
+.custom-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+@media (max-width: 768px) {
+    .custom-logo,
+    .custom-logo-link { height: 40px; }
+}
+@media (max-width: 480px) {
+    .custom-logo,
+    .custom-logo-link { height: 36px; }
+}
+/* Ensure text logo colors still switch on scroll when used as fallback */
+header.scrolled .logo h1 a { color: inherit; }

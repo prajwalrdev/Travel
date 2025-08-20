@@ -22,9 +22,13 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1><a href="<?php echo esc_url(home_url('/')); ?>">
-                        <span class="logo-travel">Travel</span><span class="logo-ease">Ease</span>
-                    </a></h1>
+                    <?php if (function_exists('the_custom_logo') && has_custom_logo()) : ?>
+                        <?php the_custom_logo(); ?>
+                    <?php else : ?>
+                        <h1><a href="<?php echo esc_url(home_url('/')); ?>">
+                            <span class="logo-travel">Travel</span><span class="logo-ease">Ease</span>
+                        </a></h1>
+                    <?php endif; ?>
                 </div>
                 <nav>
                     <ul class="nav-links">
