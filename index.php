@@ -8,7 +8,7 @@
                 <p>Experience the journey of a lifetime with our premium travel services</p>
                 <div class="hero-buttons">
                     <a href="#services" class="btn btn-primary">Our Services</a>
-                    <a href="#contact" class="btn btn-outline">Book Now</a>
+                    <a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="btn btn-outline">Book Now</a>
                 </div>
             </div>
         </div>
@@ -114,22 +114,22 @@
                     <p>Local Taxi Service for convenient city travel</p>
                     <a href="<?php echo esc_url(travelease_service_url('City Taxi', 'city-taxi', 'services/city-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="service-card">
+                <!-- <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-route"></i>
                     </div>
                     <h3>Outstation Taxi</h3>
                     <p>MUV Cabs for comfortable long trips</p>
                     <a href="<?php echo esc_url(travelease_service_url('Outstation Taxi', 'outstation-taxi', 'services/outstation-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
+                </div> -->
+                <!-- <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-car-side"></i>
                     </div>
                     <h3>Luxury Cabs</h3>
                     <p>Travel in royal style with premium vehicles</p>
                     <a href="<?php echo esc_url(travelease_service_url('Luxury Cabs', 'luxury-cabs', 'services/luxury-cabs.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
+                </div> -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-glass-cheers"></i>
@@ -138,14 +138,14 @@
                     <p>Let the journey begin with our special wedding fleet</p>
                     <a href="<?php echo esc_url(travelease_service_url('Wedding Cars', 'wedding-cars', 'services/wedding-cars.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="service-card">
+                <!-- <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-building"></i>
                     </div>
                     <h3>Corporate Travel</h3>
                     <p>Reliable transportation for business professionals</p>
                     <a href="<?php echo esc_url(travelease_service_url('Corporate Travel', 'corporate-travel', 'services/corporate-travel.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
+                </div> -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-plane-departure"></i>
@@ -154,14 +154,14 @@
                     <p>Punctual pickup and drop-off services</p>
                     <a href="<?php echo esc_url(travelease_service_url('Airport Taxi', 'airport-taxi', 'services/airport-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <div class="service-card">
+                <!-- <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-train"></i>
                     </div>
                     <h3>Railway Station Taxi</h3>
                     <p>Convenient pickup and drop-off at railway stations</p>
                     <a href="<?php echo esc_url(travelease_service_url('Railway Station Taxi', 'railway-station-taxi', 'services/railway-station-taxi.php')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
+                </div> -->
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-bus"></i>
@@ -353,19 +353,19 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <h3 class="counter" data-target="15000">0</h3>
+                    <h3 class="counter" data-target="15000">150+</h3>
                     <p>Trips Completed</p>
                 </div>
                 <div class="stat-card">
-                    <h3 class="counter" data-target="500">0</h3>
+                    <h3 class="counter" data-target="500">500+</h3>
                     <p>Corporate Clients Served</p>
                 </div>
                 <div class="stat-card">
-                    <h3 class="counter" data-target="8000">0</h3>
+                    <h3 class="counter" data-target="8000">600+</h3>
                     <p>Happy Customers</p>
                 </div>
                 <div class="stat-card">
-                    <h3 class="counter" data-target="2000">0</h3>
+                    <h3 class="counter" data-target="2000">200+</h3>
                     <p>Online Bookings</p>
                 </div>
             </div>
