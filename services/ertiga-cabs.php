@@ -36,7 +36,7 @@ get_header(); ?>
 }
 .feature-item i {
     font-size: 2rem;
-    color: var(--primary-color, #007bff);
+    color: var(--primary-color, #FF5252);
     margin-bottom: 10px;
 }
 .booking-sidebar {
@@ -61,7 +61,7 @@ get_header(); ?>
 .booking-form button {
     width: 100%;
     padding: 12px;
-    background: var(--primary-color, #007bff);
+    background: var(--primary-color, #FF5252);
     color: #fff;
     border: none;
     border-radius: 6px;
