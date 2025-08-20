@@ -41,7 +41,7 @@ get_header(); ?>
 
 .feature-item i {
     font-size: 2.5rem;
-    color: #007bff;
+    color: #FF5252;
     margin-bottom: 15px;
 }
 
@@ -63,7 +63,7 @@ get_header(); ?>
 }
 
 .btn-primary {
-    background: #007bff;
+    background: #FF5252;
     color: white;
     padding: 12px 30px;
     border: none;
