@@ -26,6 +26,7 @@
                         <?php the_custom_logo(); ?>
                     <?php else : ?>
                         <h1><a href="<?php echo esc_url(home_url('/')); ?>">
+                            <img src="<?php echo esc_url( get_template_directory_uri() . '/images/MCS White Logo.jpg' ); ?>" alt="<?php bloginfo('name'); ?> logo" class="brand-mark">
                             <span class="logo-travel">Travel</span><span class="logo-ease">Ease</span>
                         </a></h1>
                     <?php endif; ?>

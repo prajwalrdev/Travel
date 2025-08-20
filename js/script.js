@@ -95,19 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Header Background on Scroll
-    if (headerEl) {
-        const toggleHeaderScrolled = () => {
-            const threshold = 50;
-            if (window.scrollY > threshold) {
-                headerEl.classList.add('scrolled');
-            } else {
-                headerEl.classList.remove('scrolled');
-            }
-        };
-        toggleHeaderScrolled();
-        window.addEventListener('scroll', toggleHeaderScrolled);
-    }
+    // Header is not fixed; remove scroll-based style toggling
     
     // Animate Elements on Scroll
     
