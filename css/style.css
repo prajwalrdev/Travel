@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-    --primary-color: #007bff; /* unified with theme primary */
+    --primary-color: #FF5252; /* unified with theme primary */
     --secondary-color: #4ecdc4;
     --dark-color: #1a1a2e;
     --light-color: #f7f7f7;
@@ -1117,7 +1117,7 @@ footer {
 
 /* WhatsApp Button */
 .whatsapp-icon {
-    background-color: var(--primary-color, #007bff);
+    background-color: var(--primary-color, #FF5252);
 }
 
 .whatsapp-icon:hover {
