@@ -123,6 +123,46 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(element);
     });
+
+    // Animated Counters in Stats Section
+    const counters = document.querySelectorAll('.counter');
+    function animateCounter(counterEl) {
+        if (counterEl.dataset.animated === 'true') return; // run once
+        counterEl.dataset.animated = 'true';
+        const base = parseInt(counterEl.getAttribute('data-target') || '1000', 10);
+        const minAttr = parseInt(counterEl.getAttribute('data-min') || '0', 10);
+        const maxAttr = parseInt(counterEl.getAttribute('data-max') || '0', 10);
+        const min = Number.isFinite(minAttr) && minAttr > 0 ? minAttr : Math.max(1, Math.floor(base * 0.9));
+        const max = Number.isFinite(maxAttr) && maxAttr > 0 ? maxAttr : Math.ceil(base * 1.1);
+        const target = Math.max(min, Math.min(max, Math.floor(Math.random() * (max - min + 1)) + min));
+        const durationMs = 1600;
+        const startTime = performance.now();
+
+        function step(now) {
+            const progress = Math.min((now - startTime) / durationMs, 1);
+            const current = Math.floor(target * progress);
+            counterEl.textContent = current.toLocaleString();
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                counterEl.textContent = target.toLocaleString();
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    if (counters.length) {
+        const counterObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        counters.forEach(c => counterObserver.observe(c));
+    }
     
     // Form Validation and Submission
     const contactForm = document.querySelector('.contact-form form');
