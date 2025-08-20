@@ -8,7 +8,7 @@ get_header(); ?>
 .service-details{padding:60px 0}.service-content{display:grid;grid-template-columns:2fr 1fr;gap:40px}
 .booking-sidebar{background:#f8f9fa;padding:20px;border-radius:10px;position:sticky;top:90px;height:fit-content}
 .booking-form input,.booking-form select,.booking-form textarea{width:100%;padding:10px;margin-bottom:12px;border:1px solid #ddd;border-radius:6px}
-.booking-form button{width:100%;padding:12px;background:#007bff;color:#fff;border:none;border-radius:6px}
+.booking-form button{width:100%;padding:12px;background:#FF5252;color:#fff;border:none;border-radius:6px}
 @media(max-width:768px){.service-content{grid-template-columns:1fr}}
 </style>
 <section class="service-hero"><div class="container"><h1>Coorg Taxi</h1><p>Trips to Coorg’s coffee hills and waterfalls</p></div></section>
