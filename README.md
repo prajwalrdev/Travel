@@ -84,7 +84,7 @@ The theme uses CSS variables for easy color customization. Edit the `:root` sect
 
 ```css
 :root {
-    --primary-color: #007bff;
+    --primary-color: #FF5252;
     --primary-dark: #0056b3;
     --secondary-color: #6c757d;
     /* ... other colors */
