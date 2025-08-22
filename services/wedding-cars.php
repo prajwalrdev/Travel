@@ -328,22 +328,22 @@ get_header(); ?>
         <h2>Other Services You Might Like</h2>
         <div class="services-grid">
             <div class="service-card">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/city-taxi.jpg" alt="City Taxi">
-                <h3>City Taxi</h3>
+                <img src="<?php echo get_template_directory_uri(); ?>/images/ity-taxi.jpg" alt="City Taxi">
+                <h3 class="service-title">City Taxi</h3>
                 <p>Local transportation within Mangalore city</p>
-                <a href="city-taxi.php" class="btn btn-secondary">Learn More</a>
+                <a href="city-taxi.php" class="btn btn-primary">Learn More</a>
             </div>
             <div class="service-card">
                 <img src="<?php echo get_template_directory_uri(); ?>/images/outstation-taxi.jpg" alt="Outstation Taxi">
-                <h3>Outstation Taxi</h3>
+                <h3 class="service-title">Outstation Taxi</h3>
                 <p>Long-distance travel to nearby cities and tourist spots</p>
-                <a href="outstation-taxi.php" class="btn btn-secondary">Learn More</a>
+                <a href="outstation-taxi.php" class="btn btn-primary">Learn More</a>
             </div>
             <div class="service-card">
-                <img src="<?php echo get_template_directory_uri(); ?>/images/airport-taxi.jpg" alt="Airport Taxi">
+                <img src="service-title"<?php echo get_template_directory_uri(); ?>/images/airport-taxi.jpg" alt="Airport Taxi">
                 <h3>Airport Taxi</h3>
                 <p>Reliable airport transfers to and from Mangalore</p>
-                <a href="airport-taxi.php" class="btn btn-secondary">Learn More</a>
+                <a href="airport-taxi.php" class="btn btn-primary">Learn More</a>
             </div>
         </div>
     </div>

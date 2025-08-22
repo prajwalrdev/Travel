@@ -43,11 +43,11 @@
                 <nav aria-label="Primary Navigation">
                     <ul id="primary-menu" class="nav-links">
                         <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('about')); ?>">About Us</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('services')); ?>">Services</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('destinations')); ?>">Destinations</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('testimonials')); ?>">Testimonials</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('contact')); ?>">Contact</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
                         <li class="dropdown">
                             <a href="#">Subdomains <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">

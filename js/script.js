@@ -9,75 +9,131 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle') || document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     const headerEl = document.querySelector('header');
+    
     // Add overlay for mobile nav
     let navOverlay = document.querySelector('.nav-overlay');
     if (!navOverlay) {
         navOverlay = document.createElement('div');
         navOverlay.className = 'nav-overlay';
+        navOverlay.setAttribute('aria-hidden', 'true');
         document.body.appendChild(navOverlay);
     }
     
     if (mobileMenuToggle && navLinks) {
-        mobileMenuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navLinks.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-            const isExpanded = navLinks.classList.contains('active');
-            navOverlay.style.display = isExpanded ? 'block' : 'none';
-            try { mobileMenuToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false'); } catch (err) {}
-        });
-        navOverlay.addEventListener('click', function() {
+        // Function to close mobile menu
+        function closeMobileMenu() {
             navLinks.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
             navOverlay.style.display = 'none';
-            try { mobileMenuToggle.setAttribute('aria-expanded', 'false'); } catch (err) {}
+            document.body.style.overflow = '';
+            try { 
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                navOverlay.setAttribute('aria-hidden', 'true');
+            } catch (err) {}
+        }
+        
+        // Function to open mobile menu
+        function openMobileMenu() {
+            navLinks.classList.add('active');
+            mobileMenuToggle.classList.add('active');
+            navOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            try { 
+                mobileMenuToggle.setAttribute('aria-expanded', 'true');
+                navOverlay.setAttribute('aria-hidden', 'false');
+            } catch (err) {}
+        }
+        
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isActive = navLinks.classList.contains('active');
+            
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
         });
+        
+        navOverlay.addEventListener('click', closeMobileMenu);
+        
         // Dropdown toggle for mobile
         document.querySelectorAll('.dropdown > a').forEach(function(dropLink) {
             dropLink.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth <= 900) {
                     e.preventDefault();
                     const parent = this.parentElement;
+                    const isActive = parent.classList.contains('active');
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.dropdown.active').forEach(function(activeDropdown) {
+                        if (activeDropdown !== parent) {
+                            activeDropdown.classList.remove('active');
+                        }
+                    });
+                    
                     parent.classList.toggle('active');
+                    
+                    // Add smooth animation
+                    const dropdownMenu = parent.querySelector('.dropdown-menu');
+                    if (dropdownMenu) {
+                        if (parent.classList.contains('active')) {
+                            dropdownMenu.style.transition = 'all 0.3s ease';
+                        }
+                    }
                 }
             });
         });
-        // Add dropdown functionality for nav links with plus icons
+        
+        // Ensure dropdown links work properly
+        document.querySelectorAll('.dropdown-menu a').forEach(function(dropdownLink) {
+            dropdownLink.addEventListener('click', function(e) {
+                // Allow the link to work normally
+                if (window.innerWidth <= 900) {
+                    // Close mobile menu after clicking dropdown link
+                    setTimeout(() => {
+                        closeMobileMenu();
+                    }, 150);
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking on a nav link (except dropdowns)
         document.querySelectorAll('.nav-links a').forEach(function(navLink) {
-            if (navLink.querySelector('i')) {
+            if (!navLink.parentElement.classList.contains('dropdown')) {
                 navLink.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        const hasDropdown = this.nextElementSibling && this.nextElementSibling.classList.contains('dropdown-menu');
-                        if (hasDropdown) {
-                            this.classList.toggle('active');
-                            const dropdown = this.nextElementSibling;
-                            if (dropdown.style.maxHeight) {
-                                dropdown.style.maxHeight = null;
-                            } else {
-                                dropdown.style.maxHeight = dropdown.scrollHeight + "px";
-                            }
+                    // Ensure the link works properly
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#' && href !== 'javascript:void(0)') {
+                        // Link is valid, close mobile menu
+                        if (window.innerWidth <= 900) {
+                            setTimeout(() => {
+                                closeMobileMenu();
+                            }, 100);
                         }
                     }
                 });
             }
         });
+        
         // Close mobile menu when clicking outside the header/nav area
         document.addEventListener('click', function(event) {
             if (!event.target.closest('header') && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-                navOverlay.style.display = 'none';
-                try { mobileMenuToggle.setAttribute('aria-expanded', 'false'); } catch (err) {}
+                closeMobileMenu();
             }
         });
+        
         // Close mobile menu on resize to desktop
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-                navOverlay.style.display = 'none';
-                try { mobileMenuToggle.setAttribute('aria-expanded', 'false'); } catch (err) {}
+            if (window.innerWidth > 900 && navLinks.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                closeMobileMenu();
             }
         });
     }
@@ -99,23 +155,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 const headerHeight = document.querySelector('header').offsetHeight;
                 const targetPosition = targetElement.offsetTop - headerHeight;
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu after clicking a link
-                if (navLinks) {
-                    navLinks.classList.remove('active');
-                    if (mobileMenuToggle) mobileMenuToggle.classList.remove('active');
-                    if (navOverlay) navOverlay.style.display = 'none';
-                    try { if (mobileMenuToggle) mobileMenuToggle.setAttribute('aria-expanded', 'false'); } catch (err) {}
+                // Close mobile menu first if open
+                if (navLinks && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
                 }
+                
+                // Smooth scroll to the target section
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }, 150);
             }
         });
     });
     
-    // Header is not fixed; remove scroll-based style toggling
+    // Header scroll effect
+    function handleHeaderScroll() {
+        const header = document.querySelector('header');
+        if (header) {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+    }
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', handleHeaderScroll);
+    
+    // Initial check
+    handleHeaderScroll();
+    
+    // Active section highlighting
+    function updateActiveSection() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        
+        let current = '';
+        const headerHeight = document.querySelector('header').offsetHeight;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - headerHeight - 100;
+            const sectionHeight = section.offsetHeight;
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    // Add scroll event listener for active section
+    window.addEventListener('scroll', updateActiveSection);
+    
+    // Initial check
+    updateActiveSection();
     
     // Animate Elements on Scroll
     const observerOptions = {
