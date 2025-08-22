@@ -42,6 +42,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        // Add dropdown functionality for nav links with plus icons
+        document.querySelectorAll('.nav-links a').forEach(function(navLink) {
+            if (navLink.querySelector('i')) {
+                navLink.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const hasDropdown = this.nextElementSibling && this.nextElementSibling.classList.contains('dropdown-menu');
+                        if (hasDropdown) {
+                            this.classList.toggle('active');
+                            const dropdown = this.nextElementSibling;
+                            if (dropdown.style.maxHeight) {
+                                dropdown.style.maxHeight = null;
+                            } else {
+                                dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+                            }
+                        }
+                    }
+                });
+            }
+        });
         // Close mobile menu when clicking outside the header/nav area
         document.addEventListener('click', function(event) {
             if (!event.target.closest('header') && navLinks.classList.contains('active')) {
@@ -632,5 +652,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Observe service page elements
     document.querySelectorAll('.feature-item, .area-category, .faq-item, .service-card').forEach(el => {
         servicePageObserver.observe(el);
+    });
+
+    // Header scroll effect for sticky/solid background
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 40) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     });
 });

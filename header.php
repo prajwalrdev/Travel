@@ -26,7 +26,8 @@
     </div>
     
     <!-- Header Section -->
-    <header>
+    <header class="modern-header">
+        <div class="nav-bg-gradient"></div>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
@@ -35,15 +36,18 @@
                     <?php else : ?>
                         <h1><a href="<?php echo esc_url(home_url('/')); ?>">
                             <img src="<?php echo esc_url( get_template_directory_uri() . '/images/MCS Black Logo.jpg' ); ?>" alt="TSM Travells logo" class="brand-mark">
-                            <span class="logo-travel">TSM</span><span class="logo-ease">Travells</span>
+                            <span class="logo-travel">Travel</span><span class="logo-ease">Ease</span>
                         </a></h1>
                     <?php endif; ?>
                 </div>
-                <nav aria-label="Primary">
+                <nav aria-label="Primary Navigation">
                     <ul id="primary-menu" class="nav-links">
                         <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('about')); ?>">About</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('about')); ?>">About Us</a></li>
                         <li><a href="<?php echo esc_url(travelease_section_url('services')); ?>">Services</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('destinations')); ?>">Destinations</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('testimonials')); ?>">Testimonials</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('contact')); ?>">Contact</a></li>
                         <li class="dropdown">
                             <a href="#">Subdomains <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
@@ -53,9 +57,6 @@
                                 <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Support', 'support', '')); ?>">Support</a></li>
                             </ul>
                         </li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('destinations')); ?>">Destinations</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('testimonials')); ?>">Testimonials</a></li>
-                        <li><a href="<?php echo esc_url(travelease_section_url('contact')); ?>">Contact</a></li>
                     </ul>
                 </nav>
                 <button type="button" class="mobile-menu-toggle mobile-menu-btn" aria-controls="primary-menu" aria-expanded="false">
