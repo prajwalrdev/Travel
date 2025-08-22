@@ -742,3 +742,41 @@ function travelease_section_url(string $section_id): string {
     }
     return trailingslashit($home_url) . '#' . $section_id;
 }
+
+/**
+ * Enhanced navigation helper to handle section links properly
+ */
+function travelease_nav_link($url, $text, $classes = '') {
+    $is_section = strpos($url, '#') === 0;
+    $href = $is_section ? travelease_section_url(ltrim($url, '#')) : $url;
+    
+    $class_attr = $classes ? ' class="' . esc_attr($classes) . '"' : '';
+    
+    return sprintf(
+        '<a href="%s"%s>%s</a>',
+        esc_url($href),
+        $class_attr,
+        esc_html($text)
+    );
+}
+
+/**
+ * Add custom body classes for better navigation state management
+ */
+function travelease_body_classes($classes) {
+    // Add class for current page type
+    if (is_front_page()) {
+        $classes[] = 'page-home';
+    } elseif (is_page('booking')) {
+        $classes[] = 'page-booking';
+    } elseif (is_page('corporate')) {
+        $classes[] = 'page-corporate';
+    } elseif (is_page('blog')) {
+        $classes[] = 'page-blog';
+    } elseif (is_page('support')) {
+        $classes[] = 'page-support';
+    }
+    
+    return $classes;
+}
+add_filter('body_class', 'travelease_body_classes');

@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenuToggle.classList.remove('active');
             navOverlay.style.display = 'none';
             document.body.style.overflow = '';
+            
+            // Close all dropdowns
+            document.querySelectorAll('.dropdown.active').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
             try { 
                 mobileMenuToggle.setAttribute('aria-expanded', 'false');
                 navOverlay.setAttribute('aria-hidden', 'true');
@@ -57,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         navOverlay.addEventListener('click', closeMobileMenu);
         
-        // Dropdown toggle for mobile
+        // Enhanced dropdown toggle for mobile
         document.querySelectorAll('.dropdown > a').forEach(function(dropLink) {
             dropLink.addEventListener('click', function(e) {
                 if (window.innerWidth <= 900) {
@@ -85,35 +91,57 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Ensure dropdown links work properly
-        document.querySelectorAll('.dropdown-menu a').forEach(function(dropdownLink) {
-            dropdownLink.addEventListener('click', function(e) {
-                // Allow the link to work normally
-                if (window.innerWidth <= 900) {
-                    // Close mobile menu after clicking dropdown link
-                    setTimeout(() => {
+        // Enhanced navigation link handling
+        document.querySelectorAll('.nav-links a').forEach(function(navLink) {
+            navLink.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Handle section links (anchor links)
+                if (href && href.startsWith('#')) {
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        // Close mobile menu immediately for section links
+                        if (window.innerWidth <= 900) {
+                            closeMobileMenu();
+                        }
+                        
+                        // Smooth scroll to section
+                        setTimeout(() => {
+                            const headerHeight = document.querySelector('header').offsetHeight;
+                            const targetPosition = targetElement.offsetTop - headerHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    }
+                }
+                // Handle external page links
+                else if (href && href !== '#' && href !== 'javascript:void(0)') {
+                    // Close mobile menu for external links
+                    if (window.innerWidth <= 900) {
                         closeMobileMenu();
-                    }, 150);
+                    }
+                    
+                    // Add loading state for better UX
+                    if (this.classList.contains('service-link') || href.includes('/booking') || href.includes('/corporate') || href.includes('/blog') || href.includes('/support')) {
+                        e.preventDefault();
+                        
+                        // Show loading overlay
+                        const pageLoadingOverlay = document.getElementById('pageLoadingOverlay');
+                        if (pageLoadingOverlay) {
+                            pageLoadingOverlay.classList.add('active');
+                            document.body.classList.add('page-transitioning');
+                        }
+                        
+                        // Navigate after short delay
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 300);
+                    }
                 }
             });
-        });
-        
-        // Close mobile menu when clicking on a nav link (except dropdowns)
-        document.querySelectorAll('.nav-links a').forEach(function(navLink) {
-            if (!navLink.parentElement.classList.contains('dropdown')) {
-                navLink.addEventListener('click', function(e) {
-                    // Ensure the link works properly
-                    const href = this.getAttribute('href');
-                    if (href && href !== '#' && href !== 'javascript:void(0)') {
-                        // Link is valid, close mobile menu
-                        if (window.innerWidth <= 900) {
-                            setTimeout(() => {
-                                closeMobileMenu();
-                            }, 100);
-                        }
-                    }
-                });
-            }
         });
         
         // Close mobile menu when clicking outside the header/nav area
@@ -138,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Smooth Scrolling for Anchor Links
+    // Enhanced Smooth Scrolling for Anchor Links
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
     
     anchorLinks.forEach(link => {
@@ -171,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Header scroll effect
+    // Enhanced Header scroll effect
     function handleHeaderScroll() {
         const header = document.querySelector('header');
         if (header) {
@@ -189,10 +217,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial check
     handleHeaderScroll();
     
-    // Active section highlighting
+    // Enhanced Active section highlighting
     function updateActiveSection() {
         const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+        const navLinks = document.querySelectorAll('.nav-links a[href*="#"]');
         
         let current = '';
         const headerHeight = document.querySelector('header').offsetHeight;
@@ -207,18 +235,115 @@ document.addEventListener('DOMContentLoaded', function() {
         
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
+            const href = link.getAttribute('href');
+            
+            // Check if this link corresponds to the current section
+            if (href && href.includes(`#${current}`)) {
                 link.classList.add('active');
             }
         });
     }
     
+    // Enhanced navigation state management
+    function updateNavigationState() {
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        
+        // Remove all active states
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.classList.remove('active');
+        });
+        
+        // Set active state based on current page and section
+        if (currentPath === '/' || currentPath === '/home') {
+            // On homepage, use section highlighting
+            if (currentHash) {
+                const sectionLink = document.querySelector(`.nav-links a[href*="${currentHash}"]`);
+                if (sectionLink) {
+                    sectionLink.classList.add('active');
+                }
+            } else {
+                // Default to home link if no section
+                const homeLink = document.querySelector('.nav-links a.nav-link-home');
+                if (homeLink) {
+                    homeLink.classList.add('active');
+                }
+            }
+        } else {
+            // On other pages, highlight appropriate navigation item
+            const pageLinks = {
+                '/booking': '.nav-links a[href*="booking"]',
+                '/corporate': '.nav-links a[href*="corporate"]',
+                '/blog': '.nav-links a[href*="blog"]',
+                '/support': '.nav-links a[href*="support"]'
+            };
+            
+            for (const [path, selector] of Object.entries(pageLinks)) {
+                if (currentPath.includes(path)) {
+                    const link = document.querySelector(selector);
+                    if (link) {
+                        link.classList.add('active');
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
     // Add scroll event listener for active section
     window.addEventListener('scroll', updateActiveSection);
     
-    // Initial check
+    // Initial checks
     updateActiveSection();
+    updateNavigationState();
     
+    // Update navigation state on page load and hash change
+    window.addEventListener('load', updateNavigationState);
+    window.addEventListener('hashchange', updateNavigationState);
+    
+    // Enhanced Desktop Dropdown Functionality
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+        const dropdownLink = dropdown.querySelector('> a');
+        
+        // Desktop hover functionality
+        if (window.innerWidth > 900) {
+            dropdown.addEventListener('mouseenter', function() {
+                this.classList.add('hover');
+            });
+            
+            dropdown.addEventListener('mouseleave', function() {
+                this.classList.remove('hover');
+            });
+        }
+        
+        // Enhanced dropdown positioning
+        function positionDropdown() {
+            if (dropdownMenu && window.innerWidth > 900) {
+                const dropdownRect = dropdown.getBoundingClientRect();
+                const menuRect = dropdownMenu.getBoundingClientRect();
+                const viewportWidth = window.innerWidth;
+                
+                // Check if dropdown would overflow right edge
+                if (dropdownRect.left + menuRect.width > viewportWidth) {
+                    dropdownMenu.style.left = 'auto';
+                    dropdownMenu.style.right = '0';
+                } else {
+                    dropdownMenu.style.left = '0';
+                    dropdownMenu.style.right = 'auto';
+                }
+            }
+        }
+        
+        // Position dropdown on window resize
+        window.addEventListener('resize', positionDropdown);
+        
+        // Initial positioning
+        positionDropdown();
+    });
+
     // Animate Elements on Scroll
     const observerOptions = {
         threshold: 0.1,

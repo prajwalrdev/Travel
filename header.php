@@ -42,19 +42,19 @@
                 </div>
                 <nav aria-label="Primary Navigation">
                     <ul id="primary-menu" class="nav-links">
-                        <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#destinations">Destinations</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="<?php echo esc_url(home_url('/')); ?>" class="nav-link-home">Home</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('about')); ?>" class="nav-link-section">About Us</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('services')); ?>" class="nav-link-section">Services</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('destinations')); ?>" class="nav-link-section">Destinations</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('testimonials')); ?>" class="nav-link-section">Testimonials</a></li>
+                        <li><a href="<?php echo esc_url(travelease_section_url('contact')); ?>" class="nav-link-section">Contact</a></li>
                         <li class="dropdown">
-                            <a href="#">Subdomains <i class="fas fa-chevron-down"></i></a>
+                            <a href="#" class="nav-link-dropdown">Subdomains <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Blog', 'blog', 'page-blog.php')); ?>">Blog</a></li>
-                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Corporate', 'corporate', 'page-corporate.php')); ?>">Corporate</a></li>
-                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>">Book Now</a></li>
-                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Support', 'support', '')); ?>">Support</a></li>
+                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Blog', 'blog', 'page-blog.php')); ?>" class="dropdown-link">Blog</a></li>
+                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Corporate', 'corporate', 'page-corporate.php')); ?>" class="dropdown-link">Corporate</a></li>
+                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="dropdown-link">Book Now</a></li>
+                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Support', 'support', '')); ?>" class="dropdown-link">Support</a></li>
                             </ul>
                         </li>
                     </ul>
