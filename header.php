@@ -17,6 +17,14 @@
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
     
+    <!-- Page Loading Overlay -->
+    <div class="page-loading-overlay" id="pageLoadingOverlay">
+        <div class="page-loading-content">
+            <div class="page-loading-spinner"></div>
+            <div class="page-loading-text">Loading...</div>
+        </div>
+    </div>
+    
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -26,8 +34,8 @@
                         <?php the_custom_logo(); ?>
                     <?php else : ?>
                         <h1><a href="<?php echo esc_url(home_url('/')); ?>">
-                            <img src="<?php echo esc_url( get_template_directory_uri() . '/images/MCS White Logo.jpg' ); ?>" alt="<?php bloginfo('name'); ?> logo" class="brand-mark">
-                            <span class="logo-travel">Travel</span><span class="logo-ease">Ease</span>
+                            <img src="<?php echo esc_url( get_template_directory_uri() . '/images/MCS Black Logo.jpg' ); ?>" alt="TSM Travells logo" class="brand-mark">
+                            <span class="logo-travel">TSM</span><span class="logo-ease">Travells</span>
                         </a></h1>
                     <?php endif; ?>
                 </div>

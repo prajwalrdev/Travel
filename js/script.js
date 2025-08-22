@@ -98,30 +98,89 @@ document.addEventListener('DOMContentLoaded', function() {
     // Header is not fixed; remove scroll-based style toggling
     
     // Animate Elements on Scroll
-    
-
     const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('animate-in');
             }
         });
     }, observerOptions);
-    
+
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.feature-card, .service-card, .destination-card, .testimonial-card');
+    document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .stats-item').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Service Loading Functionality
+    const serviceLinks = document.querySelectorAll('.service-link');
+    const pageLoadingOverlay = document.getElementById('pageLoadingOverlay');
     
-    animateElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(30px)';
-        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(element);
+    serviceLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const serviceCard = this.closest('.service-card');
+            const btnTextContent = this.querySelector('.btn-text-content');
+            const btnTextLoading = this.querySelector('.btn-text-loading');
+            const href = this.getAttribute('href');
+            
+            // Show loading state on button
+            if (btnTextContent && btnTextLoading) {
+                btnTextContent.style.display = 'none';
+                btnTextLoading.style.display = 'inline-block';
+            }
+            
+            // Add loading class to service card
+            if (serviceCard) {
+                serviceCard.classList.add('loading');
+            }
+            
+            // Show page loading overlay
+            if (pageLoadingOverlay) {
+                pageLoadingOverlay.classList.add('active');
+                document.body.classList.add('page-transitioning');
+            }
+            
+            // Simulate loading delay for better UX
+            setTimeout(() => {
+                // Navigate to service page
+                window.location.href = href;
+            }, 800);
+        });
+    });
+
+    // Hide page loading overlay when page is fully loaded
+    window.addEventListener('load', function() {
+        if (pageLoadingOverlay) {
+            pageLoadingOverlay.classList.remove('active');
+            document.body.classList.remove('page-transitioning');
+        }
+    });
+
+    // Also hide overlay if it's still visible after a timeout
+    setTimeout(() => {
+        if (pageLoadingOverlay && pageLoadingOverlay.classList.contains('active')) {
+            pageLoadingOverlay.classList.remove('active');
+            document.body.classList.remove('page-transitioning');
+        }
+    }, 3000);
+
+    // Add hover effects for service cards
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('hover');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('hover');
+        });
     });
 
     // Animated Counters in Stats Section
@@ -162,130 +221,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { threshold: 0.3 });
 
         counters.forEach(c => counterObserver.observe(c));
-    }
-    
-    // Form Validation and Submission
-    const contactForm = document.querySelector('.contact-form form');
-    const bookingForm = document.querySelector('.booking-form');
-    const supportForm = document.querySelector('.support-form');
-    
-    function validateForm(form) {
-        const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
-        let isValid = true;
-        
-        inputs.forEach(input => {
-            if (!input.value.trim()) {
-                isValid = false;
-                input.style.borderColor = '#dc3545';
-                
-                // Remove error styling after user starts typing
-                input.addEventListener('input', function() {
-                    this.style.borderColor = '#dee2e6';
-                });
-            } else {
-                input.style.borderColor = '#dee2e6';
-            }
-        });
-        
-        return isValid;
-    }
-    
-    function showMessage(message, type = 'success') {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `alert alert-${type}`;
-        messageDiv.textContent = message;
-        messageDiv.style.cssText = `
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 5px;
-            color: ${type === 'success' ? '#155724' : '#721c24'};
-            background-color: ${type === 'success' ? '#d4edda' : '#f8d7da'};
-            border: 1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'};
-        `;
-        
-        // Insert message before the form
-        const form = messageDiv.parentElement;
-        if (form) {
-            form.parentElement.insertBefore(messageDiv, form);
-        }
-        
-        // Remove message after 5 seconds
-        setTimeout(() => {
-            messageDiv.remove();
-        }, 5000);
-    }
-    
-    // Contact Form Handler
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm(this)) {
-                // Simulate form submission
-                const submitButton = this.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-                
-                setTimeout(() => {
-                    showMessage('Thank you for your message! We will get back to you soon.');
-                    this.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }, 2000);
-            } else {
-                showMessage('Please fill in all required fields.', 'error');
-            }
-        });
-    }
-    
-    // Booking Form Handler
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm(this)) {
-                const submitButton = this.querySelector('.booking-submit');
-                const originalText = submitButton.textContent;
-                
-                submitButton.textContent = 'Processing...';
-                submitButton.disabled = true;
-                
-                setTimeout(() => {
-                    showMessage('Booking request submitted successfully! We will confirm your booking shortly.');
-                    this.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }, 2000);
-            } else {
-                showMessage('Please fill in all required fields.', 'error');
-            }
-        });
-    }
-    
-    // Support Form Handler
-    if (supportForm) {
-        supportForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm(this)) {
-                const submitButton = this.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
-                
-                submitButton.textContent = 'Sending...';
-                submitButton.disabled = true;
-                
-                setTimeout(() => {
-                    showMessage('Your support request has been submitted. We will respond within 24 hours.');
-                    this.reset();
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }, 2000);
-            } else {
-                showMessage('Please fill in all required fields.', 'error');
-            }
-        });
     }
     
     // FAQ Accordion (for support page)
@@ -424,4 +359,278 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize tooltips and other UI enhancements
     console.log('TravelEase theme JavaScript loaded successfully!');
+
+    // Form Handling and Backend Integration
+    const contactForm = document.getElementById('contactForm');
+    const newsletterForm = document.querySelector('.footer-newsletter form');
+    
+    // Add CSRF token to forms
+    function addCSRFToken() {
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            if (!form.querySelector('input[name="csrf_token"]')) {
+                const csrfInput = document.createElement('input');
+                csrfInput.type = 'hidden';
+                csrfInput.name = 'csrf_token';
+                csrfInput.value = generateCSRFToken();
+                form.appendChild(csrfInput);
+            }
+        });
+    }
+    
+    // Generate CSRF token (simple implementation)
+    function generateCSRFToken() {
+        return Math.random().toString(36).substr(2, 15) + Math.random().toString(36).substr(2, 15);
+    }
+    
+    // Form validation
+    function validateForm(formData) {
+        const errors = [];
+        
+        // Common validation rules
+        if (!formData.get('name') || formData.get('name').trim().length < 2) {
+            errors.push('Name must be at least 2 characters long');
+        }
+        
+        if (!formData.get('email') || !isValidEmail(formData.get('email'))) {
+            errors.push('Please enter a valid email address');
+        }
+        
+        if (!formData.get('phone') || !isValidPhone(formData.get('phone'))) {
+            errors.push('Please enter a valid 10-digit phone number');
+        }
+        
+        return errors;
+    }
+    
+    // Email validation
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Phone validation
+    function isValidPhone(phone) {
+        const phoneRegex = /^[0-9]{10}$/;
+        return phoneRegex.test(phone.replace(/\D/g, ''));
+    }
+    
+    // Show form status
+    function showFormStatus(form, message, type = 'success') {
+        const statusDiv = form.querySelector('.form-status') || form.querySelector('#contactFormStatus');
+        if (statusDiv) {
+            statusDiv.textContent = message;
+            statusDiv.className = `form-status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+    }
+    
+    // Submit form via AJAX
+    async function submitForm(form, formType) {
+        const formData = new FormData(form);
+        formData.append('form_type', formType);
+        
+        // Validate form
+        const validationErrors = validateForm(formData);
+        if (validationErrors.length > 0) {
+            showFormStatus(form, validationErrors.join(', '), 'error');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch('server/process-forms.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                showFormStatus(form, result.message, 'success');
+                form.reset();
+                
+                // Show success alert
+                showAlert(result.message, 'success');
+            } else {
+                showFormStatus(form, result.errors.join(', '), 'error');
+                showAlert(result.errors.join(', '), 'error');
+            }
+            
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showFormStatus(form, 'Network error. Please try again.', 'error');
+            showAlert('Network error. Please try again.', 'error');
+        } finally {
+            // Restore button state
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+    
+    // Contact form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'contact');
+        });
+    }
+    
+    // Newsletter form submission
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'newsletter');
+        });
+    }
+
+    // Service booking form submissions
+    const outstationBookingForm = document.getElementById('outstationBookingForm');
+    if (outstationBookingForm) {
+        outstationBookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'outstation_booking');
+        });
+    }
+
+    const airportBookingForm = document.getElementById('airportBookingForm');
+    if (airportBookingForm) {
+        airportBookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'airport_booking');
+        });
+    }
+
+    const weddingCarBookingForm = document.getElementById('weddingCarBookingForm');
+    if (weddingCarBookingForm) {
+        weddingCarBookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'wedding_car_booking');
+        });
+    }
+
+    const tempoTravellerBookingForm = document.getElementById('tempoTravellerBookingForm');
+    if (tempoTravellerBookingForm) {
+        tempoTravellerBookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'tempo_traveller_booking');
+        });
+    }
+    
+    // Show alert message
+    function showAlert(message, type = 'info') {
+        // Remove existing alerts
+        const existingAlerts = document.querySelectorAll('.alert');
+        existingAlerts.forEach(alert => alert.remove());
+        
+        const alert = document.createElement('div');
+        alert.className = `alert alert-${type}`;
+        alert.textContent = message;
+        
+        document.body.appendChild(alert);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            alert.remove();
+        }, 5000);
+    }
+    
+    // Initialize forms with CSRF tokens
+    addCSRFToken();
+    
+    // FAQ Accordion Functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+            });
+            
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+    
+    // Service Page Specific Features
+    const serviceBookingForms = document.querySelectorAll('[id$="BookingForm"]');
+    
+    serviceBookingForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const serviceType = this.id.replace('BookingForm', '').replace(/([A-Z])/g, ' $1').trim();
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission (replace with actual backend integration)
+            setTimeout(() => {
+                showAlert(`Thank you! Your ${serviceType} booking request has been submitted. We will contact you shortly to confirm.`, 'success');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+    });
+    
+    // Smooth scrolling for service page anchor links
+    const servicePageLinks = document.querySelectorAll('a[href^="#"]');
+    
+    servicePageLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href !== '#') {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Service page scroll animations
+    const servicePageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    // Observe service page elements
+    document.querySelectorAll('.feature-item, .area-category, .faq-item, .service-card').forEach(el => {
+        servicePageObserver.observe(el);
+    });
 });

@@ -1,299 +1,239 @@
-# TravelEase - Travel Agency Website
+# TSM Travells - Professional Cab Services in Mangalore
 
-A modern, responsive WordPress theme designed for travel and transportation businesses. This theme integrates all subdomain content into a comprehensive WordPress solution with booking, corporate, blog, and support pages.
+A comprehensive WordPress theme for TSM Travells, offering professional cab services in Mangalore with a modern, responsive design and full backend integration.
 
-## Features
+## 🚗 Project Overview
 
-### 🚀 Core Features
-- **Responsive Design**: Mobile-first approach with modern CSS Grid and Flexbox
-- **WordPress Integration**: Full WordPress compatibility with custom templates
-- **SEO Optimized**: Clean code structure and semantic HTML
-- **Fast Loading**: Optimized CSS and JavaScript for performance
-- **Accessibility**: WCAG compliant with screen reader support
+TSM Travells is a leading cab service provider in Mangalore, offering a wide range of transportation services including city taxis, outstation travel, airport transfers, wedding cars, and group transportation via Tempo Travellers.
 
-### 📱 Pages & Templates
-- **Home Page**: Hero section, features, about, services, destinations, testimonials
-- **Blog Page**: WordPress blog integration with sidebar and pagination
-- **Corporate Page**: Business-focused services and features
-- **Booking Page**: Comprehensive booking form with service selection
-- **Support Page**: FAQ, contact forms, and customer support resources
+## ✨ Features
 
-### 🎨 Design Features
-- **Modern UI**: Clean, professional design with smooth animations
-- **Customizable Colors**: CSS variables for easy theme customization
-- **Typography**: Professional font stack with proper hierarchy
-- **Icons**: Font Awesome integration for consistent iconography
+### 🎨 Frontend Features
+- **Modern Responsive Design**: Mobile-first approach with beautiful animations
+- **Service Pages**: Comprehensive individual service pages with detailed information
+- **Interactive Forms**: AJAX-powered booking forms for all services
+- **Loading Animations**: Smooth page transitions and service loading effects
+- **FAQ Sections**: Expandable FAQ sections on service pages
+- **Related Services**: Cross-linking between different service offerings
 
-## Installation
+### 🔧 Backend Features
+- **Form Processing**: Complete backend integration for all booking forms
+- **Email Notifications**: Automated admin and customer confirmation emails
+- **CSRF Protection**: Security measures for form submissions
+- **Input Validation**: Server-side validation for all form inputs
+- **Error Handling**: Comprehensive error handling and user feedback
 
-### WordPress Installation
-1. Download the theme files
-2. Upload to `/wp-content/themes/travelease/`
-3. Activate the theme in WordPress Admin
-4. Configure pages using the custom templates
+### 📱 Services Offered
+1. **City Taxi Services** - Local transportation within Mangalore
+2. **Outstation Taxi** - Long-distance travel to nearby cities and tourist spots
+3. **Airport Taxi** - Reliable airport transfers to/from Mangalore International Airport
+4. **Wedding Cars** - Luxury vehicles for special occasions
+5. **Tempo Traveller** - Group transportation for 12-15 passengers
 
-### Required Pages Setup
-Create the following pages in WordPress and assign the corresponding templates:
-
-1. **Blog Page**
-   - Template: "Blog Page"
-   - URL: `/blog/`
-
-2. **Corporate Page**
-   - Template: "Corporate Page"
-   - URL: `/corporate/`
-
-3. **Booking Page**
-   - Template: "Booking Page"
-   - URL: `/booking/`
-
-4. **Support Page**
-   - Template: "Support Page"
-   - URL: `/support/`
-
-## File Structure
-
-```
-travelease/
-├── style.css                 # Main stylesheet with theme information
-├── index.php                 # Main template file
-├── header.php                # Header template
-├── footer.php                # Footer template
-├── functions.php             # Theme functions and features
-├── page-blog.php             # Blog page template
-├── page-corporate.php        # Corporate page template
-├── page-booking.php          # Booking page template
-├── page-support.php          # Support page template
-├── single.php                # Single post template
-├── archive.php               # Archive template
-├── search.php                # Search results template
-├── 404.php                   # 404 error page
-├── page.php                  # Default page template
-├── searchform.php            # Search form template
-├── js/
-│   └── script.js             # Theme JavaScript
-├── css/                      # Additional stylesheets
-├── images/                   # Theme images
-└── screenshot.png            # Theme screenshot
-```
-
-## Customization
-
-### Colors
-The theme uses CSS variables for easy color customization. Edit the `:root` section in `style.css`:
-
-```css
-:root {
-    --primary-color: #FF5252;
-    --primary-dark: #0056b3;
-    --secondary-color: #6c757d;
-    /* ... other colors */
-}
-```
-
-### Content
-- **Hero Section**: Customize via WordPress Customizer
-- **Services**: Edit in the main index.php file
-- **Blog Posts**: Use WordPress post editor
-- **Contact Information**: Update in footer.php and support page
-
-### Images
-Replace placeholder images in the `/images/` directory:
-- `hero-bg.jpg` - Hero section background
-- `blog-bg.jpg` - Blog page background
-- `corporate-bg.jpg` - Corporate page background
-- `booking-bg.jpg` - Booking page background
-- `support-bg.jpg` - Support page background
-
-## WordPress Integration
-
-### Theme Support
-The theme includes support for:
-- Custom logo
-- Post thumbnails
-- HTML5 markup
-- Customizer
-- Navigation menus
-- Widgets
-
-### Customizer Options
-Access via Appearance > Customize:
-- Hero section content
-- About section content
-- Contact information
-- Social media links
-
-### Menu Locations
-- Primary Menu: Main navigation
-- Footer Menu: Footer links
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Internet Explorer 11+
-
-## Performance
-
-### Optimization Features
-- Minified CSS and JavaScript
-- Optimized images
-- Lazy loading for images
-- Efficient CSS Grid and Flexbox
-- Minimal HTTP requests
-
-### Loading Speed
-- First Contentful Paint: < 1.5s
-- Largest Contentful Paint: < 2.5s
-- Cumulative Layout Shift: < 0.1
-
-## Support
-
-### Documentation
-- This README file
-- Inline code comments
-- WordPress Codex integration
-
-### Troubleshooting
-1. **Menu not showing**: Check if menu is assigned to "Primary Menu" location
-2. **Images not loading**: Verify image paths in `/images/` directory
-3. **Styles not applying**: Clear browser cache and WordPress cache
-4. **Forms not working**: Check if JavaScript is enabled
-
-## Development
+## 🚀 Installation & Setup
 
 ### Prerequisites
-- WordPress 5.0+
-- PHP 7.4+
-- Modern web browser
+- PHP 7.4 or higher
+- WordPress 5.0 or higher
+- Web server (Apache/Nginx)
+- MySQL/MariaDB database
 
-### Local Development
-1. Set up local WordPress environment
-2. Install theme in `/wp-content/themes/`
-3. Activate theme
-4. Create required pages with templates
-5. Customize content and styling
+### Installation Steps
 
-### Code Standards
-- WordPress Coding Standards
-- PSR-12 PHP standards
-- Modern CSS practices
-- ES6+ JavaScript
+1. **Clone/Download the Project**
+   ```bash
+   git clone [repository-url]
+   cd Travel
+   ```
 
-## License
+2. **WordPress Installation**
+   - Upload the entire folder to your WordPress themes directory (`wp-content/themes/`)
+   - Activate the theme from WordPress Admin → Appearance → Themes
 
-This theme is licensed under the GPL v2 or later.
-A modern, responsive WordPress theme designed for travel and taxi services websites. This theme has been converted from a static HTML site to a fully functional WordPress theme.
+3. **Backend Setup**
+   - Ensure the `server/` folder is accessible via web
+   - Configure email settings in `server/process-forms.php`
+   - Set proper permissions for the server folder
 
-## Features
+4. **Configuration**
+   - Update contact information in `server/config.php`
+   - Modify business details in theme files as needed
+   - Configure SMTP settings for email functionality
 
-- Fully responsive design that works on all devices (mobile, tablet, desktop)
-- Modern UI/UX with smooth animations and transitions
-- Interactive elements including sliders, counters, and form validation
-- Sections for services, destinations, testimonials, and contact information
-- Booking form with client-side validation
-- Newsletter subscription functionality
-- Social media integration
-- Back-to-top button for easy navigation
-
-## Technologies Used
-
-- HTML5 for structure
-- CSS3 for styling (with CSS variables for easy theming)
-- Vanilla JavaScript for interactivity
-- Font Awesome for icons
-- Google Fonts for typography
-- SVG images for lightweight, scalable graphics
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-Travel_Agent/
-├── index.html          # Main HTML file
+Travel/
+├── index.php                 # Main homepage template
+├── header.php               # WordPress header template
+├── footer.php               # WordPress footer template
+├── functions.php            # WordPress theme functions
 ├── css/
-│   └── style.css       # Main stylesheet
+│   └── style.css           # Main stylesheet with responsive design
 ├── js/
-│   └── script.js       # JavaScript functionality
-├── images/             # SVG images for the website
-│   ├── hero-bg.jpg
-│   ├── stats-bg.jpg.svg
-│   ├── about-image.jpg.svg
-│   ├── destination-1.jpg.svg
-│   ├── destination-2.jpg.svg
-│   ├── destination-3.jpg.svg
-│   ├── testimonial-1.jpg.svg
-│   ├── testimonial-2.jpg.svg
-│   └── testimonial-3.jpg.svg
-└── README.md           # Project documentation
+│   └── script.js           # JavaScript for interactions and forms
+├── services/                # Individual service pages
+│   ├── city-taxi.php       # City taxi service page
+│   ├── outstation-taxi.php # Outstation taxi service page
+│   ├── airport-taxi.php    # Airport transfer service page
+│   ├── wedding-cars.php    # Wedding car service page
+│   ├── tempo-traveler.php  # Tempo traveller service page
+│   └── ...                 # Other service pages
+├── server/                  # Backend processing
+│   ├── process-forms.php   # Form processing and email handling
+│   ├── config.php          # Configuration settings
+│   └── README.md           # Backend documentation
+├── images/                  # Theme images and assets
+└── README.md               # This file
 ```
 
-## How to Run
+## 🎯 Key Components
 
-1. Clone or download this repository
-2. Open the `index.html` file in any modern web browser
+### 1. Homepage (`index.php`)
+- Hero section with call-to-action buttons
+- Services overview with loading animations
+- About section highlighting company strengths
+- Why Choose Us section
+- Booking process explanation
+- Testimonials and statistics
+- Contact form integration
 
-No build process or special server is required as this is a static website.
+### 2. Service Pages
+Each service page includes:
+- Hero section with service-specific information
+- Detailed service description
+- Feature highlights with icons
+- Service areas and destinations
+- Comprehensive booking forms
+- Pricing information
+- FAQ sections
+- Related services
 
-## Browser Compatibility
+### 3. Backend Integration (`server/process-forms.php`)
+- Form validation and sanitization
+- CSRF protection
+- Email notifications (admin + customer)
+- Error handling and user feedback
+- Support for all service types
 
-The website is compatible with all modern browsers including:
-- Google Chrome
-- Mozilla Firefox
-- Safari
-- Microsoft Edge
-- Opera
+### 4. JavaScript Functionality (`js/script.js`)
+- Mobile menu handling
+- Smooth scrolling
+- Form submission via AJAX
+- Loading animations
+- FAQ accordion functionality
+- Service page interactions
 
-## Customization
+## 🔧 Configuration
 
-### Colors
-
-The website uses CSS variables for easy color customization. You can modify the colors by editing the `:root` section in the `style.css` file:
-
-```css
-:root {
-    --primary-color: #ff6b6b;
-    --secondary-color: #4ecdc4;
-    --dark-color: #1a1a2e;
-    --light-color: #f7f7f7;
-    --gray-color: #6c757d;
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease-in-out;
-}
+### Email Configuration
+Update email settings in `server/process-forms.php`:
+```php
+$config = [
+    'admin_email' => 'your-email@domain.com',
+    'admin_name' => 'Your Company Name',
+    'smtp_host' => 'your-smtp-server.com',
+    'smtp_port' => 587,
+    'smtp_username' => 'your-username',
+    'smtp_password' => 'your-password',
+    'smtp_encryption' => 'tls'
+];
 ```
 
-### Images
+### Business Information
+Update company details in:
+- `header.php` - Logo and company name
+- `index.php` - Company descriptions and content
+- `server/config.php` - Business information constants
 
-All images are SVG files that can be easily edited with any vector graphics editor. You can replace them with your own images by modifying the image paths in the HTML file.
+## 📱 Responsive Design
 
-### Content
+The theme is fully responsive with:
+- Mobile-first approach
+- Breakpoints at 768px, 900px, and 1200px
+- Touch-friendly navigation
+- Optimized forms for mobile devices
+- Flexible grid layouts
 
-The website content can be customized by editing the text in the HTML file. The structure is organized into sections, making it easy to locate and modify specific content.
+## 🎨 Customization
 
-## License
+### Colors and Styling
+- CSS custom properties for easy color changes
+- Modular CSS structure
+- Consistent design system
+- Easy to modify and extend
 
-This theme is based on your original HTML design. Please ensure you have the rights to use all included assets and fonts.
+### Content Updates
+- Service information can be updated in individual PHP files
+- Pricing information in service page templates
+- Company information in main template files
 
-## Changelog
+## 🚀 Performance Features
 
-### Version 1.0.0
-- Initial release
-- Integrated all subdomain content
-- WordPress compatibility
-- Responsive design
-- Custom templates for all pages
+- Optimized CSS and JavaScript
+- Efficient form handling
+- Minimal external dependencies
+- Fast loading times
+- SEO-friendly structure
 
-## Credits
+## 🔒 Security Features
 
-- **Design**: TravelEase Team
-- **Development**: WordPress Standards
-- **Icons**: Font Awesome
-- **Fonts**: System fonts stack
+- CSRF token protection
+- Input sanitization and validation
+- Secure form processing
+- Error logging and monitoring
+- Admin-only access to sensitive areas
+
+## 📧 Form Types Supported
+
+1. **Contact Form** (`contact`)
+2. **Newsletter Subscription** (`newsletter`)
+3. **Outstation Taxi Booking** (`outstation_booking`)
+4. **Airport Taxi Booking** (`airport_booking`)
+5. **Wedding Car Booking** (`wedding_car_booking`)
+6. **Tempo Traveller Booking** (`tempo_traveller_booking`)
+
+## 🛠️ Development
+
+### Adding New Services
+1. Create new service page in `services/` folder
+2. Follow the existing template structure
+3. Add form handling in `server/process-forms.php`
+4. Update JavaScript event listeners
+5. Add CSS styles as needed
+
+### Modifying Forms
+1. Update HTML structure in service pages
+2. Modify validation in backend processing
+3. Update email templates
+4. Test form submission and validation
+
+## 📞 Support
+
+For technical support or customization requests:
+- Email: [your-email@domain.com]
+- Phone: [your-phone-number]
+- Documentation: Check `server/README.md` for backend details
+
+## 📄 License
+
+This project is proprietary software developed for TSM Travells. All rights reserved.
+
+## 🔄 Updates and Maintenance
+
+### Regular Maintenance
+- Monitor form submissions and email delivery
+- Update service information and pricing
+- Check for WordPress compatibility updates
+- Monitor performance and loading times
+
+### Future Enhancements
+- Database integration for bookings
+- Customer dashboard
+- Payment gateway integration
+- SMS notifications
+- Advanced booking calendar
 
 ---
 
-For support and questions, please refer to the WordPress documentation or contact the development team.
+**TSM Travells** - Your trusted partner for professional cab services in Mangalore. 🚗✨

@@ -1,176 +1,350 @@
 <?php
 /*
- * Template Name: Tempo Traveler Service
+ * Template Name: Tempo Traveller Service
  */
 get_header(); ?>
 
-<style>
-.service-hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<?php echo get_template_directory_uri(); ?>/images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 120px 0;
-    color: white;
-    text-align: center;
-}
-
-.service-details {
-    padding: 80px 0;
-}
-
-.service-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    margin-bottom: 50px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin: 40px 0;
-}
-
-.feature-item {
-    background: #f8f9fa;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.feature-item i {
-    font-size: 2.5rem;
-    color: #FF5252;
-    margin-bottom: 15px;
-}
-
-.booking-sidebar {
-    background: #f8f9fa;
-    padding: 30px;
-    border-radius: 10px;
-    height: fit-content;
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.btn-primary {
-    background: #FF5252;
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
-
-@media (max-width: 768px) {
-    .service-content {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-
-<!-- Service Hero Section -->
 <section class="service-hero">
     <div class="container">
-        <h1>Tempo Traveler Service</h1>
-        <p>Perfect for group tours and comfortable outstation journeys</p>
+        <h1>Tempo Traveller Services</h1>
+        <p>Spacious group transportation for families, tours, and corporate events</p>
+        <div class="hero-buttons">
+            <a href="#booking" class="btn btn-primary">Book Now</a>
+            <a href="#pricing" class="btn btn-secondary">View Pricing</a>
+        </div>
     </div>
 </section>
 
-<!-- Service Details -->
 <section class="service-details">
     <div class="container">
         <div class="service-content">
-            <div class="main-content">
-                <h2>12 Seater Tempo Traveler Rental</h2>
-                <p>Our Tempo Traveler service is ideal for small to medium group travel. With comfortable seating for 12 passengers, air conditioning, and ample luggage space, it's perfect for family trips, corporate outings, pilgrimage tours, and group adventures.</p>
-                
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-users"></i>
-                        <h3>12 Passenger Seating</h3>
-                        <p>Comfortable push-back seats with individual reading lights</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-snowflake"></i>
-                        <h3>Air Conditioned</h3>
-                        <p>Fully air-conditioned for comfortable travel in any weather</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-suitcase"></i>
-                        <h3>Large Luggage Space</h3>
-                        <p>Spacious luggage compartment for all your travel needs</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>Long Distance Travel</h3>
-                        <p>Perfect for outstation and multi-city tour packages</p>
+            <div class="service-main">
+                <div class="service-description">
+                    <h2>Tempo Traveller Services in Mangalore</h2>
+                    <p>Perfect for group travel, our Tempo Traveller service offers spacious, comfortable transportation for families, corporate groups, and tour packages. With seating capacity for 12-15 passengers, it's the ideal choice for group outings, family trips, and business travel.</p>
+                    
+                    <p>Our Tempo Travellers are equipped with modern amenities including air conditioning, comfortable seating, ample luggage space, and experienced drivers. Whether you're planning a family vacation, corporate outing, or group tour, we ensure a comfortable and memorable journey.</p>
+                </div>
+
+                <div class="service-features">
+                    <h3>Why Choose Our Tempo Traveller Service?</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Group Travel</h4>
+                            <p>Perfect for 12-15 passengers traveling together</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-suitcase"></i>
+                            <h4>Luggage Space</h4>
+                            <p>Ample storage for group luggage and equipment</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-snowflake"></i>
+                            <h4>Air Conditioned</h4>
+                            <p>Climate control for comfortable travel in all weather</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-couch"></i>
+                            <h4>Comfortable Seating</h4>
+                            <p>Spacious seats with proper legroom for all passengers</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Safe Travel</h4>
+                            <p>Regular maintenance and safety checks for group safety</p>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-route"></i>
+                            <h4>Flexible Routes</h4>
+                            <p>Customizable routes for group tours and outings</p>
+                        </div>
                     </div>
                 </div>
 
-                <h3>Popular Routes</h3>
-                <p>Our Tempo Traveler service covers popular destinations including:</p>
-                <ul>
-                    <li>Mangalore to Ooty hill station tour</li>
-                    <li>Mangalore to Waynad nature tour</li>
-                    <li>Mangalore to Coorg coffee plantation visit</li>
-                    <li>Temple tour packages to Udupi, Dharmasthala</li>
-                    <li>Bekal beach and fort sightseeing</li>
-                    <li>Multi-day Karnataka temple circuit</li>
-                </ul>
+                <div class="service-areas">
+                    <h3>Popular Tempo Traveller Routes</h3>
+                    <div class="areas-grid">
+                        <div class="area-category">
+                            <h4>Family Outings</h4>
+                            <ul>
+                                <li>Beach Trips (Panambur, Malpe)</li>
+                                <li>Hill Stations (Kudremukh, Agumbe)</li>
+                                <li>Temple Tours (Dharmasthala, Udupi)</li>
+                                <li>Wildlife Sanctuaries</li>
+                            </ul>
+                        </div>
+                        <div class="area-category">
+                            <h4>Corporate Travel</h4>
+                            <ul>
+                                <li>Team Building Events</li>
+                                <li>Business Meetings</li>
+                                <li>Corporate Retreats</li>
+                                <li>Conference Transportation</li>
+                            </ul>
+                        </div>
+                        <div class="area-category">
+                            <h4>Tourist Destinations</h4>
+                            <ul>
+                                <li>Goa (350 km)</li>
+                                <li>Kerala (200+ km)</li>
+                                <li>Coorg (180 km)</li>
+                                <li>Mysore (280 km)</li>
+                            </ul>
+                        </div>
+                        <div class="area-category">
+                            <h4>Local Tours</h4>
+                            <ul>
+                                <li>Mangalore City Tour</li>
+                                <li>Heritage Walks</li>
+                                <li>Food Tours</li>
+                                <li>Shopping Trips</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-                <h3>Why Choose Our Tempo Traveler?</h3>
-                <ul>
-                    <li>Experienced and professional drivers</li>
-                    <li>Well-maintained and clean vehicles</li>
-                    <li>Competitive pricing with no hidden costs</li>
-                    <li>Flexible itinerary planning</li>
-                    <li>24/7 customer support</li>
-                </ul>
+                <div class="service-description">
+                    <h3>Our Tempo Traveller Fleet</h3>
+                    <p>We maintain a fleet of well-maintained Tempo Travellers to meet different group requirements:</p>
+                    <ul>
+                        <li><strong>Standard Tempo Traveller:</strong> 12-15 seats with basic amenities</li>
+                        <li><strong>Premium Tempo Traveller:</strong> 12-15 seats with luxury features</li>
+                        <li><strong>Corporate Tempo Traveller:</strong> Business-class comfort for corporate groups</li>
+                        <li><strong>Tourist Tempo Traveller:</strong> Specialized for long-distance tours</li>
+                    </ul>
+                </div>
+
+                <div class="service-description">
+                    <h3>Ideal for Various Occasions</h3>
+                    <p>Our Tempo Traveller service is perfect for:</p>
+                    <ol>
+                        <li><strong>Family Vacations:</strong> Comfortable travel for extended families</li>
+                        <li><strong>Corporate Events:</strong> Team outings and business travel</li>
+                        <li><strong>Educational Tours:</strong> School and college group trips</li>
+                        <li><strong>Religious Pilgrimages:</strong> Temple and religious site visits</li>
+                        <li><strong>Wedding Functions:</strong> Transportation for wedding guests</li>
+                    </ol>
+                </div>
             </div>
 
-            <div class="booking-sidebar">
-                <h3>Book Tempo Traveler</h3>
-                <form class="booking-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
-                    <input type="hidden" name="action" value="service_booking">
-                    <?php wp_nonce_field('travelease_service_booking', 'travelease_booking_nonce'); ?>
-                    <input type="hidden" name="service_name" value="Tempo Traveler">
-                    <input type="hidden" name="service_type" value="Tempo Traveler">
-                    
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Email Address" required>
-                    <input type="tel" name="phone" placeholder="Phone Number" required>
-                    
-                    <input type="text" name="pickup_location" placeholder="Pickup Location" required>
-                    <input type="text" name="destination" placeholder="Destination" required>
-                    
-                    <input type="date" name="travel_date" required>
-                    <input type="time" name="pickup_time" required>
-                    
-                    <select name="tour_type" required>
-                        <option value="">Select Tour Type</option>
-                        <option value="day_trip">Day Trip</option>
-                        <option value="2_days">2 Days 1 Night</option>
-                        <option value="3_days">3 Days 2 Nights</option>
-                        <option value="custom">Custom Package</option>
-                    </select>
-                    
-                    <input type="number" name="passengers" placeholder="Number of Passengers" min="1" max="12" required>
-                    
-                    <textarea name="special_requirements" placeholder="Special Requirements" rows="3"></textarea>
-                    
-                    <button type="submit" class="btn-primary">Book Now</button>
-                </form>
+            <div class="service-sidebar">
+                <div class="booking-card" id="booking">
+                    <h3>Book Tempo Traveller</h3>
+                    <form class="booking-form" id="tempoTravellerBookingForm">
+                        <input type="hidden" name="form_type" value="tempo_traveller_booking">
+                        <input type="hidden" name="service_name" value="Tempo Traveller">
+                        
+                        <div class="form-group">
+                            <label for="trip_type">Trip Type</label>
+                            <select name="trip_type" id="trip_type" required>
+                                <option value="">Select Trip Type</option>
+                                <option value="local_tour">Local Tour</option>
+                                <option value="outstation">Outstation Trip</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="family_outing">Family Outing</option>
+                                <option value="wedding">Wedding Function</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pickup_location">Pickup Location</label>
+                            <textarea name="pickup_location" id="pickup_location" rows="2" placeholder="Starting point of your journey" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="destination">Destination</label>
+                            <textarea name="destination" id="destination" rows="2" placeholder="Where do you want to go?" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="start_date">Start Date</label>
+                            <input type="date" name="start_date" id="start_date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="end_date">Return Date (Optional)</label>
+                            <input type="date" name="end_date" id="end_date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pickup_time">Pickup Time</label>
+                            <input type="time" name="pickup_time" id="pickup_time" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="passengers">Number of Passengers</label>
+                            <select name="passengers" id="passengers" required>
+                                <option value="">Select</option>
+                                <option value="1-5">1-5 Passengers</option>
+                                <option value="6-10">6-10 Passengers</option>
+                                <option value="11-15">11-15 Passengers</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vehicle_type">Vehicle Type</label>
+                            <select name="vehicle_type" id="vehicle_type" required>
+                                <option value="">Select Vehicle</option>
+                                <option value="standard">Standard Tempo Traveller</option>
+                                <option value="premium">Premium Tempo Traveller</option>
+                                <option value="corporate">Corporate Tempo Traveller</option>
+                                <option value="tourist">Tourist Tempo Traveller</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact_name">Contact Name</label>
+                            <input type="text" name="contact_name" id="contact_name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact_phone">Contact Phone</label>
+                            <input type="tel" name="contact_phone" id="contact_phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact_email">Contact Email</label>
+                            <input type="email" name="contact_email" id="contact_email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="special_requests">Special Requests</label>
+                            <textarea name="special_requests" id="special_requests" rows="3" placeholder="Any special requirements or notes"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-card">
+                    <h3>Need Help?</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Call Us</strong>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email Us</strong>
+                            <p>info@tsmtravells.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>24/7 Support</strong>
+                            <p>Available anytime</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-card" id="pricing">
+                    <h3>Tempo Traveller Pricing</h3>
+                    <div class="pricing-item">
+                        <span class="distance">Local Tours (0-50 km)</span>
+                        <span class="price">₹2500</span>
+                    </div>
+                    <div class="pricing-item">
+                        <span class="distance">Outstation (50-200 km)</span>
+                        <span class="price">₹15/km</span>
+                    </div>
+                    <div class="pricing-item">
+                        <span class="distance">Long Distance (200+ km)</span>
+                        <span class="price">₹12/km</span>
+                    </div>
+                    <div class="pricing-item">
+                        <span class="distance">Corporate Events</span>
+                        <span class="price">₹3000</span>
+                    </div>
+                    <p class="pricing-note">*Prices include fuel, driver charges, and tolls. No hidden fees.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="service-faq">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How many passengers can a Tempo Traveller accommodate?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our Tempo Travellers can comfortably accommodate 12-15 passengers with luggage. For larger groups, we can arrange multiple vehicles or suggest alternative transportation options.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Is there enough luggage space for group travel?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, our Tempo Travellers are designed with ample luggage space. There's dedicated storage area for suitcases, bags, and equipment, ensuring comfortable travel for all passengers.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Can I customize the route for group tours?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We offer flexible routing for group tours. You can plan multiple stops, sightseeing locations, and customize the itinerary according to your group's preferences.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Do you provide corporate transportation services?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, we specialize in corporate transportation. We offer professional services for team outings, business meetings, corporate events, and executive travel with experienced drivers and well-maintained vehicles.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What amenities are included in the Tempo Traveller?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our Tempo Travellers include air conditioning, comfortable seating, music system, charging points, and ample luggage space. Premium vehicles also feature additional amenities like WiFi and refreshments.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="related-services">
+    <div class="container">
+        <h2>Other Services You Might Like</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/city-taxi.jpg" alt="City Taxi">
+                <h3>City Taxi</h3>
+                <p>Local transportation within Mangalore city</p>
+                <a href="city-taxi.php" class="btn btn-secondary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/outstation-taxi.php" alt="Outstation Taxi">
+                <h3>Outstation Taxi</h3>
+                <p>Long-distance travel to nearby cities and tourist spots</p>
+                <a href="outstation-taxi.php" class="btn btn-secondary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/wedding-cars.jpg" alt="Wedding Cars">
+                <h3>Wedding Cars</h3>
+                <p>Luxury vehicles for your special day</p>
+                <a href="wedding-cars.php" class="btn btn-secondary">Learn More</a>
             </div>
         </div>
     </div>

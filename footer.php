@@ -40,10 +40,11 @@
                     <h3>Newsletter</h3>
                     <p>Subscribe to our newsletter for updates and special offers.</p>
                     <form id="newsletterForm">
+                        <input type="hidden" name="form_type" value="newsletter">
                         <input type="email" name="email" placeholder="Your Email Address" required>
                         <button type="submit"><i class="fas fa-paper-plane"></i></button>
-                        <div id="newsletterFormStatus" class="form-status"></div>
                     </form>
+                    <div id="newsletterFormStatus" class="form-status"></div>
                     <div class="footer-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
