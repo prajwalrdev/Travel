@@ -51,8 +51,6 @@
                         <li class="dropdown">
                             <a href="#" class="nav-link-dropdown">More <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Corporate', 'corporate', 'page-corporate.php')); ?>" class="dropdown-link">Corporate</a></li>
-                                <!-- <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="dropdown-link">Book Now</a></li> -->
                                 <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Support', 'support', '')); ?>" class="dropdown-link">Support</a></li>
                             </ul>
                         </li>
