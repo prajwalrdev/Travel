@@ -5,8 +5,8 @@
                 <div class="footer-logo">
                     <h2><?php bloginfo('name'); ?></h2>
                     <p><?php bloginfo('description'); ?></p>
-                    <p>Ground Floor, GHS Opposite Tara clinic, Hampankatta Mangalore 575001</p>
-                    <p><a href="tel:+918861505754">+91 8861505754</a></p>
+                    <p><?php echo get_theme_mod('contact_address', 'Ground Floor, GHS Opposite Tara clinic, Hampankatta Mangalore 575001'); ?></p>
+                    <p><a href="tel:<?php echo get_theme_mod('contact_phone1', '+918861505754'); ?>"><?php echo get_theme_mod('contact_phone1', '+91 8861505754'); ?></a></p>
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
@@ -23,7 +23,7 @@
                     <h3>Cab Services</h3>
                     <ul>
                         <li><a href="<?php echo esc_url(home_url('/city-taxi/')); ?>">City Taxi</a></li>
-                        <li><a href="<?php echo esc_url(home_url('/outstation-taxi/')); ?>">Outstation Taxi</a></li>
+
                         <li><a href="<?php echo esc_url(home_url('/wedding-cars/')); ?>">Wedding Cars</a></li>
                         <li><a href="<?php echo esc_url(home_url('/airport-taxi/')); ?>">Airport Taxi</a></li>
                         <li><a href="<?php echo esc_url(home_url('/mini-bus/')); ?>">Mini Bus</a></li>
@@ -46,10 +46,10 @@
                     </form>
                     <div id="newsletterFormStatus" class="form-status"></div>
                     <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="<?php echo get_theme_mod('social_facebook', '#'); ?>"><i class="fab fa-facebook-f"></i></a>
+                        <a href="<?php echo get_theme_mod('social_twitter', '#'); ?>"><i class="fab fa-twitter"></i></a>
+                        <a href="<?php echo get_theme_mod('social_instagram', '#'); ?>"><i class="fab fa-instagram"></i></a>
+                        <a href="<?php echo get_theme_mod('social_linkedin', '#'); ?>"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -66,12 +66,12 @@
     
     <div class="floating-buttons">
         <!-- WhatsApp Icon -->
-        <a href="https://wa.me/918861505754" class="whatsapp-icon" target="_blank" aria-label="Chat with us on WhatsApp">
+        <a href="https://wa.me/<?php echo str_replace(['+', ' ', '-'], '', get_theme_mod('contact_phone1', '+918861505754')); ?>" class="whatsapp-icon" target="_blank" aria-label="Chat with us on WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
 
         <!-- Phone Call Button -->
-        <a href="tel:+918861505754" class="phone-call-btn" aria-label="Call us">
+        <a href="tel:<?php echo get_theme_mod('contact_phone1', '+918861505754'); ?>" class="phone-call-btn" aria-label="Call us">
             <i class="fas fa-phone"></i>
         </a>
 
