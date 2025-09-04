@@ -36,12 +36,12 @@ Edit `server/config.php` and update these settings:
 
 ```php
 // Email Configuration
-define('ADMIN_EMAIL', 'your-email@domain.com');
+define('ADMIN_EMAIL', 'mangaloretaxicabservices@gmail.com');
 define('ADMIN_NAME', 'Your Company Name');
 
 // SMTP Configuration (recommended for better delivery)
 define('SMTP_HOST', 'smtp.gmail.com'); // or your SMTP server
-define('SMTP_USERNAME', 'your-email@gmail.com');
+define('SMTP_USERNAME', 'mangaloretaxicabservices@gmail.com');
 define('SMTP_PASSWORD', 'your-app-password');
 ```
 
@@ -75,7 +75,7 @@ define('COMPANY_EMAIL', 'mangaloretaxicabservices@gmail.com');
 ```php
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 587);
-define('SMTP_USERNAME', 'your-email@gmail.com');
+define('SMTP_USERNAME', 'mangaloretaxicabservices@gmail.com');
 define('SMTP_PASSWORD', 'your-app-password');
 define('SMTP_ENCRYPTION', 'tls');
 ```
@@ -307,7 +307,7 @@ define('MAINTENANCE_MESSAGE', 'We are currently performing maintenance. Please c
 ## 📞 **Support & Contact**
 
 ### **Technical Support**
-- **Email**: support@tsmtravells.com
+- **Email**: mangaloretaxicabservices@gmail.com
 - **Phone**: +91 8861505754
 - **WhatsApp**: +91 8861505754
 
@@ -420,4 +420,4 @@ function validateCustomField($value) {
 
 ---
 
-**Need Help?** Contact our support team at support@tsmtravells.com or call +91 8861505754
+**Need Help?** Contact our support team at mangaloretaxicabservices@gmail.com or call +91 8861505754
