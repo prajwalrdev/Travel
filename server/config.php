@@ -278,13 +278,13 @@ define('BOOKING_CANCELLATION_EMAIL', true);
 
 // Customer Support Settings
 define('SUPPORT_PHONE', '+91 8861505754');
-define('SUPPORT_EMAIL', 'support@tsmtravells.com');
+define('SUPPORT_EMAIL', 'mangaloretaxicabservices@gmail.com');
 define('SUPPORT_WHATSAPP', '+91 8861505754');
 define('SUPPORT_HOURS', '24/7');
 
 // Emergency Contact
 define('EMERGENCY_PHONE', '+91 8861505754');
-define('EMERGENCY_EMAIL', 'emergency@tsmtravells.com');
+define('EMERGENCY_EMAIL', 'mangaloretaxicabservices@gmail.com');
 
 // Quality Assurance
 define('DRIVER_VERIFICATION', true);
