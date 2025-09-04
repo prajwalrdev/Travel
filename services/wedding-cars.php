@@ -1,14 +1,4 @@
-<section class="service-hero">
-    <div class="container">
-        <h1>Wedding Car Services</h1>
-        <p>Make your special day memorable with our luxury wedding car collection</p>
-        <div class="hero-buttons">
-            <!-- <a href="#booking" class="btn btn-primary">Book Now</a> -->
-            <a href="#pricing" class="btn btn-secondary">View Pricing</a>
-        </div>
-    </div>
-</section>
-
+   
 <section class="service-details">
     <div class="container">
         <div class="service-content">
