@@ -1,84 +1,3 @@
-<?php
-/*
- * Template Name: Mini Bus Service
- */
-get_header(); ?>
-
-<style>
-.service-hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<?php echo get_template_directory_uri(); ?>/images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 120px 0;
-    color: white;
-    text-align: center;
-}
-
-.service-details {
-    padding: 80px 0;
-}
-
-.service-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    margin-bottom: 50px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin: 40px 0;
-}
-
-.feature-item {
-    background: #f8f9fa;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.feature-item i {
-    font-size: 2.5rem;
-    color: #FF5252;
-    margin-bottom: 15px;
-}
-
-.booking-sidebar {
-    background: #f8f9fa;
-    padding: 30px;
-    border-radius: 10px;
-    height: fit-content;
-}
-
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.btn-primary {
-    background: #FF5252;
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-}
-
-@media (max-width: 768px) {
-    .service-content {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-
 <!-- Service Hero Section -->
 <section class="service-hero">
     <div class="container">
@@ -130,7 +49,7 @@ get_header(); ?>
                 </ul>
             </div>
 
-            <div class="booking-sidebar">
+            <!-- <div class="booking-sidebar">
                 <h3>Book Mini Bus Service</h3>
                 <form class="booking-form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
                     <input type="hidden" name="action" value="service_booking">
@@ -159,9 +78,8 @@ get_header(); ?>
                     
                     <button type="submit" class="btn-primary">Book Now</button>
                 </form>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
 
-<?php get_footer(); ?>

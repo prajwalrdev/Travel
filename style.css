@@ -291,6 +291,12 @@ header {
     gap: 2rem;
 }
 
+.service-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .service-card {
     background: var(--white);
     border-radius: 10px;

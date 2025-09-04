@@ -1,9 +1,0 @@
-Theme Screenshot Required
-
-You need to create a screenshot.png file (880x660 pixels) for your WordPress theme.
-This will be displayed in the WordPress admin when selecting themes.
-
-You can:
-1. Take a screenshot of your website
-2. Resize it to 880x660 pixels
-3. Save it as screenshot.png in the theme root directory

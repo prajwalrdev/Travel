@@ -70,10 +70,15 @@
             <i class="fab fa-whatsapp"></i>
         </a>
 
-        <!-- Back to Top Button -->
-        <a href="#home" class="back-to-top">
-            <i class="fas fa-chevron-up"></i>
+        <!-- Phone Call Button -->
+        <a href="tel:+918861505754" class="phone-call-btn" aria-label="Call us">
+            <i class="fas fa-phone"></i>
         </a>
+
+        <!-- Back to Top Button -->
+        <button class="back-to-top" title="Scroll to top" aria-label="Scroll to top of page">
+            <i class="fas fa-chevron-up" aria-hidden="true"></i>
+        </button>
     </div>
 
     <?php wp_footer(); ?>

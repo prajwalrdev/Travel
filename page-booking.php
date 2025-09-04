@@ -232,15 +232,15 @@ get_header(); ?>
 <!-- Hero Section -->
 <section class="booking-hero">
     <div class="container">
-        <h1>Book Your Travel Service</h1>
-        <p>Easy and convenient booking for all your travel needs</p>
+        <h1><?php echo get_post_meta(get_the_ID(), 'hero_title', true) ?: 'Book Your Travel Service'; ?></h1>
+        <p><?php echo get_post_meta(get_the_ID(), 'hero_description', true) ?: 'Easy and convenient booking for all your travel needs'; ?></p>
     </div>
 </section>
 
 <!-- Booking Form -->
 <section class="booking-container">
     <div class="booking-form-container">
-        <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Book Your Service</h2>
+        <h2 style="text-align: center; margin-bottom: 30px; color: #333;"><?php echo get_post_meta(get_the_ID(), 'form_title', true) ?: 'Book Your Service'; ?></h2>
         
         <form class="booking-form" action="#" method="POST">
             <div class="form-group">
@@ -332,9 +332,9 @@ get_header(); ?>
             <div class="booking-option-icon">
                 <i class="fas fa-plane"></i>
             </div>
-            <h3>Airport Transfer</h3>
-            <p>Reliable airport pickup and drop-off services with flight tracking.</p>
-            <div class="price">From $50</div>
+            <h3><?php echo get_post_meta(get_the_ID(), 'option1_title', true) ?: 'Airport Transfer'; ?></h3>
+            <p><?php echo get_post_meta(get_the_ID(), 'option1_description', true) ?: 'Reliable airport pickup and drop-off services with flight tracking.'; ?></p>
+            <div class="price"><?php echo get_post_meta(get_the_ID(), 'option1_price', true) ?: 'From $50'; ?></div>
             <a href="#" class="btn">Book Now</a>
         </div>
         
@@ -342,9 +342,9 @@ get_header(); ?>
             <div class="booking-option-icon">
                 <i class="fas fa-map-marked-alt"></i>
             </div>
-            <h3>City Taxi</h3>
-            <p>Quick and reliable city rides for errands, meetings, and sightseeing.</p>
-            <div class="price">From $100</div>
+            <h3><?php echo get_post_meta(get_the_ID(), 'option2_title', true) ?: 'City Taxi'; ?></h3>
+            <p><?php echo get_post_meta(get_the_ID(), 'option2_description', true) ?: 'Quick and reliable city rides for errands, meetings, and sightseeing.'; ?></p>
+            <div class="price"><?php echo get_post_meta(get_the_ID(), 'option2_price', true) ?: 'From $100'; ?></div>
             <a href="#" class="btn">Book Now</a>
         </div>
         
@@ -352,9 +352,9 @@ get_header(); ?>
             <div class="booking-option-icon">
                 <i class="fas fa-building"></i>
             </div>
-            <h3>Corporate Travel</h3>
-            <p>Professional transportation services for business meetings and events.</p>
-            <div class="price">From $150</div>
+            <h3><?php echo get_post_meta(get_the_ID(), 'option3_title', true) ?: 'Corporate Travel'; ?></h3>
+            <p><?php echo get_post_meta(get_the_ID(), 'option3_description', true) ?: 'Professional transportation services for business meetings and events.'; ?></p>
+            <div class="price"><?php echo get_post_meta(get_the_ID(), 'option3_price', true) ?: 'From $150'; ?></div>
             <a href="#" class="btn">Book Now</a>
         </div>
         
@@ -362,9 +362,9 @@ get_header(); ?>
             <div class="booking-option-icon">
                 <i class="fas fa-calendar-alt"></i>
             </div>
-            <h3>Event Transportation</h3>
-            <p>Transportation for special events, weddings, and celebrations.</p>
-            <div class="price">From $200</div>
+            <h3><?php echo get_post_meta(get_the_ID(), 'option4_title', true) ?: 'Event Transportation'; ?></h3>
+            <p><?php echo get_post_meta(get_the_ID(), 'option4_description', true) ?: 'Transportation for special events, weddings, and celebrations.'; ?></p>
+            <div class="price"><?php echo get_post_meta(get_the_ID(), 'option4_price', true) ?: 'From $200'; ?></div>
             <a href="#" class="btn">Book Now</a>
         </div>
         
@@ -372,9 +372,9 @@ get_header(); ?>
             <div class="booking-option-icon">
                 <i class="fas fa-crown"></i>
             </div>
-            <h3>Executive Travel</h3>
-            <p>Premium luxury vehicles for executives and VIP clients.</p>
-            <div class="price">From $300</div>
+            <h3><?php echo get_post_meta(get_the_ID(), 'option5_title', true) ?: 'Executive Travel'; ?></h3>
+            <p><?php echo get_post_meta(get_the_ID(), 'option5_description', true) ?: 'Premium luxury vehicles for executives and VIP clients.'; ?></p>
+            <div class="price"><?php echo get_post_meta(get_the_ID(), 'option5_price', true) ?: 'From $300'; ?></div>
             <a href="#" class="btn">Book Now</a>
         </div>
         
@@ -382,46 +382,46 @@ get_header(); ?>
             <div class="booking-option-icon">
                 <i class="fas fa-users"></i>
             </div>
-            <h3>Group Transportation</h3>
-            <p>Transportation for groups, tours, and large events.</p>
-            <div class="price">From $400</div>
+            <h3><?php echo get_post_meta(get_the_ID(), 'option6_title', true) ?: 'Group Transportation'; ?></h3>
+            <p><?php echo get_post_meta(get_the_ID(), 'option6_description', true) ?: 'Transportation for groups, tours, and large events.'; ?></p>
+            <div class="price"><?php echo get_post_meta(get_the_ID(), 'option6_price', true) ?: 'From $400'; ?></div>
             <a href="#" class="btn">Book Now</a>
         </div>
     </div>
     
     <!-- Booking Information -->
     <div class="booking-info">
-        <h2>Booking Information</h2>
+        <h2><?php echo get_post_meta(get_the_ID(), 'info_title', true) ?: 'Booking Information'; ?></h2>
         <div class="info-grid">
             <div class="info-item">
-                <h3>Easy Booking</h3>
-                <p>Simple online booking process with instant confirmation and flexible payment options.</p>
+                <h3><?php echo get_post_meta(get_the_ID(), 'info1_title', true) ?: 'Easy Booking'; ?></h3>
+                <p><?php echo get_post_meta(get_the_ID(), 'info1_description', true) ?: 'Simple online booking process with instant confirmation and flexible payment options.'; ?></p>
             </div>
             
             <div class="info-item">
-                <h3>24/7 Support</h3>
-                <p>Round-the-clock customer support to assist you with any questions or changes to your booking.</p>
+                <h3><?php echo get_post_meta(get_the_ID(), 'info2_title', true) ?: '24/7 Support'; ?></h3>
+                <p><?php echo get_post_meta(get_the_ID(), 'info2_description', true) ?: 'Round-the-clock customer support to assist you with any questions or changes to your booking.'; ?></p>
             </div>
             
             <div class="info-item">
-                <h3>Professional Service</h3>
-                <p>Experienced drivers, well-maintained vehicles, and punctual service guaranteed.</p>
+                <h3><?php echo get_post_meta(get_the_ID(), 'info3_title', true) ?: 'Professional Service'; ?></h3>
+                <p><?php echo get_post_meta(get_the_ID(), 'info3_description', true) ?: 'Experienced drivers, well-maintained vehicles, and punctual service guaranteed.'; ?></p>
             </div>
             
             <div class="info-item">
-                <h3>Competitive Pricing</h3>
-                <p>Transparent pricing with no hidden fees and competitive rates for all services.</p>
+                <h3><?php echo get_post_meta(get_the_ID(), 'info4_title', true) ?: 'Competitive Pricing'; ?></h3>
+                <p><?php echo get_post_meta(get_the_ID(), 'info4_description', true) ?: 'Transparent pricing with no hidden fees and competitive rates for all services.'; ?></p>
             </div>
         </div>
     </div>
     
     <!-- Contact Information -->
     <div class="contact-info">
-        <h2>Need Help with Booking?</h2>
-        <p>Our customer service team is here to help you with any questions or special requests.</p>
-        <div class="phone"><?php echo get_theme_mod('contact_phone1', '+91 8861505754'); ?></div>
-        <div class="email"><?php echo get_theme_mod('contact_email1', 'info@travelease.com'); ?></div>
-        <p>Available 24/7 for your convenience</p>
+        <h2><?php echo get_post_meta(get_the_ID(), 'contact_title', true) ?: 'Need Help with Booking?'; ?></h2>
+        <p><?php echo get_post_meta(get_the_ID(), 'contact_description', true) ?: 'Our customer service team is here to help you with any questions or special requests.'; ?></p>
+        <div class="phone"><?php echo get_post_meta(get_the_ID(), 'contact_phone', true) ?: get_theme_mod('contact_phone1', '+91 8861505754'); ?></div>
+        <div class="email"><?php echo get_post_meta(get_the_ID(), 'contact_email', true) ?: get_theme_mod('contact_email1', 'mangaloretaxicabservices@gmail.com'); ?></div>
+        <p><?php echo get_post_meta(get_the_ID(), 'contact_availability', true) ?: 'Available 24/7 for your convenience'; ?></p>
     </div>
 </section>
 

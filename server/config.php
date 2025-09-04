@@ -13,7 +13,7 @@ define('DB_USER', 'your_db_username');
 define('DB_PASS', 'your_db_password');
 
 // Email Configuration
-define('ADMIN_EMAIL', 'info@tsmtravells.com');
+define('ADMIN_EMAIL', 'mangaloretaxicabservices@gmail.com');
 define('ADMIN_NAME', 'TSM Travells');
 define('ADMIN_PHONE', '+91 8861505754');
 
@@ -28,7 +28,7 @@ define('SMTP_ENCRYPTION', 'tls'); // tls or ssl
 define('COMPANY_NAME', 'TSM Travells');
 define('COMPANY_ADDRESS', 'Ground Floor, GHS Opposite Tara clinic, Hampankatta Mangalore 575001');
 define('COMPANY_PHONE', '+91 8861505754');
-define('COMPANY_EMAIL', 'info@tsmtravells.com');
+define('COMPANY_EMAIL', 'mangaloretaxicabservices@gmail.com');
 define('COMPANY_WEBSITE', 'https://tsmtravells.com');
 
 // Service Areas (for dynamic content)

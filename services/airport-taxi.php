@@ -5,16 +5,25 @@
  * This is a custom template for the Airport Taxi Service page
  */
 
-get_header(); ?>
+// Check if function exists, if not provide fallback
+if (!function_exists('travelease_service_url')) {
+    function travelease_service_url($title, $slug, $template) {
+        return home_url('/' . $slug . '/');
+    }
+}
+
+
 
 <section class="service-hero">
     <div class="container">
+    <div class="service-hero-content">
         <h1>Airport Taxi Services</h1>
         <p>Reliable and comfortable airport transfers to and from Mangalore International Airport</p>
         <div class="hero-buttons">
-            <a href="#booking" class="btn btn-primary">Book Now</a>
+        // <a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="btn btn-outline">Book Now</a>
             <a href="#pricing" class="btn btn-secondary">View Pricing</a>
         </div>
+    </div>
     </div>
 </section>
 
@@ -131,7 +140,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="service-sidebar">
+            <!-- <div class="service-sidebar">
                 <div class="booking-card" id="booking">
                     <h3>Book Airport Transfer</h3>
                     <form class="booking-form" id="airportBookingForm">
@@ -234,7 +243,7 @@ get_header(); ?>
                         <i class="fas fa-envelope"></i>
                         <div>
                             <strong>Email Us</strong>
-                            <p>info@tsmtravells.com</p>
+                            <p>mangaloretaxicabservices@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -266,7 +275,7 @@ get_header(); ?>
                     </div>
                     <p class="pricing-note">*Prices include fuel, driver charges, and tolls. No hidden fees.</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -354,4 +363,4 @@ get_header(); ?>
     </div>
 </section>
 
-<?php get_footer(); ?>
+

@@ -9,7 +9,7 @@
     <meta name="geo.placename" content="Mangalore">
     <meta name="geo.region" content="IN-KA">
     <?php wp_head(); ?>
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/style.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/style.css?ver=<?php echo filemtime(get_template_directory() . '/css/style.css'); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.svg" type="image/svg+xml">
@@ -49,11 +49,10 @@
                         <li><a href="<?php echo esc_url(travelease_section_url('testimonials')); ?>" class="nav-link-section">Testimonials</a></li>
                         <li><a href="<?php echo esc_url(travelease_section_url('contact')); ?>" class="nav-link-section">Contact</a></li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link-dropdown">Subdomains <i class="fas fa-chevron-down"></i></a>
+                            <a href="#" class="nav-link-dropdown">More <i class="fas fa-chevron-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Blog', 'blog', 'page-blog.php')); ?>" class="dropdown-link">Blog</a></li>
                                 <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Corporate', 'corporate', 'page-corporate.php')); ?>" class="dropdown-link">Corporate</a></li>
-                                <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="dropdown-link">Book Now</a></li>
+                                <!-- <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="dropdown-link">Book Now</a></li> -->
                                 <li><a href="<?php echo esc_url(travelease_get_or_create_page_url('Support', 'support', '')); ?>" class="dropdown-link">Support</a></li>
                             </ul>
                         </li>

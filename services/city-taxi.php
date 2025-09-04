@@ -1,89 +1,3 @@
-<?php
-/*
- * Template Name: City Taxi Service
- */
-get_header(); ?>
-<style>
-.service-hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('<?php echo get_template_directory_uri(); ?>/images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 100px 0 60px;
-    color: #fff;
-    text-align: center;
-}
-.service-details {
-    padding: 60px 0;
-}
-.service-content {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-}
-.feature-item {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-.feature-item i {
-    font-size: 2rem;
-    color: var(--primary-color, #FF5252);
-    margin-bottom: 10px;
-}
-.booking-sidebar {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 10px;
-    position: sticky;
-    top: 90px;
-    height: fit-content;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-.booking-form input,
-.booking-form select,
-.booking-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-}
-.booking-form button {
-    width: 100%;
-    padding: 12px;
-    background: var(--primary-color, #FF5252);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.booking-form button:hover {
-    background: #0056b3;
-}
-@media (max-width: 900px) {
-    .service-content {
-        grid-template-columns: 1fr;
-    }
-    .booking-sidebar {
-        position: static;
-        margin-top: 30px;
-    }
-}
-</style>
-<?php get_header(); ?>
-
 <!-- Service Hero Section -->
 <section class="service-hero">
     <div class="container">
@@ -91,7 +5,7 @@ get_header(); ?>
             <h1>City Taxi Service in Mangalore</h1>
             <p>Professional and reliable city taxi services for all your local travel needs in Mangalore</p>
             <div class="service-hero-buttons">
-                <a href="#booking" class="btn btn-primary">Book Now</a>
+            <!-- <a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="btn btn-outline">Book Now</a> -->
                 <a href="tel:+918861505754" class="btn btn-outline">Call +91 8861505754</a>
             </div>
         </div>
@@ -198,7 +112,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="service-sidebar">
+            <!-- <div class="service-sidebar">
                 <div class="booking-card">
                     <h3>Quick Booking</h3>
                     <form id="cityTaxiBookingForm">
@@ -231,7 +145,7 @@ get_header(); ?>
                         </div>
                         <button type="submit" class="btn btn-primary">Book City Taxi</button>
                     </form>
-                </div>
+                </div> -->
 
                 <div class="contact-info-card">
                     <h3>Contact Information</h3>
@@ -246,7 +160,7 @@ get_header(); ?>
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email Us</h4>
-                            <p><a href="mailto:info@tsmtravells.com">info@tsmtravells.com</a></p>
+                            <p><a href="mailto:mangaloretaxicabservices@gmail.com">mangaloretaxicabservices@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -348,7 +262,7 @@ get_header(); ?>
                 </div>
                 <h3>Outstation Taxi</h3>
                 <p>Long-distance travel to nearby cities and tourist destinations</p>
-                <a href="outstation-taxi.php" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo esc_url(home_url('/outstation-taxi-service/')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
             
             <div class="service-card">
@@ -357,7 +271,7 @@ get_header(); ?>
                 </div>
                 <h3>Airport Transfer</h3>
                 <p>Reliable airport pickup and drop service</p>
-                <a href="airport-taxi.php" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo esc_url(home_url('/airport-taxi-service/')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
             
             <div class="service-card">
@@ -366,10 +280,9 @@ get_header(); ?>
                 </div>
                 <h3>Wedding Cars</h3>
                 <p>Luxury vehicles for your special day</p>
-                <a href="wedding-cars.php" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="<?php echo esc_url(home_url('/wedding-cars-service/')); ?>" class="btn-text">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
 </section>
 
-<?php get_footer(); ?>

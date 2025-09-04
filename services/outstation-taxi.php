@@ -1,15 +1,9 @@
-<?php
-/*
- * Template Name: Outstation Taxi Service
- */
-get_header(); ?>
-
 <section class="service-hero">
     <div class="container">
         <h1>Outstation Taxi Services</h1>
         <p>Reliable and comfortable long-distance travel from Mangalore to anywhere in Karnataka and beyond</p>
         <div class="hero-buttons">
-            <a href="#booking" class="btn btn-primary">Book Now</a>
+            <!-- <a href="#booking" class="btn btn-primary">Book Now</a> -->
             <a href="#pricing" class="btn btn-secondary">View Pricing</a>
         </div>
     </div>
@@ -189,7 +183,7 @@ get_header(); ?>
                             <textarea name="special_requests" id="special_requests" rows="3" placeholder="Any special requirements or notes"></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary">Book Now</button>
+                        <!-- <button type="submit" class="btn btn-primary">Book Now</button> -->
                     </form>
                 </div>
 
@@ -206,7 +200,7 @@ get_header(); ?>
                         <i class="fas fa-envelope"></i>
                         <div>
                             <strong>Email Us</strong>
-                            <p>info@tsmtravells.com</p>
+                            <p>mangaloretaxicabservices@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -322,4 +316,3 @@ get_header(); ?>
     </div>
 </section>
 
-<?php get_footer(); ?>

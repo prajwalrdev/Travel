@@ -8,7 +8,8 @@
                 <p>Experience the journey of a lifetime with our premium travel services</p>
                 <div class="hero-buttons">
                     <a href="#services" class="btn btn-primary">Our Services</a>
-                    <a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="btn btn-outline">Book Now</a>
+                    <!-- <a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="btn btn-outline">Book Now</a> -->
+                    <a href="#contact" class="btn btn-outline">Book Now</a>
                 </div>
             </div>
         </div>
@@ -111,162 +112,119 @@
                 <p><?php echo get_theme_mod('services_subtitle', 'The best Travel and Taxi Services'); ?></p>
             </div>
             <div class="services-grid">
-                <div class="service-card" data-service="city-taxi">
+                <a href="<?php echo esc_url(travelease_get_service_url('city-taxi')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="city-taxi">
                     <div class="service-icon">
                         <i class="fas fa-taxi"></i>
                     </div>
-                    <h3>City Service</h3>
+                    <h3>City Taxi Service</h3>
                     <p>Local Taxi Service for convenient city travel</p>
-                    <a href="<?php echo esc_url(travelease_service_url('City Taxi', 'city-taxi', 'services/city-taxi.php')); ?>" class="btn-text service-link" data-service="city-taxi">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
                 </div>
-                <div class="service-card" data-service="outstation-taxi">
+                </a>
+                <a href="<?php echo esc_url(travelease_get_service_url('outstation-taxi')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="outstation-taxi">
                     <div class="service-icon">
                         <i class="fas fa-route"></i>
                     </div>
-                    <h3>Car Taxi</h3>
-                    <p>Local Taxi Service and comfortable long trips</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Outstation Taxi', 'outstation-taxi', 'services/outstation-taxi.php')); ?>" class="btn-text service-link" data-service="outstation-taxi">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
+                    <h3>Outstation Taxi</h3>
+                    <p>Comfortable long trips to nearby cities and destinations</p>
                 </div>
-                <div class="service-card" data-service="wedding-cars">
+                </a>
+                <a href="<?php echo esc_url(travelease_get_service_url('wedding-cars')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="wedding-cars">
                     <div class="service-icon">
                         <i class="fas fa-glass-cheers"></i>
                     </div>
                     <h3>Wedding Cars</h3>
                     <p>Let the journey begin with our special wedding fleet</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Wedding Cars', 'wedding-cars', 'services/wedding-cars.php')); ?>" class="btn-text service-link" data-service="wedding-cars">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
                 </div>
-                <div class="service-card" data-service="airport-taxi">
+                </a>
+                <a href="<?php echo esc_url(travelease_get_service_url('airport-taxi')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="airport-taxi">
                     <div class="service-icon">
                         <i class="fas fa-plane-departure"></i>
                     </div>
                     <h3>Airport Taxi</h3>
                     <p>Punctual pickup and drop-off services</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Airport Taxi', 'airport-taxi', 'services/airport-taxi.php')); ?>" class="btn-text service-link" data-service="airport-taxi">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
                 </div>
-                <div class="service-card" data-service="mini-bus">
+                </a>
+                <a href="<?php echo esc_url(travelease_get_service_url('mini-bus')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="mini-bus">
                     <div class="service-icon">
                         <i class="fas fa-bus"></i>
                     </div>
                     <h3>Mini Bus</h3>
                     <p>Group transportation for medium-sized groups</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Mini Bus', 'mini-bus', 'services/mini-bus.php')); ?>" class="btn-text service-link" data-service="mini-bus">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
                 </div>
-                <div class="service-card" data-service="tempo-traveler">
+                </a>
+                <a href="<?php echo esc_url(travelease_get_service_url('tempo-traveler')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="tempo-traveler">
                     <div class="service-icon">
                         <i class="fas fa-shuttle-van"></i>
                     </div>
                     <h3>Tempo Traveler</h3>
                     <p>Perfect for group tours and outstation trips</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Tempo Traveler', 'tempo-traveler', 'services/tempo-traveler.php')); ?>" class="btn-text service-link" data-service="tempo-traveler">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
                 </div>
-                <div class="service-card" data-service="innova-cabs">
+                </a>
+                <a href="<?php echo esc_url(travelease_get_service_url('innova-cabs')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="innova-cabs">
                     <div class="service-icon">
                         <i class="fas fa-car"></i>
                     </div>
                     <h3>Innova Cabs | Innova Crysta</h3>
                     <p>Premium SUVs for comfortable family travel</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Innova Cabs', 'innova-cabs', 'services/innova-cabs.php')); ?>" class="btn-text service-link" data-service="innova-cabs">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
                 </div>
-                <div class="service-card" data-service="ertiga-cabs">
+                </a>
+                <a href="<?php echo esc_url(travelease_get_service_url('ertiga-cabs')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="ertiga-cabs">
                     <div class="service-icon">
                         <i class="fas fa-car-alt"></i>
                     </div>
                     <h3>Ertiga Cabs</h3>
                     <p>Spacious and economical for group travel</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Ertiga Cabs', 'ertiga-cabs', 'services/ertiga-cabs.php')); ?>" class="btn-text service-link" data-service="ertiga-cabs">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
                 </div>
-                <div class="service-card" data-service="sedan-cabs">
+                </a>
+
+                <a href="<?php echo esc_url(travelease_get_service_url('sedan-cabs')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="sedan-cabs">
                     <div class="service-icon">
                         <i class="fas fa-car-side"></i>
                     </div>
                     <h3>Sedan Cabs</h3>
-                    <p>Comfortable sedans for city and outstation travel</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Sedan Cabs', 'sedan-cabs', 'services/sedan-cabs.php')); ?>" class="btn-text service-link" data-service="sedan-cabs">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
+                    <p>Comfortable sedan cars for city and outstation</p>
                 </div>
-                <div class="service-card" data-service="bekal-taxi">
+                </a>
+
+                <a href="<?php echo esc_url(travelease_get_service_url('bekal-taxi')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="bekal-taxi">
                     <div class="service-icon">
-                        <i class="fas fa-map-marked-alt"></i>
+                        <i class="fas fa-map-signs"></i>
                     </div>
                     <h3>Bekal Taxi</h3>
-                    <p>Specialized taxi service to Bekal beach destination</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Bekal Taxi', 'bekal-taxi', 'services/bekal-taxi.php')); ?>" class="btn-text service-link" data-service="bekal-taxi">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
+                    <p>Reliable rides to/from Bekal and nearby</p>
                 </div>
-                <div class="service-card" data-service="temple-tour">
+                </a>
+
+                <a href="<?php echo esc_url(travelease_get_service_url('temple-tour')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="temple-tour">
                     <div class="service-icon">
-                        <i class="fas fa-place-of-worship"></i>
+                        <i class="fas fa-landmark"></i>
                     </div>
                     <h3>Temple Tour Packages</h3>
-                    <p>Spiritual journeys to famous temples and pilgrimage sites</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Temple Tour Packages', 'temple-tour', 'services/temple-tour.php')); ?>" class="btn-text service-link" data-service="temple-tour">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
+                    <p>Curated temple tours with experienced drivers</p>
                 </div>
-                <div class="service-card" data-service="coorg-taxi">
+                </a>
+
+                <a href="<?php echo esc_url(travelease_get_service_url('coorg-taxi')); ?>" class="service-card-link">
+                <div class="service-card animate-in" data-service="coorg-taxi">
                     <div class="service-icon">
                         <i class="fas fa-mountain"></i>
                     </div>
                     <h3>Coorg Taxi</h3>
-                    <p>Scenic trips to the beautiful hill station of Coorg</p>
-                    <a href="<?php echo esc_url(travelease_service_url('Coorg Taxi', 'coorg-taxi', 'services/coorg-taxi.php')); ?>" class="btn-text service-link" data-service="coorg-taxi">
-                        <span class="btn-text-content">Learn More <i class="fas fa-arrow-right"></i></span>
-                        <span class="btn-text-loading" style="display: none;">
-                            <i class="fas fa-spinner fa-spin"></i> Loading...
-                        </span>
-                    </a>
+                    <p>Comfortable trips to Coorg and hill stations</p>
                 </div>
+                </a>
+
             </div>
         </div>
     </section>
@@ -275,7 +233,7 @@
     <section id="vehicle-types" class="vehicle-types">
         <div class="container">
             <div class="section-header">
-                <h2><?php echo get_theme_mod('vehicle_types_title', 'Our Fleet'); ?></h2>
+                <h2><?php echo get_theme_mod('vehicle_types_title', 'Our Fleet');?></h2>
                 <p><?php echo get_theme_mod('vehicle_types_subtitle', 'Choose from our diverse range of vehicles'); ?></p>
             </div>
             <div class="vehicle-types-grid">
@@ -582,8 +540,8 @@
                         </div>
                         <div class="info-content">
                             <h3>Email Us</h3>
-                            <p><?php echo get_theme_mod('contact_email1', 'info@travelease.com'); ?></p>
-                            <p><?php echo get_theme_mod('contact_email2', 'bookings@travelease.com'); ?></p>
+                            <p><?php echo get_theme_mod('contact_email1', 'mangaloretaxicabservices@gmail.com'); ?></p>
+                            <p><?php echo get_theme_mod('contact_email2', 'mangaloretaxicabservices@gmail.com'); ?></p>
                         </div>
                     </div>
                     <div class="info-card">

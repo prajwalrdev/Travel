@@ -1,15 +1,9 @@
-<?php
-/*
- * Template Name: Wedding Cars Service
- */
-get_header(); ?>
-
 <section class="service-hero">
     <div class="container">
         <h1>Wedding Car Services</h1>
         <p>Make your special day memorable with our luxury wedding car collection</p>
         <div class="hero-buttons">
-            <a href="#booking" class="btn btn-primary">Book Now</a>
+            <!-- <a href="#booking" class="btn btn-primary">Book Now</a> -->
             <a href="#pricing" class="btn btn-secondary">View Pricing</a>
         </div>
     </div>
@@ -133,7 +127,7 @@ get_header(); ?>
             </div>
 
             <div class="service-sidebar">
-                <div class="booking-card" id="booking">
+                <!-- <div class="booking-card" id="booking">
                     <h3>Book Wedding Car</h3>
                     <form class="booking-form" id="weddingCarBookingForm">
                         <input type="hidden" name="form_type" value="wedding_car_booking">
@@ -214,7 +208,7 @@ get_header(); ?>
                         
                         <button type="submit" class="btn btn-primary">Book Now</button>
                     </form>
-                </div>
+                </div> -->
 
                 <div class="contact-info-card">
                     <h3>Need Help?</h3>
@@ -229,7 +223,7 @@ get_header(); ?>
                         <i class="fas fa-envelope"></i>
                         <div>
                             <strong>Email Us</strong>
-                            <p>info@tsmtravells.com</p>
+                            <p>mangaloretaxicabservices@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -349,4 +343,3 @@ get_header(); ?>
     </div>
 </section>
 
-<?php get_footer(); ?>

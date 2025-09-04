@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenuToggle.classList.remove('active');
             navOverlay.style.display = 'none';
             document.body.style.overflow = '';
+            // Change icon to bars
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times', 'fa-xmark');
+                icon.classList.add('fa-bars');
+            }
             
             // Close all dropdowns
             document.querySelectorAll('.dropdown.active').forEach(dropdown => {
@@ -44,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenuToggle.classList.add('active');
             navOverlay.style.display = 'block';
             document.body.style.overflow = 'hidden';
+            // Change icon to close (cross)
+            const icon = mobileMenuToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
             try { 
                 mobileMenuToggle.setAttribute('aria-expanded', 'true');
                 navOverlay.setAttribute('aria-hidden', 'false');
@@ -306,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     dropdowns.forEach(dropdown => {
         const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-        const dropdownLink = dropdown.querySelector('> a');
+        const dropdownLink = dropdown.querySelector('a');
         
         // Desktop hover functionality
         if (window.innerWidth > 900) {
@@ -345,23 +357,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Animate Elements on Scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .stats-item').forEach(el => {
+            observer.observe(el);
         });
-    }, observerOptions);
-
-    // Observe elements for animation
-    document.querySelectorAll('.service-card, .destination-card, .testimonial-card, .stats-item').forEach(el => {
-        observer.observe(el);
-    });
+    } else {
+        // Fallback: Always show service cards if IntersectionObserver is not supported
+        document.querySelectorAll('.service-card').forEach(el => {
+            el.classList.add('animate-in');
+        });
+    }
 
     // Service Loading Functionality
     const serviceLinks = document.querySelectorAll('.service-link');
@@ -530,48 +548,91 @@ document.addEventListener('DOMContentLoaded', function() {
         images.forEach(img => imageObserver.observe(img));
     }
     
-    // Back to Top Button
-    let backToTopButton = document.querySelector('.back-to-top');
-    if (!backToTopButton) {
-        backToTopButton = document.createElement('button');
-        backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        backToTopButton.className = 'back-to-top';
-        backToTopButton.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-size: 1.2rem;
-        `;
-        document.body.appendChild(backToTopButton);
+    // Back to Top Button (show/hide on scroll, smooth scroll to top)
+    const backToTopButton = document.querySelector('.back-to-top');
+    const phoneCallButton = document.querySelector('.phone-call-btn');
+    const whatsappButton = document.querySelector('.whatsapp-icon');
+
+    console.log('Floating buttons found:', {
+        backToTop: !!backToTopButton,
+        phoneCall: !!phoneCallButton,
+        whatsapp: !!whatsappButton
+    });
+
+    if (backToTopButton) {
+        function toggleBackToTop() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        }
+
+        // Add scroll event listener with throttling for better performance
+        let ticking = false;
+        function updateBackToTop() {
+            toggleBackToTop();
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateBackToTop);
+                ticking = true;
+            }
+        });
+
+        backToTopButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Simple and reliable scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initialize the button state
+        toggleBackToTop();
+        
+        // Debug logging
+        console.log('Back to top button initialized successfully');
+        
+        // Test the button functionality
+        setTimeout(() => {
+            if (backToTopButton.classList.contains('active')) {
+                console.log('Back to top button is visible');
+            } else {
+                console.log('Back to top button is hidden (scroll down to see it)');
+            }
+        }, 1000);
+    } else {
+        console.warn('Back to top button not found in the DOM');
     }
     
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopButton.style.opacity = '1';
-            backToTopButton.style.visibility = 'visible';
-        } else {
-            backToTopButton.style.opacity = '0';
-            backToTopButton.style.visibility = 'hidden';
+    // Destinations Carousel Controls
+    const destinationsSlider = document.querySelector('.destinations-slider');
+    const prevBtn = document.querySelector('.slider-controls .prev-btn');
+    const nextBtn = document.querySelector('.slider-controls .next-btn');
+    if (destinationsSlider && prevBtn && nextBtn) {
+        function getScrollAmount() {
+            const card = destinationsSlider.querySelector('.destination-card');
+            if (!card) return 320;
+            const cardWidth = card.offsetWidth;
+            // On mobile, scroll by 90% of the slider width
+            if (window.innerWidth <= 600) {
+                return Math.floor(destinationsSlider.offsetWidth * 0.9);
+            }
+            return cardWidth > 0 ? cardWidth : 320;
         }
-    });
-    
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        prevBtn.addEventListener('click', function() {
+            destinationsSlider.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
         });
-    });
+        nextBtn.addEventListener('click', function() {
+            destinationsSlider.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+    }
     
     // Service Type Selection (for booking page)
     const serviceTypeSelect = document.querySelector('#service-type');

@@ -1294,14 +1294,8 @@ header.scrolled .dropdown-menu a:hover {
 
 /* Service Card Entrance Animation */
 .service-card {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-}
-
-.service-card.animate-in {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 /* Staggered animation for service cards */
@@ -2025,10 +2019,12 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    z-index: 999;
+    z-index: 9999;
+    align-items: flex-end;
+    animation: fadeInUp 0.5s ease-out;
 }
 
-.whatsapp-icon, .back-to-top {
+.whatsapp-icon, .phone-call-btn, .back-to-top {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -2037,56 +2033,128 @@ footer {
     justify-content: center;
     color: #fff;
     box-shadow: var(--box-shadow, 0 2px 8px rgba(0, 0, 0, 0.2));
-    transition: var(--transition, 0.3s);
+    transition: all 0.3s ease;
+    font-size: 1.4rem;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
 }
-
-/* WhatsApp Button */
 .whatsapp-icon {
     background-color: var(--primary-color, #FF5252);
 }
-
 .whatsapp-icon:hover {
-    background-color: #10a713;
+    background-color: #128C7E;
+    color: #fff;
     transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Back to Top Button */
+.whatsapp-icon:active {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-icon:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+}
+.phone-call-btn {
+    background-color: var(--primary-color, #FF5252);
+}
+.phone-call-btn:hover {
+    background-color: #128C7E;
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.phone-call-btn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.phone-call-btn:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
+}
 .back-to-top {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color, #FF5252);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+    position: relative;
 }
 
 .back-to-top.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .back-to-top:hover {
-    background-color: #ff5252;
+    background-color: #128C7E;
     transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.location-section {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    margin-top: 20px;
-    flex-wrap: wrap;
+.back-to-top:active {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.info-content {
-    flex: 1;
-    min-width: 250px;
+.back-to-top:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
 }
 
-.map-container {
-    flex: 1;
-    min-width: 300px;
-    height: 250px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* Ensure buttons are visible on all devices */
+@media (max-width: 480px) {
+    .whatsapp-icon, .phone-call-btn, .back-to-top {
+        width: 45px !important;
+        height: 45px !important;
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-buttons {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+    }
+    .floating-buttons .floating-row {
+        gap: 10px;
+    }
+    .whatsapp-icon, .phone-call-btn, .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
+@media (max-width: 480px) {
+    .floating-buttons {
+        bottom: 10px;
+        right: 10px;
+        gap: 8px;
+    }
+    .floating-buttons .floating-row {
+        gap: 8px;
+    }
+    .whatsapp-icon, .phone-call-btn, .back-to-top {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
 }
 
 /* Animations */
@@ -2130,6 +2198,161 @@ footer {
         transform: translateX(0);
         opacity: 1;
     }
+}
+
+/* Services Archive Styles */
+.services-archive {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.services-archive .page-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.services-archive .page-title {
+    font-size: 2.5rem;
+    color: var(--primary-color, #FF5252);
+    margin-bottom: 15px;
+}
+
+.services-archive .page-description {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-card .service-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.service-card .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-image img {
+    transform: scale(1.05);
+}
+
+.service-card .service-content {
+    padding: 25px;
+}
+
+.service-card .service-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.service-card .service-title a {
+    color: var(--primary-color, #FF5252);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.service-card .service-title a:hover {
+    color: #128C7E;
+}
+
+.service-card .service-excerpt {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.service-card .service-link {
+    display: inline-block;
+    background: var(--primary-color, #FF5252);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.service-card .service-link:hover {
+    background: #128C7E;
+}
+
+.services-pagination {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.services-pagination .page-numbers {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    background: #fff;
+    color: var(--primary-color, #FF5252);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.services-pagination .page-numbers:hover,
+.services-pagination .page-numbers.current {
+    background: var(--primary-color, #FF5252);
+    color: #fff;
+}
+
+/* Default Service Template Styles */
+.default-service-template {
+    padding: 80px 0;
+}
+
+.default-service-template .service-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.default-service-template h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color, #FF5252);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.default-service-template .service-featured-image {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.default-service-template .service-featured-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.default-service-template .service-description {
+    line-height: 1.8;
+    color: #333;
+    font-size: 1.1rem;
 }
 
 /* Alert styles */
@@ -2702,7 +2925,7 @@ footer {
 /* High DPI displays */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .hero {
-        background-image: url('../images/hero-bg@2x.jpg');
+        background-image: url('../images/hero-bg.jpg');
     }
 }
 
@@ -2843,22 +3066,25 @@ body.page-transitioning {
     padding: 100px 0 60px;
 }
 
-.service-hero-content h1 {
+.service-hero-content h1,
+.service-hero h1 {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.1;
 }
 
-.service-hero-content p {
+.service-hero-content p,
+.service-hero p {
     font-size: clamp(1.1rem, 2.5vw, 1.3rem);
     margin-bottom: 2rem;
-    max-width: 600px;
+    max-width: 1000vw;
     margin-left: auto;
     margin-right: auto;
 }
 
-.service-hero-buttons {
+.service-hero-buttons,
+.hero-buttons {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
@@ -3348,3 +3574,129 @@ body.page-transitioning {
         color: var(--dark-color);
     }
 }
+
+.floating-buttons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
+    align-items: flex-end;
+}
+.phone-call-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+    font-size: 1.4rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+.phone-call-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-5px);
+}
+@media (max-width: 768px) {
+    .floating-buttons {
+        bottom: 15px;
+        right: 15px;
+        gap: 10px;
+        align-items: flex-end;
+    }
+    .phone-call-btn, .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    .contact-content {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .contact-form, .contact-info {
+        width: 100% !important;
+        padding: 20px 10px !important;
+        box-sizing: border-box;
+    }
+    .info-card {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .info-icon {
+        margin-bottom: 10px !important;
+    }
+}
+@media (max-width: 480px) {
+    .floating-buttons {
+        bottom: 10px;
+        right: 10px;
+        gap: 8px;
+    }
+    .phone-call-btn, .back-to-top {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+.destinations .slider-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 15px;
+}
+.destinations .slider-controls button {
+    background: #fff;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    z-index: 11;
+}
+.destinations .slider-controls button:hover {
+    background: var(--primary-color);
+    color: #fff;
+    transform: translateY(-3px);
+}
+@media (max-width: 768px) {
+    .destinations .slider-controls {
+        bottom: 10px;
+        gap: 10px;
+    }
+    .destinations .slider-controls button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
+@media (max-width: 480px) {
+    .destinations .slider-controls {
+        bottom: 5px;
+        gap: 8px;
+    }
+    .destinations .slider-controls button {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+

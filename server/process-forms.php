@@ -14,7 +14,7 @@ session_start();
 
 // Configuration
 $config = [
-    'admin_email' => 'info@tsmtravells.com',
+    'admin_email' => 'mangaloretaxicabservices@gmail.com',
     'admin_name' => 'TSM Travells',
     'smtp_host' => 'localhost', // Change to your SMTP server
     'smtp_port' => 587,

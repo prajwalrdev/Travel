@@ -52,7 +52,7 @@ define('SMTP_PASSWORD', 'your-app-password');
 define('COMPANY_NAME', 'TSM Travells');
 define('COMPANY_ADDRESS', 'Your Address');
 define('COMPANY_PHONE', '+91 8861505754');
-define('COMPANY_EMAIL', 'info@tsmtravells.com');
+define('COMPANY_EMAIL', 'mangaloretaxicabservices@gmail.com');
 ```
 
 ### **Step 4: Test the System**
