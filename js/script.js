@@ -738,10 +738,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Submit form via AJAX
+    // Submit form via AJAX to Node.js server
     async function submitForm(form, formType) {
         const formData = new FormData(form);
-        formData.append('form_type', formType);
         
         // Validate form
         const validationErrors = validateForm(formData);
@@ -757,9 +756,37 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
         
         try {
-            const response = await fetch('server/process-forms.php', {
+            // Convert FormData to JSON for Node.js server
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            
+            // Determine the API endpoint based on form type
+            let apiEndpoint = 'http://localhost:3000/api/';
+            switch (formType) {
+                case 'contact':
+                    apiEndpoint += 'contact';
+                    break;
+                case 'newsletter':
+                    apiEndpoint += 'newsletter';
+                    break;
+                case 'booking':
+                    apiEndpoint += 'booking';
+                    break;
+                case 'service-booking':
+                    apiEndpoint += 'service-booking';
+                    break;
+                default:
+                    apiEndpoint += 'contact';
+            }
+            
+            const response = await fetch(apiEndpoint, {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formObject)
             });
             
             const result = await response.json();
@@ -771,8 +798,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show success alert
                 showAlert(result.message, 'success');
             } else {
-                showFormStatus(form, result.errors.join(', '), 'error');
-                showAlert(result.errors.join(', '), 'error');
+                showFormStatus(form, result.message || 'An error occurred', 'error');
+                showAlert(result.message || 'An error occurred', 'error');
             }
             
         } catch (error) {
