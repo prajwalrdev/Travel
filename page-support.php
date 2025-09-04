@@ -311,7 +311,7 @@ get_header(); ?>
             </div>
             <h3>Email Support</h3>
             <p>Send us a detailed message and we'll respond within 24 hours.</p>
-            <a href="mailto:support@travelease.com" class="btn">Send Email</a>
+                            <a href="mailto:mangaloretaxicabservices@gmail.com" class="btn">Send Email</a>
         </div>
         
         <div class="support-category">
@@ -414,7 +414,7 @@ get_header(); ?>
                 </li>
                 <li>
                     <strong>Email Support</strong>
-                    <span>support@travelease.com</span>
+                                            <span>mangaloretaxicabservices@gmail.com</span>
                 </li>
                 <li>
                     <strong>Business Hours</strong>
