@@ -121,15 +121,7 @@
                     <p>Local Taxi Service for convenient city travel</p>
                 </div>
                 </a>
-                <a href="<?php echo esc_url(travelease_get_service_url('outstation-taxi')); ?>" class="service-card-link">
-                <div class="service-card animate-in" data-service="outstation-taxi">
-                    <div class="service-icon">
-                        <i class="fas fa-route"></i>
-                    </div>
-                    <h3>Outstation Taxi</h3>
-                    <p>Comfortable long trips to nearby cities and destinations</p>
-                </div>
-                </a>
+                
                 <a href="<?php echo esc_url(travelease_get_service_url('wedding-cars')); ?>" class="service-card-link">
                 <div class="service-card animate-in" data-service="wedding-cars">
                     <div class="service-icon">
