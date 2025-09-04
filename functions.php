@@ -447,6 +447,621 @@ function travelease_customize_register($wp_customize) {
         'section' => 'travelease_social',
         'type' => 'url',
     ));
+
+    // Features Section
+    $wp_customize->add_section('travelease_features', array(
+        'title' => __('Features Section', 'travelease'),
+        'priority' => 35,
+    ));
+
+    // Feature 1
+    $wp_customize->add_setting('feature1_title', array(
+        'default' => 'Best Prices',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature1_title', array(
+        'label' => __('Feature 1 Title', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('feature1_description', array(
+        'default' => 'Competitive rates for all your travel needs',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature1_description', array(
+        'label' => __('Feature 1 Description', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    // Feature 2
+    $wp_customize->add_setting('feature2_title', array(
+        'default' => 'Best Drivers',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature2_title', array(
+        'label' => __('Feature 2 Title', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('feature2_description', array(
+        'default' => 'Professional and experienced chauffeurs',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature2_description', array(
+        'label' => __('Feature 2 Description', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    // Feature 3
+    $wp_customize->add_setting('feature3_title', array(
+        'default' => '24*7 Call Assistance',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature3_title', array(
+        'label' => __('Feature 3 Title', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('feature3_description', array(
+        'default' => 'Support available round the clock',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature3_description', array(
+        'label' => __('Feature 3 Description', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    // Feature 4
+    $wp_customize->add_setting('feature4_title', array(
+        'default' => 'Special Discounts',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature4_title', array(
+        'label' => __('Feature 4 Title', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('feature4_description', array(
+        'default' => 'Great deals on package trips',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature4_description', array(
+        'label' => __('Feature 4 Description', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    // Feature 5
+    $wp_customize->add_setting('feature5_title', array(
+        'default' => 'Full City Coverage',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature5_title', array(
+        'label' => __('Feature 5 Title', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('feature5_description', array(
+        'default' => 'Service available throughout the city',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature5_description', array(
+        'label' => __('Feature 5 Description', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    // Feature 6
+    $wp_customize->add_setting('feature6_title', array(
+        'default' => 'No Booking Fee',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature6_title', array(
+        'label' => __('Feature 6 Title', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('feature6_description', array(
+        'default' => 'Transparent pricing with no hidden charges',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('feature6_description', array(
+        'label' => __('Feature 6 Description', 'travelease'),
+        'section' => 'travelease_features',
+        'type' => 'text',
+    ));
+
+    // About Section Content
+    $wp_customize->add_setting('about_content_paragraph1', array(
+        'default' => 'Welcome to TSM Travells, where sandy beaches meet ancient temples and rich cultural traditions. Nestled on the pristine coastline, we offer a perfect blend of natural beauty and historical wonders for your travel experiences.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    
+    $wp_customize->add_control('about_content_paragraph1', array(
+        'label' => __('About Paragraph 1', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('about_content_paragraph2', array(
+        'default' => 'As you explore with us, you\'ll be captivated by the turquoise waters and golden sands that stretch as far as the eye can see. But we offer more than just beach destinations. We provide access to treasure troves of age-old temples that testify to deep-rooted spirituality.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    
+    $wp_customize->add_control('about_content_paragraph2', array(
+        'label' => __('About Paragraph 2', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('about_content_paragraph3', array(
+        'default' => 'Whether you\'re a nature enthusiast, a history buff, or simply seeking a rejuvenating escape, TSM Travells promises an unforgettable journey filled with warmth, beauty, and cultural richness.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    
+    $wp_customize->add_control('about_content_paragraph3', array(
+        'label' => __('About Paragraph 3', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'textarea',
+    ));
+
+    // About Stats
+    $wp_customize->add_setting('about_stat1_number', array(
+        'default' => '10+',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat1_number', array(
+        'label' => __('Stat 1 Number', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_stat1_text', array(
+        'default' => 'Years in Business',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat1_text', array(
+        'label' => __('Stat 1 Text', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_stat2_number', array(
+        'default' => '5000+',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat2_number', array(
+        'label' => __('Stat 2 Number', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_stat2_text', array(
+        'default' => 'Happy Customers',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat2_text', array(
+        'label' => __('Stat 2 Text', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_stat3_number', array(
+        'default' => '100+',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat3_number', array(
+        'label' => __('Stat 3 Number', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_stat3_text', array(
+        'default' => 'Destinations',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat3_text', array(
+        'label' => __('Stat 3 Text', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_stat4_number', array(
+        'default' => '24/7',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat4_number', array(
+        'label' => __('Stat 4 Number', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('about_stat4_text', array(
+        'default' => 'Support Available',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('about_stat4_text', array(
+        'label' => __('Stat 4 Text', 'travelease'),
+        'section' => 'travelease_about',
+        'type' => 'text',
+    ));
+
+    // Destinations Section
+    $wp_customize->add_section('travelease_destinations', array(
+        'title' => __('Destinations Section', 'travelease'),
+        'priority' => 36,
+    ));
+
+    $wp_customize->add_setting('destinations_title', array(
+        'default' => 'Popular Destinations',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destinations_title', array(
+        'label' => __('Destinations Title', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('destinations_subtitle', array(
+        'default' => 'Explore beautiful places with us',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destinations_subtitle', array(
+        'label' => __('Destinations Subtitle', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    // Destination 1
+    $wp_customize->add_setting('destination1_title', array(
+        'default' => 'Coastal Paradise',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destination1_title', array(
+        'label' => __('Destination 1 Title', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('destination1_description', array(
+        'default' => 'Pristine beaches and coastal beauty',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destination1_description', array(
+        'label' => __('Destination 1 Description', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    // Destination 2
+    $wp_customize->add_setting('destination2_title', array(
+        'default' => 'Ancient Temples',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destination2_title', array(
+        'label' => __('Destination 2 Title', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('destination2_description', array(
+        'default' => 'Spiritual journey through historic temples',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destination2_description', array(
+        'label' => __('Destination 2 Description', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    // Destination 3
+    $wp_customize->add_setting('destination3_title', array(
+        'default' => 'Mountain Retreat',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destination3_title', array(
+        'label' => __('Destination 3 Title', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('destination3_description', array(
+        'default' => 'Serene hill stations and mountain views',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('destination3_description', array(
+        'label' => __('Destination 3 Description', 'travelease'),
+        'section' => 'travelease_destinations',
+        'type' => 'text',
+    ));
+
+    // Stats Section
+    $wp_customize->add_section('travelease_stats', array(
+        'title' => __('Stats Section', 'travelease'),
+        'priority' => 37,
+    ));
+
+    // Stat 1
+    $wp_customize->add_setting('stat1_number', array(
+        'default' => '150+',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat1_number', array(
+        'label' => __('Stat 1 Number', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('stat1_text', array(
+        'default' => 'Trips Completed',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat1_text', array(
+        'label' => __('Stat 1 Text', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    // Stat 2
+    $wp_customize->add_setting('stat2_number', array(
+        'default' => '500+',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat2_number', array(
+        'label' => __('Stat 2 Number', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('stat2_text', array(
+        'default' => 'Corporate Clients Served',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat2_text', array(
+        'label' => __('Stat 2 Text', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    // Stat 3
+    $wp_customize->add_setting('stat3_number', array(
+        'default' => '600+',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat3_number', array(
+        'label' => __('Stat 3 Number', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('stat3_text', array(
+        'default' => 'Happy Customers',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat3_text', array(
+        'label' => __('Stat 3 Text', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    // Stat 4
+    $wp_customize->add_setting('stat4_number', array(
+        'default' => '200+',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat4_number', array(
+        'label' => __('Stat 4 Number', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('stat4_text', array(
+        'default' => 'Online Bookings',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('stat4_text', array(
+        'label' => __('Stat 4 Text', 'travelease'),
+        'section' => 'travelease_stats',
+        'type' => 'text',
+    ));
+
+    // Testimonials Section
+    $wp_customize->add_section('travelease_testimonials', array(
+        'title' => __('Testimonials Section', 'travelease'),
+        'priority' => 38,
+    ));
+
+    $wp_customize->add_setting('testimonials_title', array(
+        'default' => 'What Our Customers Say',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonials_title', array(
+        'label' => __('Testimonials Title', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('testimonials_subtitle', array(
+        'default' => 'Testimonials from our satisfied clients',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonials_subtitle', array(
+        'label' => __('Testimonials Subtitle', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    // Testimonial 1
+    $wp_customize->add_setting('testimonial1_content', array(
+        'default' => 'The service was exceptional! The driver was punctual, professional, and the vehicle was immaculate. I highly recommend TSM Travells for all your travel needs in Mangalore.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    
+    $wp_customize->add_control('testimonial1_content', array(
+        'label' => __('Testimonial 1 Content', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('testimonial1_name', array(
+        'default' => 'John Smith',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonial1_name', array(
+        'label' => __('Testimonial 1 Name', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('testimonial1_role', array(
+        'default' => 'Business Traveler',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonial1_role', array(
+        'label' => __('Testimonial 1 Role', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    // Testimonial 2
+    $wp_customize->add_setting('testimonial2_content', array(
+        'default' => 'We booked a luxury car for our wedding day, and it was perfect! The driver was courteous, the car was beautifully decorated, and everything went smoothly. Thank you TSM Travells for making our special day even better!',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    
+    $wp_customize->add_control('testimonial2_content', array(
+        'label' => __('Testimonial 2 Content', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('testimonial2_name', array(
+        'default' => 'Sarah Johnson',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonial2_name', array(
+        'label' => __('Testimonial 2 Name', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('testimonial2_role', array(
+        'default' => 'Wedding Client',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonial2_role', array(
+        'label' => __('Testimonial 2 Role', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    // Testimonial 3
+    $wp_customize->add_setting('testimonial3_content', array(
+        'default' => 'Our family trip to Coorg was made so much more enjoyable with TSM Travells. The driver was knowledgeable about the area and suggested some amazing local spots. The vehicle was spacious and comfortable for our long journey.',
+        'sanitize_callback' => 'sanitize_textarea_field',
+    ));
+    
+    $wp_customize->add_control('testimonial3_content', array(
+        'label' => __('Testimonial 3 Content', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'textarea',
+    ));
+
+    $wp_customize->add_setting('testimonial3_name', array(
+        'default' => 'David Wilson',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonial3_name', array(
+        'label' => __('Testimonial 3 Name', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('testimonial3_role', array(
+        'default' => 'Family Traveler',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('testimonial3_role', array(
+        'label' => __('Testimonial 3 Role', 'travelease'),
+        'section' => 'travelease_testimonials',
+        'type' => 'text',
+    ));
+
+    // Contact Working Hours
+    $wp_customize->add_setting('contact_hours1', array(
+        'default' => '24/7 Service Available',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('contact_hours1', array(
+        'label' => __('Working Hours Line 1', 'travelease'),
+        'section' => 'travelease_contact',
+        'type' => 'text',
+    ));
+
+    $wp_customize->add_setting('contact_hours2', array(
+        'default' => 'Office: 9:00 AM - 6:00 PM',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('contact_hours2', array(
+        'label' => __('Working Hours Line 2', 'travelease'),
+        'section' => 'travelease_contact',
+        'type' => 'text',
+    ));
 }
 add_action('customize_register', 'travelease_customize_register');
 
@@ -589,14 +1204,11 @@ if (!function_exists('travelease_after_switch_theme')) {
         // 1) Create core pages if they don't exist
         $pages_to_create = [
             [ 'title' => 'Home',      'slug' => 'home',      'template' => '' ],
-            [ 'title' => 'Booking',   'slug' => 'booking',   'template' => 'page-booking.php' ],
-            [ 'title' => 'Corporate', 'slug' => 'corporate', 'template' => 'page-corporate.php' ],
             [ 'title' => 'Blog',      'slug' => 'blog',      'template' => 'page-blog.php' ],
             [ 'title' => 'Support',   'slug' => 'support',   'template' => '' ],
 
             // Service pages to auto-create
             [ 'title' => 'City Taxi',               'slug' => 'city-taxi',               'template' => 'services/city-taxi.php' ],
-            [ 'title' => 'Outstation Taxi',         'slug' => 'outstation-taxi',         'template' => 'services/outstation-taxi.php' ],
             [ 'title' => 'Wedding Cars',            'slug' => 'wedding-cars',            'template' => 'services/wedding-cars.php' ],
             [ 'title' => 'Mini Bus',                'slug' => 'mini-bus',                'template' => 'services/mini-bus.php' ],
             [ 'title' => 'Tempo Traveler',          'slug' => 'tempo-traveler',          'template' => 'services/tempo-traveler.php' ],
@@ -696,7 +1308,7 @@ if (!function_exists('travelease_after_switch_theme')) {
         };
 
         // Add pages to Main Menu (order as you like)
-        foreach (['Home', 'Booking', 'Corporate', 'Blog', 'Support'] as $title) {
+        foreach (['Home', 'Blog', 'Support'] as $title) {
             if (!empty($created_page_ids[$title])) {
                 $ensure_menu_item($primary_menu_id, $created_page_ids[$title]);
             }
@@ -727,13 +1339,10 @@ function travelease_seed_pages_if_missing_once() {
 
     $pages_to_create = [
         [ 'title' => 'Home',      'slug' => 'home',      'template' => '' ],
-        [ 'title' => 'Booking',   'slug' => 'booking',   'template' => 'page-booking.php' ],
-        [ 'title' => 'Corporate', 'slug' => 'corporate', 'template' => 'page-corporate.php' ],
         [ 'title' => 'Blog',      'slug' => 'blog',      'template' => 'page-blog.php' ],
         [ 'title' => 'Support',   'slug' => 'support',   'template' => '' ],
 
         [ 'title' => 'City Taxi',               'slug' => 'city-taxi',               'template' => 'services/city-taxi.php' ],
-        [ 'title' => 'Outstation Taxi',         'slug' => 'outstation-taxi',         'template' => 'services/outstation-taxi.php' ],
         [ 'title' => 'Wedding Cars',            'slug' => 'wedding-cars',            'template' => 'services/wedding-cars.php' ],
         [ 'title' => 'Mini Bus',                'slug' => 'mini-bus',                'template' => 'services/mini-bus.php' ],
         [ 'title' => 'Tempo Traveler',          'slug' => 'tempo-traveler',          'template' => 'services/tempo-traveler.php' ],
@@ -1119,6 +1728,7 @@ add_action('admin_menu', 'travelease_add_admin_menu');
 function travelease_create_service_pages_page() {
     $created = isset($_GET['created']) ? intval($_GET['created']) : 0;
     $updated = isset($_GET['updated']) ? intval($_GET['updated']) : 0;
+    $synced  = isset($_GET['synced'])  ? intval($_GET['synced'])  : 0;
     ?>
     <div class="wrap">
         <h1>🚗 Create Service Pages - TravelEase Theme</h1>
@@ -1126,6 +1736,11 @@ function travelease_create_service_pages_page() {
         <?php if ($created > 0 || $updated > 0): ?>
             <div class="notice notice-success">
                 <p><strong>Success!</strong> Created <?php echo $created; ?> new pages and updated <?php echo $updated; ?> existing pages.</p>
+            </div>
+        <?php endif; ?>
+        <?php if ($synced > 0): ?>
+            <div class="notice notice-success">
+                <p><strong>Service content synced!</strong> Updated content for <?php echo $synced; ?> pages.</p>
             </div>
         <?php endif; ?>
         
@@ -1153,6 +1768,17 @@ function travelease_create_service_pages_page() {
         </div>
         
         <div class="card">
+            <h2>Sync Service Content to Pages</h2>
+            <p>This will import the latest content from <code>services/*.php</code> files into their corresponding WordPress pages so you can edit them in wp-admin. It will also apply the shared <code>page-services.php</code> template (or specific template where needed).</p>
+            <p><strong>Note:</strong> This will overwrite existing page content for these services.</p>
+            <a href="<?php echo wp_nonce_url(admin_url('admin.php?action=sync_service_content'), 'sync_service_content'); ?>"
+               class="button button-secondary button-large"
+               onclick="return confirm('This will overwrite existing content on service pages. Proceed?')">
+                🔄 Sync Service Content Now
+            </a>
+        </div>
+
+        <div class="card">
             <h2>After Creation</h2>
             <ol>
                 <li>Go to your <a href="<?php echo home_url('/'); ?>" target="_blank">homepage</a> and test the service links</li>
@@ -1164,6 +1790,180 @@ function travelease_create_service_pages_page() {
     </div>
     <?php
 }
+
+/**
+ * Admin action: Sync service content from services/*.php into WP Pages (force overwrite)
+ */
+function travelease_sync_service_content_action() {
+    if (isset($_GET['action']) && $_GET['action'] === 'sync_service_content') {
+        // Security checks
+        if (!wp_verify_nonce($_GET['_wpnonce'], 'sync_service_content')) {
+            wp_die('Security check failed');
+        }
+        if (!current_user_can('manage_options')) {
+            wp_die('You do not have sufficient permissions to access this page.');
+        }
+
+        $map = [
+            'city-taxi'        => ['file' => 'city-taxi.php',       'template' => 'page-city-taxi.php'],
+            'wedding-cars'     => ['file' => 'wedding-cars.php',    'template' => 'page-services.php'],
+            'airport-taxi'     => ['file' => 'airport-taxi.php',    'template' => 'page-services.php'],
+            'mini-bus'         => ['file' => 'mini-bus.php',        'template' => 'page-services.php'],
+            'tempo-traveler'   => ['file' => 'tempo-traveler.php',  'template' => 'page-services.php'],
+            'innova-cabs'      => ['file' => 'innova-cabs.php',     'template' => 'page-services.php'],
+            'ertiga-cabs'      => ['file' => 'ertiga-cabs.php',     'template' => 'page-services.php'],
+            'sedan-cabs'       => ['file' => 'sedan-cabs.php',      'template' => 'page-services.php'],
+            'coorg-taxi'       => ['file' => 'coorg-taxi.php',      'template' => 'page-services.php'],
+            'bekal-taxi'       => ['file' => 'bekal-taxi.php',      'template' => 'page-services.php'],
+            'temple-tour'      => ['file' => 'temple-tour.php',     'template' => 'page-services.php'],
+        ];
+
+        $services_dir = trailingslashit(get_template_directory()) . 'services/';
+        $synced = 0;
+
+        foreach ($map as $slug => $data) {
+            $page = get_page_by_path($slug);
+            if (!$page || is_wp_error($page)) {
+                continue;
+            }
+
+            $path = $services_dir . $data['file'];
+            if (!file_exists($path)) {
+                continue;
+            }
+
+            $raw = file_get_contents($path);
+            if ($raw === false) {
+                continue;
+            }
+
+            // Overwrite page content unconditionally to reflect latest template content
+            $update = wp_update_post([
+                'ID'           => $page->ID,
+                'post_content' => $raw,
+            ], true);
+
+            if (!is_wp_error($update)) {
+                // Ensure the desired template is applied
+                update_post_meta($page->ID, '_wp_page_template', $data['template']);
+                $synced++;
+            }
+        }
+
+        flush_rewrite_rules(false);
+
+        $redirect_url = add_query_arg([
+            'page'   => 'create_service_pages',
+            'synced' => $synced,
+        ], admin_url('admin.php'));
+
+        wp_redirect($redirect_url);
+        exit;
+    }
+}
+add_action('admin_init', 'travelease_sync_service_content_action');
+
+/**
+ * Admin action to import/refresh service page contents from services/*.php
+ */
+function travelease_import_service_content_action() {
+    if (isset($_GET['action']) && $_GET['action'] === 'import_service_content') {
+        if (!wp_verify_nonce($_GET['_wpnonce'], 'import_service_content')) {
+            wp_die('Security check failed');
+        }
+        if (!current_user_can('manage_options')) {
+            wp_die('You do not have sufficient permissions to access this page.');
+        }
+
+        $map = [
+            'city-taxi'       => 'city-taxi.php',
+            'wedding-cars'    => 'wedding-cars.php',
+            'airport-taxi'    => 'airport-taxi.php',
+            'mini-bus'        => 'mini-bus.php',
+            'tempo-traveler'  => 'tempo-traveler.php',
+            'innova-cabs'     => 'innova-cabs.php',
+            'ertiga-cabs'     => 'ertiga-cabs.php',
+            'sedan-cabs'      => 'sedan-cabs.php',
+            'coorg-taxi'      => 'coorg-taxi.php',
+            'bekal-taxi'      => 'bekal-taxi.php',
+            'temple-tour'     => 'temple-tour.php',
+        ];
+
+        $services_dir = trailingslashit(get_template_directory()) . 'services/';
+        $imported = 0;
+        $skipped  = 0;
+
+        foreach ($map as $slug => $file) {
+            $page = get_page_by_path($slug);
+            if (!$page || is_wp_error($page)) { $skipped++; continue; }
+
+            $path = $services_dir . $file;
+            if (!file_exists($path)) { $skipped++; continue; }
+
+            $raw = file_get_contents($path);
+            if ($raw === false) { $skipped++; continue; }
+
+            // Update content and ensure shared template
+            wp_update_post([
+                'ID'           => $page->ID,
+                'post_content' => $raw,
+            ]);
+
+            $desired_template = ($slug === 'city-taxi') ? 'page-city-taxi.php' : 'page-services.php';
+            update_post_meta($page->ID, '_wp_page_template', $desired_template);
+
+            $imported++;
+        }
+
+        flush_rewrite_rules(false);
+
+        $redirect_url = add_query_arg(
+            [
+                'page'     => 'import_service_content',
+                'imported' => $imported,
+                'skipped'  => $skipped,
+            ],
+            admin_url('admin.php')
+        );
+
+        wp_redirect($redirect_url);
+        exit;
+    }
+}
+add_action('admin_init', 'travelease_import_service_content_action');
+
+/**
+ * Add admin menu page for importing service content
+ */
+function travelease_add_import_menu() {
+    add_management_page(
+        'Import Service Content',
+        'Import Service Content',
+        'manage_options',
+        'import_service_content',
+        function () {
+            $imported = isset($_GET['imported']) ? intval($_GET['imported']) : 0;
+            $skipped  = isset($_GET['skipped']) ? intval($_GET['skipped']) : 0;
+            ?>
+            <div class="wrap">
+                <h1>📥 Import Service Content</h1>
+
+                <?php if ($imported || $skipped): ?>
+                    <div class="notice notice-success"><p>
+                        Imported: <strong><?php echo esc_html($imported); ?></strong> | Skipped: <strong><?php echo esc_html($skipped); ?></strong>
+                    </p></div>
+                <?php endif; ?>
+
+                <p>This will load/update the content of each service page from the files in <code>services/</code> so they are editable in WordPress.</p>
+                <p>It will also assign the correct template (shared <code>page-services.php</code> or specific where needed).</p>
+
+                <a href="<?php echo wp_nonce_url(admin_url('admin.php?action=import_service_content'), 'import_service_content'); ?>" class="button button-primary button-large" onclick="return confirm('Import/refresh all service page content now?');">Run Import</a>
+            </div>
+            <?php
+        }
+    );
+}
+add_action('admin_menu', 'travelease_add_import_menu');
 
 /**
  * Register custom fields for Innova Cabs service page
@@ -1618,322 +2418,4 @@ function travelease_save_ertiga_cabs_fields($post_id) {
 }
 add_action('save_post', 'travelease_save_ertiga_cabs_fields');
 
-/**
- * Register custom meta boxes for Booking page
- */
-function travelease_register_booking_page_fields() {
-    // Check if we're on the Booking page
-    global $post;
-    if (!$post || $post->post_name !== 'booking') {
-        return;
-    }
-    
-    add_meta_box(
-        'booking_page_content',
-        'Booking Page Content',
-        'travelease_booking_page_meta_box_callback',
-        'page',
-        'normal',
-        'high'
-    );
-}
-add_action('add_meta_boxes', 'travelease_register_booking_page_fields');
 
-/**
- * Meta box callback for Booking page
- */
-function travelease_booking_page_meta_box_callback($post) {
-    // Add a nonce field so we can check for it later
-    wp_nonce_field('booking_page_meta_box', 'booking_page_meta_box_nonce');
-    
-    // Get current values
-    $hero_title = get_post_meta($post->ID, 'hero_title', true);
-    $hero_description = get_post_meta($post->ID, 'hero_description', true);
-    $form_title = get_post_meta($post->ID, 'form_title', true);
-    
-    // Booking Options
-    $option1_title = get_post_meta($post->ID, 'option1_title', true);
-    $option1_description = get_post_meta($post->ID, 'option1_description', true);
-    $option1_price = get_post_meta($post->ID, 'option1_price', true);
-    $option2_title = get_post_meta($post->ID, 'option2_title', true);
-    $option2_description = get_post_meta($post->ID, 'option2_description', true);
-    $option2_price = get_post_meta($post->ID, 'option2_price', true);
-    $option3_title = get_post_meta($post->ID, 'option3_title', true);
-    $option3_description = get_post_meta($post->ID, 'option3_description', true);
-    $option3_price = get_post_meta($post->ID, 'option3_price', true);
-    $option4_title = get_post_meta($post->ID, 'option4_title', true);
-    $option4_description = get_post_meta($post->ID, 'option4_description', true);
-    $option4_price = get_post_meta($post->ID, 'option4_price', true);
-    $option5_title = get_post_meta($post->ID, 'option5_title', true);
-    $option5_description = get_post_meta($post->ID, 'option5_description', true);
-    $option5_price = get_post_meta($post->ID, 'option5_price', true);
-    $option6_title = get_post_meta($post->ID, 'option6_title', true);
-    $option6_description = get_post_meta($post->ID, 'option6_description', true);
-    $option6_price = get_post_meta($post->ID, 'option6_price', true);
-    
-    // Booking Information
-    $info_title = get_post_meta($post->ID, 'info_title', true);
-    $info1_title = get_post_meta($post->ID, 'info1_title', true);
-    $info1_description = get_post_meta($post->ID, 'info1_description', true);
-    $info2_title = get_post_meta($post->ID, 'info2_title', true);
-    $info2_description = get_post_meta($post->ID, 'info2_description', true);
-    $info3_title = get_post_meta($post->ID, 'info3_title', true);
-    $info3_description = get_post_meta($post->ID, 'info3_description', true);
-    $info4_title = get_post_meta($post->ID, 'info4_title', true);
-    $info4_description = get_post_meta($post->ID, 'info4_description', true);
-    
-    // Contact Information
-    $contact_title = get_post_meta($post->ID, 'contact_title', true);
-    $contact_description = get_post_meta($post->ID, 'contact_description', true);
-    $contact_phone = get_post_meta($post->ID, 'contact_phone', true);
-    $contact_email = get_post_meta($post->ID, 'contact_email', true);
-    $contact_availability = get_post_meta($post->ID, 'contact_availability', true);
-    
-    ?>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-        <div>
-            <h3>Hero Section</h3>
-            <p>
-                <label for="hero_title"><strong>Hero Title:</strong></label><br>
-                <input type="text" id="hero_title" name="hero_title" value="<?php echo esc_attr($hero_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="hero_description"><strong>Hero Description:</strong></label><br>
-                <textarea id="hero_description" name="hero_description" rows="3" style="width: 100%;"><?php echo esc_textarea($hero_description); ?></textarea>
-            </p>
-            <p>
-                <label for="form_title"><strong>Form Title:</strong></label><br>
-                <input type="text" id="form_title" name="form_title" value="<?php echo esc_attr($form_title); ?>" style="width: 100%;" />
-            </p>
-        </div>
-        
-        <div>
-            <h3>Contact Information</h3>
-            <p>
-                <label for="contact_title"><strong>Contact Title:</strong></label><br>
-                <input type="text" id="contact_title" name="contact_title" value="<?php echo esc_attr($contact_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="contact_description"><strong>Contact Description:</strong></label><br>
-                <textarea id="contact_description" name="contact_description" rows="3" style="width: 100%;"><?php echo esc_textarea($contact_description); ?></textarea>
-            </p>
-            <p>
-                <label for="contact_phone"><strong>Contact Phone:</strong></label><br>
-                <input type="text" id="contact_phone" name="contact_phone" value="<?php echo esc_attr($contact_phone); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="contact_email"><strong>Contact Email:</strong></label><br>
-                <input type="text" id="contact_email" name="contact_email" value="<?php echo esc_attr($contact_email); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="contact_availability"><strong>Contact Availability:</strong></label><br>
-                <input type="text" id="contact_availability" name="contact_availability" value="<?php echo esc_attr($contact_availability); ?>" style="width: 100%;" />
-            </p>
-        </div>
-    </div>
-    
-    <h3>Booking Options</h3>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-        <div>
-            <h4>Option 1 - Airport Transfer</h4>
-            <p>
-                <label for="option1_title"><strong>Title:</strong></label><br>
-                <input type="text" id="option1_title" name="option1_title" value="<?php echo esc_attr($option1_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="option1_description"><strong>Description:</strong></label><br>
-                <textarea id="option1_description" name="option1_description" rows="2" style="width: 100%;"><?php echo esc_textarea($option1_description); ?></textarea>
-            </p>
-            <p>
-                <label for="option1_price"><strong>Price:</strong></label><br>
-                <input type="text" id="option1_price" name="option1_price" value="<?php echo esc_attr($option1_price); ?>" style="width: 100%;" />
-            </p>
-        </div>
-        
-        <div>
-            <h4>Option 2 - City Taxi</h4>
-            <p>
-                <label for="option2_title"><strong>Title:</strong></label><br>
-                <input type="text" id="option2_title" name="option2_title" value="<?php echo esc_attr($option2_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="option2_description"><strong>Description:</strong></label><br>
-                <textarea id="option2_description" name="option2_description" rows="2" style="width: 100%;"><?php echo esc_textarea($option2_description); ?></textarea>
-            </p>
-            <p>
-                <label for="option2_price"><strong>Price:</strong></label><br>
-                <input type="text" id="option2_price" name="option2_price" value="<?php echo esc_attr($option2_price); ?>" style="width: 100%;" />
-            </p>
-        </div>
-        
-        <div>
-            <h4>Option 3 - Corporate Travel</h4>
-            <p>
-                <label for="option3_title"><strong>Title:</strong></label><br>
-                <input type="text" id="option3_title" name="option3_title" value="<?php echo esc_attr($option3_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="option3_description"><strong>Description:</strong></label><br>
-                <textarea id="option3_description" name="option3_description" rows="2" style="width: 100%;"><?php echo esc_textarea($option3_description); ?></textarea>
-            </p>
-            <p>
-                <label for="option3_price"><strong>Price:</strong></label><br>
-                <input type="text" id="option3_price" name="option3_price" value="<?php echo esc_attr($option3_price); ?>" style="width: 100%;" />
-            </p>
-        </div>
-        
-        <div>
-            <h4>Option 4 - Event Transportation</h4>
-            <p>
-                <label for="option4_title"><strong>Title:</strong></label><br>
-                <input type="text" id="option4_title" name="option4_title" value="<?php echo esc_attr($option4_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="option4_description"><strong>Description:</strong></label><br>
-                <textarea id="option4_description" name="option4_description" rows="2" style="width: 100%;"><?php echo esc_textarea($option4_description); ?></textarea>
-            </p>
-            <p>
-                <label for="option4_price"><strong>Price:</strong></label><br>
-                <input type="text" id="option4_price" name="option4_price" value="<?php echo esc_attr($option4_price); ?>" style="width: 100%;" />
-            </p>
-        </div>
-        
-        <div>
-            <h4>Option 5 - Executive Travel</h4>
-            <p>
-                <label for="option5_title"><strong>Title:</strong></label><br>
-                <input type="text" id="option5_title" name="option5_title" value="<?php echo esc_attr($option5_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="option5_description"><strong>Description:</strong></label><br>
-                <textarea id="option5_description" name="option5_description" rows="2" style="width: 100%;"><?php echo esc_textarea($option5_description); ?></textarea>
-            </p>
-            <p>
-                <label for="option5_price"><strong>Price:</strong></label><br>
-                <input type="text" id="option5_price" name="option5_price" value="<?php echo esc_attr($option5_price); ?>" style="width: 100%;" />
-            </p>
-        </div>
-        
-        <div>
-            <h4>Option 6 - Group Transportation</h4>
-            <p>
-                <label for="option6_title"><strong>Title:</strong></label><br>
-                <input type="text" id="option6_title" name="option6_title" value="<?php echo esc_attr($option6_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="option6_description"><strong>Description:</strong></label><br>
-                <textarea id="option6_description" name="option6_description" rows="2" style="width: 100%;"><?php echo esc_textarea($option6_description); ?></textarea>
-            </p>
-            <p>
-                <label for="option6_price"><strong>Price:</strong></label><br>
-                <input type="text" id="option6_price" name="option6_price" value="<?php echo esc_attr($option6_price); ?>" style="width: 100%;" />
-            </p>
-        </div>
-    </div>
-    
-    <h3>Booking Information</h3>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-        <div>
-            <p>
-                <label for="info_title"><strong>Info Section Title:</strong></label><br>
-                <input type="text" id="info_title" name="info_title" value="<?php echo esc_attr($info_title); ?>" style="width: 100%;" />
-            </p>
-            
-            <h4>Info Item 1</h4>
-            <p>
-                <label for="info1_title"><strong>Title:</strong></label><br>
-                <input type="text" id="info1_title" name="info1_title" value="<?php echo esc_attr($info1_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="info1_description"><strong>Description:</strong></label><br>
-                <textarea id="info1_description" name="info1_description" rows="2" style="width: 100%;"><?php echo esc_textarea($info1_description); ?></textarea>
-            </p>
-            
-            <h4>Info Item 2</h4>
-            <p>
-                <label for="info2_title"><strong>Title:</strong></label><br>
-                <input type="text" id="info2_title" name="info2_title" value="<?php echo esc_attr($info2_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="info2_description"><strong>Description:</strong></label><br>
-                <textarea id="info2_description" name="info2_description" rows="2" style="width: 100%;"><?php echo esc_textarea($info2_description); ?></textarea>
-            </p>
-        </div>
-        
-        <div>
-            <h4>Info Item 3</h4>
-            <p>
-                <label for="info3_title"><strong>Title:</strong></label><br>
-                <input type="text" id="info3_title" name="info3_title" value="<?php echo esc_attr($info3_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="info3_description"><strong>Description:</strong></label><br>
-                <textarea id="info3_description" name="info3_description" rows="2" style="width: 100%;"><?php echo esc_textarea($info3_description); ?></textarea>
-            </p>
-            
-            <h4>Info Item 4</h4>
-            <p>
-                <label for="info4_title"><strong>Title:</strong></label><br>
-                <input type="text" id="info4_title" name="info4_title" value="<?php echo esc_attr($info4_title); ?>" style="width: 100%;" />
-            </p>
-            <p>
-                <label for="info4_description"><strong>Description:</strong></label><br>
-                <textarea id="info4_description" name="info4_description" rows="2" style="width: 100%;"><?php echo esc_textarea($info4_description); ?></textarea>
-            </p>
-        </div>
-    </div>
-    <?php
-}
-
-/**
- * Save custom fields for Booking page
- */
-function travelease_save_booking_page_fields($post_id) {
-    // Check if our nonce is set
-    if (!isset($_POST['booking_page_meta_box_nonce'])) {
-        return;
-    }
-    
-    // Verify that the nonce is valid
-    if (!wp_verify_nonce($_POST['booking_page_meta_box_nonce'], 'booking_page_meta_box')) {
-        return;
-    }
-    
-    // If this is an autosave, our form has not been submitted, so we don't want to do anything
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    
-    // Check the user's permissions
-    if (isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
-        if (!current_user_can('edit_page', $post_id)) {
-            return;
-        }
-    } else {
-        if (!current_user_can('edit_post', $post_id)) {
-            return;
-        }
-    }
-    
-    // Save the custom fields
-    $fields = [
-        'hero_title', 'hero_description', 'form_title',
-        'option1_title', 'option1_description', 'option1_price',
-        'option2_title', 'option2_description', 'option2_price',
-        'option3_title', 'option3_description', 'option3_price',
-        'option4_title', 'option4_description', 'option4_price',
-        'option5_title', 'option5_description', 'option5_price',
-        'option6_title', 'option6_description', 'option6_price',
-        'info_title', 'info1_title', 'info1_description',
-        'info2_title', 'info2_description', 'info3_title', 'info3_description',
-        'info4_title', 'info4_description',
-        'contact_title', 'contact_description', 'contact_phone', 'contact_email', 'contact_availability'
-    ];
-    
-    foreach ($fields as $field) {
-        if (isset($_POST[$field])) {
-            update_post_meta($post_id, $field, sanitize_textarea_field($_POST[$field]));
-        }
-    }
-}
-add_action('save_post', 'travelease_save_booking_page_fields');
