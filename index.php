@@ -4,12 +4,12 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Travel with your trusted travel partner</h1>
-                <p>Experience the journey of a lifetime with our premium travel services</p>
+                <h1><?php echo get_theme_mod('hero_title', 'Travel with your trusted travel partner'); ?></h1>
+                <p><?php echo get_theme_mod('hero_subtitle', 'Experience the journey of a lifetime with our premium travel services'); ?></p>
                 <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary">Our Services</a>
+                    <a href="#services" class="btn btn-primary"><?php echo get_theme_mod('hero_button1', 'Our Services'); ?></a>
                     <!-- <a href="<?php echo esc_url(travelease_get_or_create_page_url('Booking', 'booking', 'page-booking.php')); ?>" class="btn btn-outline">Book Now</a> -->
-                    <a href="#contact" class="btn btn-outline">Book Now</a>
+                    <a href="#contact" class="btn btn-outline"><?php echo get_theme_mod('hero_button2', 'Book Now'); ?></a>
                 </div>
             </div>
         </div>
@@ -23,43 +23,43 @@
                     <div class="feature-icon">
                         <i class="fas fa-tag"></i>
                     </div>
-                    <h3>Best Prices</h3>
-                    <p>Competitive rates for all your travel needs</p>
+                    <h3><?php echo get_theme_mod('feature1_title', 'Best Prices'); ?></h3>
+                    <p><?php echo get_theme_mod('feature1_description', 'Competitive rates for all your travel needs'); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-user-tie"></i>
                     </div>
-                    <h3>Best Drivers</h3>
-                    <p>Professional and experienced chauffeurs</p>
+                    <h3><?php echo get_theme_mod('feature2_title', 'Best Drivers'); ?></h3>
+                    <p><?php echo get_theme_mod('feature2_description', 'Professional and experienced chauffeurs'); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h3>24*7 Call Assistance</h3>
-                    <p>Support available round the clock</p>
+                    <h3><?php echo get_theme_mod('feature3_title', '24*7 Call Assistance'); ?></h3>
+                    <p><?php echo get_theme_mod('feature3_description', 'Support available round the clock'); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-percentage"></i>
                     </div>
-                    <h3>Special Discounts</h3>
-                    <p>Great deals on package trips</p>
+                    <h3><?php echo get_theme_mod('feature4_title', 'Special Discounts'); ?></h3>
+                    <p><?php echo get_theme_mod('feature4_description', 'Great deals on package trips'); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-map-marked-alt"></i>
                     </div>
-                    <h3>Full City Coverage</h3>
-                    <p>Service available throughout the city</p>
+                    <h3><?php echo get_theme_mod('feature5_title', 'Full City Coverage'); ?></h3>
+                    <p><?php echo get_theme_mod('feature5_description', 'Service available throughout the city'); ?></p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
-                    <h3>No Booking Fee</h3>
-                    <p>Transparent pricing with no hidden charges</p>
+                    <h3><?php echo get_theme_mod('feature6_title', 'No Booking Fee'); ?></h3>
+                    <p><?php echo get_theme_mod('feature6_description', 'Transparent pricing with no hidden charges'); ?></p>
                 </div>
             </div>
         </div>
@@ -77,26 +77,26 @@
                     <img src="<?php echo get_template_directory_uri(); ?>/images/about1-image.jpg" alt="About TSM Travells">
                 </div>
                 <div class="about-text">
-                <p>Welcome to TSM Travells, where sandy beaches meet ancient temples and rich cultural traditions. Nestled on the pristine coastline, we offer a perfect blend of natural beauty and historical wonders for your travel experiences.</p>
-                    <p>As you explore with us, you'll be captivated by the turquoise waters and golden sands that stretch as far as the eye can see. But we offer more than just beach destinations. We provide access to treasure troves of age-old temples that testify to deep-rooted spirituality.</p>
-                    <p>Whether you're a nature enthusiast, a history buff, or simply seeking a rejuvenating escape, TSM Travells promises an unforgettable journey filled with warmth, beauty, and cultural richness.</p>
+                <p><?php echo get_theme_mod('about_content_paragraph1', 'Welcome to TSM Travells, where sandy beaches meet ancient temples and rich cultural traditions. Nestled on the pristine coastline, we offer a perfect blend of natural beauty and historical wonders for your travel experiences.'); ?></p>
+                    <p><?php echo get_theme_mod('about_content_paragraph2', 'As you explore with us, you\'ll be captivated by the turquoise waters and golden sands that stretch as far as the eye can see. But we offer more than just beach destinations. We provide access to treasure troves of age-old temples that testify to deep-rooted spirituality.'); ?></p>
+                    <p><?php echo get_theme_mod('about_content_paragraph3', 'Whether you\'re a nature enthusiast, a history buff, or simply seeking a rejuvenating escape, TSM Travells promises an unforgettable journey filled with warmth, beauty, and cultural richness.'); ?></p>
                     
                     <div class="about-stats">
                         <div class="stat">
-                            <h3>10+</h3>
-                            <p>Years in Business</p>
+                            <h3><?php echo get_theme_mod('about_stat1_number', '10+'); ?></h3>
+                            <p><?php echo get_theme_mod('about_stat1_text', 'Years in Business'); ?></p>
                         </div>
                         <div class="stat">
-                            <h3>5000+</h3>
-                            <p>Happy Customers</p>
+                            <h3><?php echo get_theme_mod('about_stat2_number', '5000+'); ?></h3>
+                            <p><?php echo get_theme_mod('about_stat2_text', 'Happy Customers'); ?></p>
                         </div>
                         <div class="stat">
-                            <h3>100+</h3>
-                            <p>Destinations</p>
+                            <h3><?php echo get_theme_mod('about_stat3_number', '100+'); ?></h3>
+                            <p><?php echo get_theme_mod('about_stat3_text', 'Destinations'); ?></p>
                         </div>
                         <div class="stat">
-                            <h3>24/7</h3>
-                            <p>Support Available</p>
+                            <h3><?php echo get_theme_mod('about_stat4_number', '24/7'); ?></h3>
+                            <p><?php echo get_theme_mod('about_stat4_text', 'Support Available'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -310,24 +310,24 @@
                 <div class="destination-card">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/destination-1.jpg.svg" alt="Beach Destination">
                     <div class="destination-content">
-                        <h3>Coastal Paradise</h3>
-                        <p>Pristine beaches and coastal beauty</p>
+                        <h3><?php echo get_theme_mod('destination1_title', 'Coastal Paradise'); ?></h3>
+                        <p><?php echo get_theme_mod('destination1_description', 'Pristine beaches and coastal beauty'); ?></p>
                         <a href="#contact" class="btn-text">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="destination-card">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/destination-2.jpg.svg" alt="Temple Destination">
                     <div class="destination-content">
-                        <h3>Ancient Temples</h3>
-                        <p>Spiritual journey through historic temples</p>
+                        <h3><?php echo get_theme_mod('destination2_title', 'Ancient Temples'); ?></h3>
+                        <p><?php echo get_theme_mod('destination2_description', 'Spiritual journey through historic temples'); ?></p>
                         <a href="#contact" class="btn-text">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="destination-card">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/destination-3.jpg.svg" alt="Hill Station">
                     <div class="destination-content">
-                        <h3>Mountain Retreat</h3>
-                        <p>Serene hill stations and mountain views</p>
+                        <h3><?php echo get_theme_mod('destination3_title', 'Mountain Retreat'); ?></h3>
+                        <p><?php echo get_theme_mod('destination3_description', 'Serene hill stations and mountain views'); ?></p>
                         <a href="#contact" class="btn-text">Explore <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -347,20 +347,20 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <h3 class="counter" data-target="15000">150+</h3>
-                    <p>Trips Completed</p>
+                    <h3 class="counter" data-target="15000"><?php echo get_theme_mod('stat1_number', '150+'); ?></h3>
+                    <p><?php echo get_theme_mod('stat1_text', 'Trips Completed'); ?></p>
                 </div>
                 <div class="stat-card">
-                    <h3 class="counter" data-target="500">500+</h3>
-                    <p>Corporate Clients Served</p>
+                    <h3 class="counter" data-target="500"><?php echo get_theme_mod('stat2_number', '500+'); ?></h3>
+                    <p><?php echo get_theme_mod('stat2_text', 'Corporate Clients Served'); ?></p>
                 </div>
                 <div class="stat-card">
-                    <h3 class="counter" data-target="8000">600+</h3>
-                    <p>Happy Customers</p>
+                    <h3 class="counter" data-target="8000"><?php echo get_theme_mod('stat3_number', '600+'); ?></h3>
+                    <p><?php echo get_theme_mod('stat3_text', 'Happy Customers'); ?></p>
                 </div>
                 <div class="stat-card">
-                    <h3 class="counter" data-target="2000">200+</h3>
-                    <p>Online Bookings</p>
+                    <h3 class="counter" data-target="2000"><?php echo get_theme_mod('stat4_number', '200+'); ?></h3>
+                    <p><?php echo get_theme_mod('stat4_text', 'Online Bookings'); ?></p>
                 </div>
             </div>
         </div>
@@ -383,13 +383,13 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p>"The service was exceptional! The driver was punctual, professional, and the vehicle was immaculate. I highly recommend TSM Travells for all your travel needs in Mangalore."</p>
+                        <p>"<?php echo get_theme_mod('testimonial1_content', 'The service was exceptional! The driver was punctual, professional, and the vehicle was immaculate. I highly recommend TSM Travells for all your travel needs in Mangalore.'); ?>"</p>
                     </div>
                     <div class="testimonial-author">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/testimonial-1.jpg.svg" alt="Customer">
                         <div class="author-info">
-                            <h4>John Smith</h4>
-                            <p>Business Traveler</p>
+                            <h4><?php echo get_theme_mod('testimonial1_name', 'John Smith'); ?></h4>
+                            <p><?php echo get_theme_mod('testimonial1_role', 'Business Traveler'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -402,13 +402,13 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p>"We booked a luxury car for our wedding day, and it was perfect! The driver was courteous, the car was beautifully decorated, and everything went smoothly. Thank you TSM Travells for making our special day even better!"</p>
+                        <p>"<?php echo get_theme_mod('testimonial2_content', 'We booked a luxury car for our wedding day, and it was perfect! The driver was courteous, the car was beautifully decorated, and everything went smoothly. Thank you TSM Travells for making our special day even better!'); ?>"</p>
                     </div>
                     <div class="testimonial-author">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/testimonial-2.jpg.svg" alt="Customer">
                         <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Wedding Client</p>
+                            <h4><?php echo get_theme_mod('testimonial2_name', 'Sarah Johnson'); ?></h4>
+                            <p><?php echo get_theme_mod('testimonial2_role', 'Wedding Client'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -421,13 +421,13 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star-half-alt"></i>
                         </div>
-                        <p>"Our family trip to Coorg was made so much more enjoyable with TSM Travells. The driver was knowledgeable about the area and suggested some amazing local spots. The vehicle was spacious and comfortable for our long journey."</p>
+                        <p>"<?php echo get_theme_mod('testimonial3_content', 'Our family trip to Coorg was made so much more enjoyable with TSM Travells. The driver was knowledgeable about the area and suggested some amazing local spots. The vehicle was spacious and comfortable for our long journey.'); ?>"</p>
                     </div>
                     <div class="testimonial-author">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/testimonial-3.jpg.svg" alt="Customer">
                         <div class="author-info">
-                            <h4>David Wilson</h4>
-                            <p>Family Traveler</p>
+                            <h4><?php echo get_theme_mod('testimonial3_name', 'David Wilson'); ?></h4>
+                            <p><?php echo get_theme_mod('testimonial3_role', 'Family Traveler'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -467,10 +467,10 @@
                             <select id="service" name="service" required>
                                 <option value="">Select a service</option>
                                 <option value="city-taxi">City Taxi</option>
-                                <option value="outstation">Outstation Taxi</option>
+
                                 <option value="luxury">Luxury Cabs</option>
                                 <option value="wedding">Wedding Cars</option>
-                                <option value="corporate">Corporate Travel</option>
+
                                 <option value="airport">Airport Transfer</option>
                                 <option value="railway">Railway Station Taxi</option>
                             </select>
