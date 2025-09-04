@@ -130,7 +130,7 @@ Each service page includes:
 Update email settings in `server/process-forms.php`:
 ```php
 $config = [
-    'admin_email' => 'your-email@domain.com',
+    'admin_email' => 'mangaloretaxicabservices@gmail.com',
     'admin_name' => 'Your Company Name',
     'smtp_host' => 'your-smtp-server.com',
     'smtp_port' => 587,
@@ -211,7 +211,7 @@ The theme is fully responsive with:
 ## 📞 Support
 
 For technical support or customization requests:
-- Email: [your-email@domain.com]
+- Email: [mangaloretaxicabservices@gmail.com]
 - Phone: [your-phone-number]
 - Documentation: Check `server/README.md` for backend details
 
